@@ -17,7 +17,8 @@ angular
     'ngTouch',
     'ngMaterial',
     'restangular',
-    'nvd3'
+    'nvd3',
+    'ngMdIcons'
   ])
   .config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);

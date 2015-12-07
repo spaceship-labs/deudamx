@@ -13,10 +13,14 @@ angular.module('deudamxApp')
 function chartService($filter) {
   /* jshint validthis: true */
   var colorPalette = [],
+    modes = {},
     service = this;
 
+  service.nvdApi = {};
   service.formatEntities = formatEntities;
+  service.mode = 0;
   service.stackedArea = stackedArea;
+  //service.modes = modes;
 
   colorPalette = [
     '#AA3939', '#FFAAAA', '#D46A6A', '#801515',
@@ -28,6 +32,12 @@ function chartService($filter) {
     '#652403', '#246C6C', '#6AA1A1', '#448282',
     '#115757', '#023D3D', '#2C824E', '#7CBD97',
     '#529C70', '#146936'
+  ];
+
+ service.modes = [
+    {name:'Deuda por monto',icon:'attach_money',y:'debt'},
+    {name:'Deuda como % del PIB Estatal',icon:'business',y:'debtpib'},
+    {name:'Deuda per capita',icon:'perm_identity',y:'debtPerCapita'},
   ];
 
   function formatEntities(entities) {
@@ -63,13 +73,16 @@ function chartService($filter) {
           return parseInt(d.year);
         },
         y: function(d) {
-          return parseFloat(d.debt);
+          var val =parseFloat(d[service.modes[service.mode].y]);
+          val = val ? val : 0;
+          console.log(val);
+          return val;
         },
         showValues: true,
         valueFormat: function(d) {
           return d;
         },
-        duration: 800,
+        duration: 500,
         xAxis: {
           axisLabel: 'Año',
           rotateLabels: -45

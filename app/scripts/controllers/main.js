@@ -15,6 +15,7 @@ function mainCtrl(apiService, chartService) {
   var vm = this;
 
   vm.dataset = [];
+  vm.chartService = chartService;
   vm.entities = [];
   vm.getEntityIcon = getEntityIcon;
   vm.load = load;
@@ -43,6 +44,7 @@ function mainCtrl(apiService, chartService) {
         vm.selectedEntities.push(entity);
       }
     });
+    vm.api.update();
   }
 
   function setEntities(entities) {

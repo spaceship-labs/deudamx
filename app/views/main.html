@@ -1,7 +1,13 @@
 <div flex='100' layout-padding layout='row'>
   <div flex='75'>
     <h1>La deuda sub-nacional en México</h1>
-    <nvd3 options="vm.stackedArea" data="vm.selectedEntities"></nvd3>
+    <div>
+       <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.chartService.mode = key;vm.refreshData()' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+        <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
+       </md-button>
+
+    </div>
+    <nvd3 options="vm.stackedArea" data="vm.selectedEntities" api='vm.api'></nvd3>
   </div>
   <md-content layout='column' flex='25'>
     <md-list class='small-list' flex>
