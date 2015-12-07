@@ -17,25 +17,46 @@ function chartService() {
   service.formatEntities = formatEntities;
   service.stackedArea = stackedArea;
 
-  function formatEntities(entities){
-    return entities.map(function(entity){
-      entity.stats[entity.stats.length-1].year = '2015';
+  function formatEntities(entities) {
+    return entities.map(function(entity) {
+      entity.stats[entity.stats.length - 1].year = '2015';
       return {
-        key : entity.name,
-        values : entity.stats
+        key: entity.name,
+        values: entity.stats
       };
     });
   }
+
   function stackedArea() {
     return {
       chart: {
         type: 'stackedAreaChart',
         useInteractiveGuideline: true,
         useVoronoi: false,
-        height: 650,
+        height: 550,
+        color: [
+          '#AA3939', '#FFAAAA',
+          '#D46A6A', '#801515',
+          '#550000', '#AA6C39',
+          '#FFD1AA', '#D49A6A',
+          '#804515', '#552600',
+          '#226666', '#669999',
+          '#407F7F', '#0D4D4D',
+          '#003333', '#2D882D',
+          '#88CC88', '#55AA55',
+          '#116611', '#004400',
+          '#B4653D', '#FFC5A8',
+          '#D99572', '#91441C',
+          '#652403', '#246C6C',
+          '#6AA1A1', '#448282',
+          '#115757', '#023D3D',
+          '#2C824E', '#7CBD97',
+          '#529C70', '#146936'
+        ],
+        showLegend: false,
         margin: {
           top: 20,
-          right: 50,
+          right: 20,
           bottom: 60,
           left: 60
         },

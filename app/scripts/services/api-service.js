@@ -18,7 +18,7 @@ function apiService(Restangular) {
 
   function getEntities() {
     return Restangular.all('entity').getList({
-      sort: 'name ASC',
+      sort: 'balance DESC',
     });
   }
 

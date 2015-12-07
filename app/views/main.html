@@ -1,6 +1,17 @@
-<div flex='90' layout-padding >
-  <h1>La deuda sub-nacional en México</h1>
+<div flex='100' layout-padding layout='row'>
+  <div flex='75'>
+    <h1>La deuda sub-nacional en México</h1>
+    <nvd3 options="vm.stackedArea" data="vm.dataset"></nvd3>
+  </div>
+  <md-content flex='25'>
+    <md-list class='small-list'>
 
-  <nvd3 options="vm.stackedArea" data="vm.dataset"></nvd3>
+      <md-list-item ng-repeat='entity in vm.entities'>
+        <img ng-src="{{vm.getEntityIcon(entity)}}" class="md-avatar filter-icon" alt="{{entity.name}}" />
+        <p>{{ entity.name }}</p>
+        <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+      </md-list-item>
 
+    </md-list>
+  </md-content>
 </div>

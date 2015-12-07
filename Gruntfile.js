@@ -399,7 +399,7 @@ module.exports = function(grunt) {
         //Custom task for basehref in build
         processhtml: {
             options: {
-                commentMarker: "process"
+                commentMarker: 'process'
             },
             dist: {
                 files: [{
