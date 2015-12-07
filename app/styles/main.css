@@ -1,7 +1,42 @@
+.nvd3 text {
+  font: normal 12px Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.align-right {
+  text-align: right
+}
+
 .filter-icon {
   filter: grayscale(70%);
 }
 
-.small-list md-list-item{
-  padding:0;
+.small-list md-list-item {
+  padding: 0;
+}
+
+.small-list .md-avatar {
+  width: 25px;
+  height: 25px;
+  margin: 6px 12px 5px 0;
+  padding: 0px;
+  min-width: 25px;
+  min-height: 25px;
+}
+
+.small-list .md-avatar::after {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px;
+  margin: 1px auto;
+  background-color: white;
+}
+
+.small-list .md-avatar.selected::after {
+  display: none;
+}
+
+.small-list p {
+  font-size: 14px;
 }

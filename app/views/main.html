@@ -1,14 +1,20 @@
 <div flex='100' layout-padding layout='row'>
   <div flex='75'>
     <h1>La deuda sub-nacional en México</h1>
-    <nvd3 options="vm.stackedArea" data="vm.dataset"></nvd3>
+    <nvd3 options="vm.stackedArea" data="vm.selectedEntities"></nvd3>
   </div>
-  <md-content flex='25'>
-    <md-list class='small-list'>
-      <md-list-item ng-repeat='entity in vm.entities'>
-        <img ng-src="{{vm.getEntityIcon(entity)}}" class="md-avatar filter-icon" alt="{{entity.name}}" />
-        <p>{{ entity.name }}</p>
-        <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+  <md-content layout='column' flex='25'>
+    <md-list class='small-list' flex>
+      <md-list-item>
+        <div class="md-avatar md-whiteframe-1dp" style='background-color:#eee' ng-click='vm.toggleAll()' ng-class='vm.stackedSelected ? "selected" : ""' aria-label='Toggle all'></div>
+        <p>Entidad</p>
+        <p class='align-right'>Deuda</p>
+      </md-list-item>
+      <md-divider ></md-divider>
+      <md-list-item ng-repeat='entity in vm.dataset  | orderBy:"key"'>
+        <div class="md-avatar md-whiteframe-1dp" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key'></div>
+        <p>{{ entity.key }}</p>
+        <p class='align-right'>{{ entity.balance | currency}}</p>
       </md-list-item>
     </md-list>
   </md-content>
