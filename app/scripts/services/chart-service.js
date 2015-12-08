@@ -19,9 +19,19 @@ function chartService($filter) {
   service.nvdApi = {};
   service.formatEntities = formatEntities;
   service.mode = 0;
+  service.state = 0;
   service.stackedArea = stackedArea;
   //service.modes = modes;
-
+  service.modes = [
+    {name:'Deuda por monto',icon:'attach_money',y:'debt'},
+    {name:'Deuda como % del PIB Estatal',icon:'business',y:'debtpib'},
+    {name:'Deuda per capita',icon:'perm_identity',y:'debtPerCapita'},
+  ];
+  service.states = [
+    {name:'Grafica de area apilada',icon:'signal_cellular_4_bar',style:'stack'},
+    {name:'Grafica de flujo',icon:'multitrack_audio',style:'stream'},
+    {name:'Grafica expandida',icon:'view_stream',style:'expand'},
+  ];
   colorPalette = [
     '#AA3939', '#FFAAAA', '#D46A6A', '#801515',
     '#550000', '#AA6C39', '#FFD1AA', '#D49A6A',
@@ -34,11 +44,7 @@ function chartService($filter) {
     '#529C70', '#146936'
   ];
 
- service.modes = [
-    {name:'Deuda por monto',icon:'attach_money',y:'debt'},
-    {name:'Deuda como % del PIB Estatal',icon:'business',y:'debtpib'},
-    {name:'Deuda per capita',icon:'perm_identity',y:'debtPerCapita'},
-  ];
+
 
   function formatEntities(entities) {
     return entities.map(function(entity, key) {
@@ -63,6 +69,8 @@ function chartService($filter) {
         height: 550,
         color: colorPalette,
         showLegend: false,
+        noData : 'Cargando Datos',
+        showControls : false,
         margin: {
           top: 0,
           right: 20,
@@ -75,12 +83,12 @@ function chartService($filter) {
         y: function(d) {
           var val =parseFloat(d[service.modes[service.mode].y]);
           val = val ? val : 0;
-          console.log(val);
           return val;
         },
         showValues: true,
         valueFormat: function(d) {
-          return d;
+          console.log(d);
+          return $filter('number')(d,0);
         },
         duration: 500,
         xAxis: {
@@ -94,7 +102,7 @@ function chartService($filter) {
           axisLabel: 'Millones de pesos',
           axisLabelDistance: 10,
           tickFormat: function(d) {
-            return $filter('number')(d,0);
+            return $filter('number')(d,2);
           }
 
         }

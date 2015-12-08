@@ -1,13 +1,23 @@
 <div flex='100' layout-padding layout='row'>
   <div flex='75'>
     <h1>La deuda sub-nacional en México</h1>
+    <h2>{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
     <div>
-       <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.chartService.mode = key;vm.refreshData()' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+      <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.chartService.mode = key;vm.refreshData()' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+        <md-tooltip md-direction="top">
+          {{mode.name}}
+        </md-tooltip>
         <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
-       </md-button>
-
+      </md-button>
+      |
+      <md-button ng-repeat='(key,state) in vm.chartService.states' ng-click='vm.chartService.state = key;vm.setChartState(state.style)' class="md-icon-button" aria-label="{{state.name}}" ng-disabled='key === vm.chartService.state'>
+        <md-tooltip md-direction="top">
+          {{state.name}}
+        </md-tooltip>
+        <ng-md-icon icon="{{state.icon}}"></ng-md-icon>
+      </md-button>
     </div>
-    <nvd3 options="vm.stackedArea" data="vm.selectedEntities" api='vm.api'></nvd3>
+    <nvd3 options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
   </div>
   <md-content layout='column' flex='25'>
     <md-list class='small-list' flex>
@@ -16,7 +26,7 @@
         <p>Entidad</p>
         <p class='align-right'>Deuda</p>
       </md-list-item>
-      <md-divider ></md-divider>
+      <md-divider></md-divider>
       <md-list-item ng-repeat='entity in vm.dataset  | orderBy:"key"'>
         <div class="md-avatar md-whiteframe-1dp" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key'></div>
         <p>{{ entity.key }}</p>
