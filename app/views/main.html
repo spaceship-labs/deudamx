@@ -1,5 +1,5 @@
 <div flex='100' layout-padding layout='row'>
-  <div flex='75'>
+  <div flex='75' layout='column' >
     <h1>La deuda sub-nacional en México</h1>
     <h2>{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
     <div>
@@ -17,7 +17,7 @@
         <ng-md-icon icon="{{state.icon}}"></ng-md-icon>
       </md-button>
     </div>
-    <nvd3 options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
+    <nvd3 layout-fill flex options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
   </div>
   <md-content layout='column' flex='25'>
     <md-list class='small-list' flex>

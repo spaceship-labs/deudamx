@@ -25,7 +25,7 @@ function chartService($filter) {
   service.modes = [
     {name:'Deuda por monto',icon:'attach_money',y:'debt'},
     {name:'Deuda como % del PIB Estatal',icon:'business',y:'debtpib'},
-    {name:'Deuda per capita',icon:'perm_identity',y:'debtPerCapita'},
+    {name:'Deuda per capita',icon:'perm_identity',y:'perCapita'},
   ];
   service.states = [
     {name:'Grafica de area apilada',icon:'signal_cellular_4_bar',style:'stack'},
@@ -66,7 +66,7 @@ function chartService($filter) {
         type: 'stackedAreaChart',
         useInteractiveGuideline: true,
         useVoronoi: false,
-        height: 550,
+        height: 540,
         color: colorPalette,
         showLegend: false,
         noData : 'Cargando Datos',
