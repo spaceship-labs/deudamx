@@ -49,12 +49,7 @@ function mainCtrl(apiService, chartService) {
   }
 
   function refreshData() {
-    vm.selectedEntities = [];
-    vm.dataset.forEach(function(entity) {
-      if (entity.selected) {
-        vm.selectedEntities.push(entity);
-      }
-    });
+    vm.selectedEntities = chartService.getSelectedEntities(vm.dataset);
     vm.api.update();
   }
 
