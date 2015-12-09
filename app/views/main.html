@@ -1,9 +1,9 @@
 <div flex='100' layout-padding layout='row'>
-  <div flex='75' layout='column' >
+  <div flex='75' layout='column'>
     <h1>La deuda sub-nacional en México</h1>
     <h2>{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
     <div>
-      <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.chartService.mode = key;vm.refreshData()' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+      <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
         <md-tooltip md-direction="top">
           {{mode.name}}
         </md-tooltip>
@@ -23,14 +23,18 @@
     <md-list class='small-list' flex>
       <md-list-item>
         <div class="md-avatar md-whiteframe-1dp" style='background-color:#eee' ng-click='vm.toggleAll()' ng-class='vm.stackedSelected ? "selected" : ""' aria-label='Toggle all'></div>
-        <p>Entidad</p>
-        <p class='align-right'>Deuda</p>
+        <p>
+          <md-button ng-click='vm.toggleSort("key")'>Entidad</md-button>
+        </p>
+        <p class='align-right'>
+          <md-button ng-click='vm.toggleSort(vm.chartService.modes[vm.chartService.mode].sort)'>{{vm.chartService.modes[vm.chartService.mode].label}}</md-button>
+        </p>
       </md-list-item>
       <md-divider></md-divider>
-      <md-list-item ng-repeat='entity in vm.dataset  | orderBy:"key"'>
+      <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort'>
         <div class="md-avatar md-whiteframe-1dp" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key'></div>
         <p>{{ entity.key }}</p>
-        <p class='align-right'>{{ entity.balance | currency}}</p>
+        <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
       </md-list-item>
     </md-list>
   </md-content>

@@ -10,7 +10,7 @@
 angular.module('deudamxApp')
   .controller('MainCtrl', mainCtrl);
 
-function mainCtrl(apiService, chartService) {
+function mainCtrl(apiService, chartService, $filter) {
   /* jshint validthis: true */
   var vm = this,
     chart;
@@ -18,6 +18,7 @@ function mainCtrl(apiService, chartService) {
   vm.dataset = [];
   vm.chartCallback = chartCallback;
   vm.chartService = chartService;
+  vm.changeMode = changeMode;
   vm.entities = [];
   vm.getEntityIcon = getEntityIcon;
   vm.load = load;
@@ -27,8 +28,12 @@ function mainCtrl(apiService, chartService) {
   vm.stackedArea = chartService.stackedArea();
   vm.stackedSelected = true;
   vm.selectedEntities = [];
+  vm.tableFigure = tableFigure;
+  vm.tableSort = 'key';
+  vm.tableSortOrder = '';
   vm.toggleAll = toggleAll;
   vm.toggleOne = toggleOne;
+  vm.toggleSort = toggleSort;
   vm.load();
 
   function setChartState(style) {
@@ -39,6 +44,13 @@ function mainCtrl(apiService, chartService) {
     chart = scope.chart;
   }
 
+  function changeMode(key){
+    chartService.mode = key;
+    if(vm.tableSort != 'key'){
+      vm.tableSort = chartService.getMode().sort;
+    }
+    vm.refreshData();
+  }
   function load() {
     apiService.getEntities().then(vm.setEntities);
   }
@@ -61,6 +73,13 @@ function mainCtrl(apiService, chartService) {
 
   }
 
+  function tableFigure(entity){
+    var mode = chartService.getMode();
+    console.log(entity[mode.sort]);
+    var value = $filter(mode.filter)(entity[mode.sort]);
+    return value;
+  }
+
   function toggleAll() {
     vm.stackedSelected = !vm.stackedSelected;
     vm.dataset.map(function(entity) {
@@ -73,5 +92,11 @@ function mainCtrl(apiService, chartService) {
   function toggleOne(entity) {
     entity.selected = !entity.selected;
     vm.refreshData();
+  }
+
+  function toggleSort(key){
+    vm.tableSort = key;
+    vm.tableSortOrder = vm.tableSortOrder == '' ? '-' : '';
+
   }
 }

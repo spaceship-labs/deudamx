@@ -16,6 +16,7 @@ function chartService($filter) {
     modes = {},
     service = this;
 
+  service.getMode = getMode;
   service.getSelectedEntities = getSelectedEntities;
   service.nvdApi = {};
   service.formatEntities = formatEntities;
@@ -27,18 +28,24 @@ function chartService($filter) {
     name: 'Deuda por monto',
     icon: 'attach_money',
     y: 'debt',
-    sort: 'balance'
-  }, {
-    name: 'Deuda como % del PIB Estatal',
-    icon: 'business',
-    y: 'debtpib',
-    sort: 'balancegdp'
+    sort: 'balance',
+    label : 'Deuda MDP',
+    filter : 'currency',
   }, {
     name: 'Deuda per capita',
     icon: 'perm_identity',
     y: 'perCapita',
-    sort: 'balancePerCapita'
-  }, ];
+    sort: 'balancePerCapita',
+    label : 'Deuda per capita',
+    filter : 'currency',
+  }, {
+    name: 'Deuda como % del PIB Estatal',
+    icon: 'business',
+    y: 'debtpib',
+    sort: 'balancegdp',
+    label : '% del PIBE',
+    filter : 'number',
+  }];
   service.states = [{
     name: 'Grafica de area apilada',
     icon: 'signal_cellular_4_bar',
@@ -51,7 +58,7 @@ function chartService($filter) {
     name: 'Grafica expandida',
     icon: 'view_stream',
     style: 'expand'
-  }, ];
+  }];
   colorPalette = [
     '#AA3939', '#FFAAAA', '#D46A6A', '#801515',
     '#550000', '#AA6C39', '#FFD1AA', '#D49A6A',
@@ -63,7 +70,9 @@ function chartService($filter) {
     '#115757', '#023D3D', '#2C824E', '#7CBD97',
     '#529C70', '#146936'
   ];
-
+  function getMode(){
+    return service.modes[service.mode];
+  }
   function getSelectedEntities(dataset) {
     var selected = [];
     dataset.forEach(function(entity) {
@@ -107,7 +116,7 @@ function chartService($filter) {
         height: 540,
         color: colorPalette,
         showLegend: false,
-        noData: 'Cargando Datos',
+        noData: 'No hay datos',
         showControls: false,
         margin: {
           top: 0,
