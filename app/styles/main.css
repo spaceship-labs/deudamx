@@ -1,3 +1,7 @@
+.entity-avatar{
+  margin:10px 15px;
+}
+
 .nvd3 text {
   font: normal 12px Roboto, 'Helvetica Neue', sans-serif;
 }
@@ -6,7 +10,7 @@
 }
 
 .filter-icon {
-  filter: grayscale(70%);
+  filter: grayscale(60%);
 }
 .plain-link{
   text-decoration: none;

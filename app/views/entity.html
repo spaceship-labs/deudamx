@@ -1,1 +1,16 @@
-<p>This is the entity view.</p>
+<div layout='column' layout-padding flex='35' ng-show='vm.entity'>
+  <div layout='row'>
+    <img class="entity-avatar filter-icon" ng-src='{{vm.getEntityIcon(vm.entity)}}' />
+    <div>
+      <h1 ng-bind='vm.entity.name'></h1>
+      <h2>{{vm.entity.balance | currency}} MDP en deuda</h2>
+    </div>
+  </div>
+  <h3>Deuda Per Capita: {{vm.entity.balancePerCapita | currency }}</h3>
+  <p>
+    <ng-md-icon icon='accessibility'></ng-md-icon> = 1 salario minimo</p>
+  <p>Se deben {{vm.minimumSalaries() | number : 1}} salarios minimos por persona en {{vm.entity.name}}</p>
+  <div>
+    <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='accessibility'></ng-md-icon>
+  </div>
+</div>

@@ -15,12 +15,12 @@ function mainCtrl(apiService, chartService, $filter) {
   var vm = this,
     chart;
 
+  vm.api = {};
   vm.dataset = [];
   vm.chartCallback = chartCallback;
   vm.chartService = chartService;
   vm.changeMode = changeMode;
   vm.entities = [];
-  vm.getEntityIcon = getEntityIcon;
   vm.goToEntity = goToEntity;
   vm.load = load;
   vm.refreshData = refreshData;
@@ -59,18 +59,15 @@ function mainCtrl(apiService, chartService, $filter) {
     apiService.getEntities().then(vm.setEntities);
   }
 
-  function getEntityIcon(entity) {
-    var filename = entity.key.split(' ').join('_');
-    return 'images/entities/' + filename + '.png';
-  }
-
   function goToEntity(entity){
     console.log('goto');
   }
 
   function refreshData() {
     vm.selectedEntities = chartService.getSelectedEntities(vm.dataset);
-    vm.api.update();
+    if(vm.api.update){
+      vm.api.update();
+    }
   }
 
   function setEntities(entities) {
@@ -107,7 +104,6 @@ function mainCtrl(apiService, chartService, $filter) {
   }
 
   function viewOne(entity){
-    console.log('dbl clik');
     vm.dataset.map(function(e){
       e.selected = e.key === entity.key;
       return e;

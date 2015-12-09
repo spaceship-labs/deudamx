@@ -28,7 +28,7 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'vm'
       })
-      .when('/entidad/:entityId', {
+      .when('/entidad/:entityName', {
         templateUrl: 'views/entity.html',
         controller: 'EntityCtrl',
         controllerAs: 'vm'

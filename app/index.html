@@ -24,7 +24,7 @@
 </head>
 
 <body ng-app="deudamxApp">
-  <md-content ng-view layout-class="md-padding" layout='row' layout-fill layout-sm="column" layout-align='center' flex></md-content>
+  <md-content ng-view></md-content>
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
   <script src="bower_components/angular/angular.js"></script>
@@ -45,6 +45,7 @@
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/app.js"></script>
   <script src="scripts/config.services.js"></script>
+  <script src="scripts/config.filters.js"></script>
   <script src="scripts/controllers/main.js"></script>
   <script src="scripts/services/api-service.js"></script>
   <script src="scripts/services/chart-service.js"></script>
