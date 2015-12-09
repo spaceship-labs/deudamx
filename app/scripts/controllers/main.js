@@ -21,6 +21,7 @@ function mainCtrl(apiService, chartService, $filter) {
   vm.changeMode = changeMode;
   vm.entities = [];
   vm.getEntityIcon = getEntityIcon;
+  vm.goToEntity = goToEntity;
   vm.load = load;
   vm.refreshData = refreshData;
   vm.setChartState = setChartState;
@@ -34,7 +35,10 @@ function mainCtrl(apiService, chartService, $filter) {
   vm.toggleAll = toggleAll;
   vm.toggleOne = toggleOne;
   vm.toggleSort = toggleSort;
+  vm.viewOne = viewOne;
+
   vm.load();
+
 
   function setChartState(style) {
     chart.dispatch.changeState({style:style});
@@ -60,6 +64,10 @@ function mainCtrl(apiService, chartService, $filter) {
     return 'images/entities/' + filename + '.png';
   }
 
+  function goToEntity(entity){
+    console.log('goto');
+  }
+
   function refreshData() {
     vm.selectedEntities = chartService.getSelectedEntities(vm.dataset);
     vm.api.update();
@@ -75,7 +83,6 @@ function mainCtrl(apiService, chartService, $filter) {
 
   function tableFigure(entity){
     var mode = chartService.getMode();
-    console.log(entity[mode.sort]);
     var value = $filter(mode.filter)(entity[mode.sort]);
     return value;
   }
@@ -97,6 +104,14 @@ function mainCtrl(apiService, chartService, $filter) {
   function toggleSort(key){
     vm.tableSort = key;
     vm.tableSortOrder = vm.tableSortOrder === '' ? '-' : '';
+  }
 
+  function viewOne(entity){
+    console.log('dbl clik');
+    vm.dataset.map(function(e){
+      e.selected = e.key === entity.key;
+      return e;
+    });
+    vm.refreshData();
   }
 }

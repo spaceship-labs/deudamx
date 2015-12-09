@@ -84,7 +84,6 @@ function chartService($filter) {
       var field = service.modes[service.mode];
       var aVal = parseFloat(a[field.sort]);
       var bVal = parseFloat(b[field.sort]);
-      //console.log(field);
       return bVal - aVal;
     });
     return selected;
@@ -134,7 +133,6 @@ function chartService($filter) {
         },
         showValues: true,
         valueFormat: function(d) {
-          console.log(d);
           return $filter('number')(d, 0);
         },
         duration: 500,

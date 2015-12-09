@@ -31,8 +31,8 @@
         </p>
       </md-list-item>
       <md-divider></md-divider>
-      <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort'>
-        <div class="md-avatar md-whiteframe-1dp" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key'></div>
+      <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort' >
+        <div class="md-avatar md-whiteframe-1dp" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'></div>
         <p>{{ entity.key }}</p>
         <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
       </md-list-item>
