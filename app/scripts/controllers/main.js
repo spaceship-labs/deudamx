@@ -46,7 +46,7 @@ function mainCtrl(apiService, chartService, $filter) {
 
   function changeMode(key){
     chartService.mode = key;
-    if(vm.tableSort != 'key'){
+    if(vm.tableSort !== 'key'){
       vm.tableSort = chartService.getMode().sort;
     }
     vm.refreshData();
@@ -96,7 +96,7 @@ function mainCtrl(apiService, chartService, $filter) {
 
   function toggleSort(key){
     vm.tableSort = key;
-    vm.tableSortOrder = vm.tableSortOrder == '' ? '-' : '';
+    vm.tableSortOrder = vm.tableSortOrder === '' ? '-' : '';
 
   }
 }
