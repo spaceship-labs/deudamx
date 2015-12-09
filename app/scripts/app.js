@@ -21,11 +21,16 @@ angular
     'ngMdIcons'
   ])
   .config(function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/entidad/:entityId', {
+        templateUrl: 'views/entity.html',
+        controller: 'EntityCtrl',
         controllerAs: 'vm'
       })
       .otherwise({

@@ -1,7 +1,6 @@
 .nvd3 text {
   font: normal 12px Roboto, 'Helvetica Neue', sans-serif;
 }
-
 .align-right {
   text-align: right
 }
@@ -9,7 +8,11 @@
 .filter-icon {
   filter: grayscale(70%);
 }
-
+.plain-link{
+  text-decoration: none;
+  color:black;
+  font-weight:bold;
+}
 .small-list md-list-item {
   padding: 0;
 }

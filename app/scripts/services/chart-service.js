@@ -94,6 +94,7 @@ function chartService($filter) {
 
       entity.stats[entity.stats.length - 1].year = '2015';
       return {
+        id : entity.id,
         key: entity.name,
         values: entity.stats,
         selected: true,
