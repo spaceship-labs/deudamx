@@ -12,21 +12,32 @@ angular.module('deudamxApp')
 
 function entityCtrl(apiService, $routeParams) {
   /* jshint validthis: true */
-  var vm = this;
+  var vm = this, query;
 
   vm.load = load;
   vm.getEntityIcon = getEntityIcon;
   vm.minimumSalaries = minimumSalaries;
   vm.perCapitaRange = perCapitaRange;
+  vm.query = query;
 
   vm.load();
 
   function load() {
-    apiService.getEntity($routeParams.entityName).then(setEntity);
+    apiService
+      .getEntity($routeParams.entityName)
+      .then(setEntity)
+      .then(apiService.getEntityObligations)
+      .then(setObligations);
   }
 
   function setEntity(entity) {
     vm.entity = entity;
+    return vm.entity;
+  }
+
+  function setObligations(obligations){
+    vm.obligations = obligations;
+    return vm.obligations;
   }
 
   function getEntityIcon(entity) {
@@ -37,6 +48,7 @@ function entityCtrl(apiService, $routeParams) {
       return null;
     }
   }
+
   function minimumSalaries(){
     if(vm.entity){
       return parseFloat(vm.entity.balancePerCapita) / 70.10;
@@ -48,5 +60,13 @@ function entityCtrl(apiService, $routeParams) {
   function perCapitaRange() {
     return new Array(Math.round(vm.minimumSalaries()));
   }
+
+  query = {
+    filter: '',
+    order: 'signDate',
+    limit: 10,
+    page: 1
+  };
+
 
 }

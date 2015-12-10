@@ -18,7 +18,8 @@ angular
     'ngMaterial',
     'restangular',
     'nvd3',
-    'ngMdIcons'
+    'ngMdIcons',
+    'md.data.table'
   ])
   .config(function($routeProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
