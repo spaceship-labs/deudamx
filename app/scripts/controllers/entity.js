@@ -12,33 +12,15 @@ angular.module('deudamxApp')
 
 function entityCtrl(apiService, $routeParams) {
   /* jshint validthis: true */
-  var vm = this, query;
+  var vm = this;
 
-  vm.load = load;
   vm.getEntityIcon = getEntityIcon;
   vm.minimumSalaries = minimumSalaries;
+  vm.load = load;
   vm.perCapitaRange = perCapitaRange;
-  vm.query = query;
+  vm.query = {};
 
   vm.load();
-
-  function load() {
-    apiService
-      .getEntity($routeParams.entityName)
-      .then(setEntity)
-      .then(apiService.getEntityObligations)
-      .then(setObligations);
-  }
-
-  function setEntity(entity) {
-    vm.entity = entity;
-    return vm.entity;
-  }
-
-  function setObligations(obligations){
-    vm.obligations = obligations;
-    return vm.obligations;
-  }
 
   function getEntityIcon(entity) {
     if (entity) {
@@ -49,10 +31,24 @@ function entityCtrl(apiService, $routeParams) {
     }
   }
 
-  function minimumSalaries(){
-    if(vm.entity){
+  function load() {
+    vm.query = {
+      filter: '',
+      order: '-signDate',
+      limit: 10,
+      page: 1
+    };
+    apiService
+      .getEntity($routeParams.entityName)
+      .then(setEntity)
+      .then(apiService.getEntityCollections)
+      .then(setCollections);
+  }
+
+  function minimumSalaries() {
+    if (vm.entity) {
       return parseFloat(vm.entity.balancePerCapita) / 70.10;
-    }else{
+    } else {
       return 0;
     }
   }
@@ -61,12 +57,36 @@ function entityCtrl(apiService, $routeParams) {
     return new Array(Math.round(vm.minimumSalaries()));
   }
 
-  query = {
-    filter: '',
-    order: 'signDate',
-    limit: 10,
-    page: 1
-  };
+  function setCollections(collections) {
+    vm.administrations = collections[0];
+    vm.obligations = collections[1];
+    setObligationAdministration();
+    return collections;
+  }
+
+  function setObligationAdministration(){
+    vm.obligations = vm.obligations.map(function(ob){
+      var obDate = new Date(ob.signDate);
+      ob.administration = vm.administrations.find(function(admin){
+        var start = new Date(admin.start);
+        if(admin.end){
+          var end = new Date(admin.end);
+          return obDate > start && obDate < end;
+        }else{
+          return obDate > start;
+        }
+      });
+      return ob;
+    });
+    //console.log(vm.obligations);
+    return vm.obligations;
+  }
+
+  function setEntity(entity) {
+    vm.entity = entity;
+    return vm.entity;
+  }
+
 
 
 }

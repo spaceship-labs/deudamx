@@ -14,11 +14,15 @@ function apiService(Restangular, $q) {
   /* jshint validthis: true */
   var service = this;
 
+  service.administration = {};
   service.entities = [];
   service.getEntities = getEntities;
   service.getEntity = getEntity;
+  service.getEntityCollections = getEntityCollections;
+  service.getEntityCollection = getEntityCollection;
   service.getEntityObligations = getEntityObligations;
-  service.obligations = {};
+  service.getEntityAdministrations = getEntityAdministrations;
+  service.debtObligation = {};
 
   function getEntities() {
     var deferred = $q.defer();
@@ -53,19 +57,35 @@ function apiService(Restangular, $q) {
     }
   }
 
+  function getEntityAdministrations(entity){
+    return getEntityCollection(entity,'administration');
+  }
 
-  function getEntityObligations(entity) {
+  function getEntityCollection(entity,collection){
     var deferred = $q.defer();
 
-    Restangular.all('debtObligation').getList({
-      entity: entity.id,
-      sort : 'signDate DESC'
-    }).then(function(obligations) {
-      service.obligations[entity.id] = obligations;
-      deferred.resolve(obligations);
-    }, deferred.reject);
+    Restangular.all(collection).getList({
+      entity: entity.id
+    }).then(function(results){
+      service[collection][entity.id] = results;
+      deferred.resolve(results);
+    });
 
     return deferred.promise;
   }
+
+  function getEntityCollections(entity){
+    var deferred = $q.defer();
+
+    $q.all([service.getEntityAdministrations(entity),service.getEntityObligations(entity)])
+      .then(deferred.resolve,deferred.reject);
+
+    return deferred.promise;
+  }
+
+  function getEntityObligations(entity) {
+    return getEntityCollection(entity,'debtObligation');
+  }
+
 
 }

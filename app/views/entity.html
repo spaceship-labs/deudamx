@@ -1,5 +1,5 @@
 <div layout='row'>
-  <div layout='column' layout-padding flex='35' ng-show='vm.entity'>
+  <div layout='column' layout-padding flex='30' ng-show='vm.entity'>
     <div layout='row'>
       <img class="entity-avatar filter-icon" ng-src='{{vm.getEntityIcon(vm.entity)}}' />
       <div>
@@ -7,7 +7,7 @@
         <h2>{{vm.entity.balance | currency}} MDP en deuda</h2>
       </div>
     </div>
-    <h3>Deuda Per Capita: {{vm.entity.balancePerCapita | currency }}</h3>
+    <h>Deuda Per Capita: {{vm.entity.balancePerCapita | currency }}</h3>
     <p>
       <ng-md-icon icon='accessibility'></ng-md-icon> = 1 salario minimo</p>
     <p>Se deben {{vm.minimumSalaries() | number : 1}} salarios minimos por persona en {{vm.entity.name}}</p>
@@ -15,14 +15,13 @@
       <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='accessibility'></ng-md-icon>
     </div>
   </div>
-  <md-data-table-container ng-show='vm.obligations'>
+  <md-data-table-container ng-show='vm.obligations' flex>
     <table md-data-table md-progress="deferred">
       <thead md-order="vm.query.order" md-trigger="onOrderChange">
         <tr>
           <th name="Acreditado" order-by="acredited"></th>
-          <th name="Tipo" order-by="type"></th>
+          <th name="Gobernador" order-by="administration.governor"></th>
           <th name="Destino" order-by="destination"></th>
-          <th name="Fuente de pago" order-by="collateral"></th>
           <th name="Fecha de Firma" order-by="signDate"></th>
           <th numeric name="Monto" unit="$" order-by="ammount"></th>
           <th numeric name="Saldo" unit="$" order-by="balance"></th>
@@ -31,12 +30,11 @@
       <tbody>
         <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
           <td>{{obligation.acredited}}</td>
-          <td>{{obligation.type}}</td>
+          <td>{{obligation.administration.governor}} ({{obligation.administration.party}})</td>
           <td>{{obligation.destination}}</td>
-          <td>{{obligation.collateral}}</td>
           <td>{{obligation.signDate | date}}</td>
-          <td>{{obligation.ammount | currency}}</td>
-          <td>{{obligation.balance | currency}}</td>
+          <td>{{obligation.ammount | mdp}}</td>
+          <td>{{obligation.balance | mdp}}</td>
         </tr>
       </tbody>
     </table>
