@@ -1,7 +1,6 @@
 .entity-avatar{
   margin:10px 15px;
 }
-
 .nvd3 text {
   font: normal 12px Roboto, 'Helvetica Neue', sans-serif;
 }
@@ -46,4 +45,26 @@
 
 .small-list p {
   font-size: 14px;
+}
+
+.graph-list md-list-item{
+  position: relative;
+  background-color: none;
+}
+
+.graph-list md-list-item div{
+  position: relative;
+  z-index: 1;
+}
+.graph-list md-list-item .bar{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background-color: #AA3939;
+  content:'';
+  display: block;
+  opacity: .6;
+
 }

@@ -7,20 +7,41 @@
         <h2>{{vm.entity.balance | currency}} MDP en deuda</h2>
       </div>
     </div>
-    <h>Deuda Per Capita: {{vm.entity.balancePerCapita | currency }}</h3>
-    <p>
-      <ng-md-icon icon='accessibility'></ng-md-icon> = 1 salario minimo</p>
-    <p>Se deben {{vm.minimumSalaries() | number : 1}} salarios minimos por persona en {{vm.entity.name}}</p>
-    <div>
-      <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='accessibility'></ng-md-icon>
-    </div>
+    <h3>Deuda Per Capita: {{vm.entity.balancePerCapita | currency }}</h3>
+    <!-- <p>
+  <ng-md-icon icon='today'></ng-md-icon> = 1 salario minimo</p>
+<p>Tendría que trabajar cada persona en {{ vm.entity.name }} {{ vm.minimumSalaries() | number : 0 }} dias ganando el salario minimo para pagar la deuda de su estado </p>
+<div>
+  <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='today'></ng-md-icon>
+</div>
+ -->
+    <md-list class='graph-list'>
+      <md-subheader class="md-no-sticky">Administraciones</md-subheader>
+      <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+        <md-tooltip md-direction="top">
+          {{mode.name}}
+        </md-tooltip>
+        <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
+      </md-button>
+      <md-divider></md-divider>
+      <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
+        <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
+        <div class="md-avatar" style='background-color:#eee'></div>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ admon.governor }}</h3>
+          <h4>{{ admon.start | date }} - {{ admon.end | date }}</h4>
+          <p>Incremento la deuda por {{ admon.stats.entityStats.delta.debt * 1000000 | mdp}} </p>
+          <!-- <p> <strong>{{ admon.stats.obStats.count }}</strong> creditos por un total de <strong>{{ admon.stats.obStats.sum | mdp }}</strong></p>
+          <p>aún se debe <strong> {{ admon.stats.obStats.balance | mdp }} </strong></p> -->
+        </div>
+      </md-list-item>
+    </md-list>
   </div>
   <md-data-table-container ng-show='vm.obligations' flex>
     <table md-data-table md-progress="deferred">
       <thead md-order="vm.query.order" md-trigger="onOrderChange">
         <tr>
           <th name="Acreditado" order-by="acredited"></th>
-          <th name="Gobernador" order-by="administration.governor"></th>
           <th name="Destino" order-by="destination"></th>
           <th name="Fecha de Firma" order-by="signDate"></th>
           <th numeric name="Monto" unit="$" order-by="ammount"></th>
@@ -30,7 +51,6 @@
       <tbody>
         <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
           <td>{{obligation.acredited}}</td>
-          <td>{{obligation.administration.governor}} ({{obligation.administration.party}})</td>
           <td>{{obligation.destination}}</td>
           <td>{{obligation.signDate | date}}</td>
           <td>{{obligation.ammount | mdp}}</td>

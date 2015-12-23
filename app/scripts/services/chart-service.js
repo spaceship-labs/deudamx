@@ -29,22 +29,25 @@ function chartService($filter) {
     icon: 'attach_money',
     y: 'debt',
     sort: 'balance',
-    label : 'Deuda MDP',
-    filter : 'currency',
+    label: 'Deuda MDP',
+    filter: 'currency',
+    alias: 'debt',
   }, {
     name: 'Deuda per capita',
     icon: 'perm_identity',
     y: 'perCapita',
     sort: 'balancePerCapita',
-    label : 'Deuda per capita',
-    filter : 'currency',
+    label: 'Deuda per capita',
+    filter: 'currency',
+    alias : 'debtPerCapita'
   }, {
     name: 'Deuda como % del PIB Estatal',
     icon: 'business',
     y: 'debtpib',
     sort: 'balancegdp',
-    label : '% del PIBE',
-    filter : 'percentage',
+    label: '% del PIBE',
+    filter: 'percentage',
+    alias : 'debtgdp'
   }];
   service.states = [{
     name: 'Grafica de area apilada',
@@ -70,9 +73,11 @@ function chartService($filter) {
     '#115757', '#023D3D', '#2C824E', '#7CBD97',
     '#529C70', '#146936'
   ];
-  function getMode(){
+
+  function getMode() {
     return service.modes[service.mode];
   }
+
   function getSelectedEntities(dataset) {
     var selected = [];
     dataset.forEach(function(entity) {
@@ -94,7 +99,7 @@ function chartService($filter) {
 
       entity.stats[entity.stats.length - 1].year = '2015';
       return {
-        id : entity.id,
+        id: entity.id,
         key: entity.name,
         values: entity.stats,
         selected: true,
