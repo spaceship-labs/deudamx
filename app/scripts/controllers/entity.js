@@ -10,7 +10,7 @@
 angular.module('deudamxApp')
   .controller('EntityCtrl', entityCtrl);
 
-function entityCtrl(apiService, chartService, $routeParams) {
+function entityCtrl(apiService, chartService, entityMultiChartService, $routeParams) {
   /* jshint validthis: true */
   var vm = this;
 
@@ -21,6 +21,7 @@ function entityCtrl(apiService, chartService, $routeParams) {
   vm.getAdministrationStyle = getAdministrationStyle;
   vm.getObligationStyle = getObligationStyle;
   vm.minimumSalaries = minimumSalaries;
+  vm.multiChartServiceOptions = entityMultiChartService.multiChart();
   vm.load = load;
   vm.perCapitaRange = perCapitaRange;
   vm.query = {};
@@ -30,6 +31,13 @@ function entityCtrl(apiService, chartService, $routeParams) {
   function changeMode(key){
     chartService.mode = key;
   }
+
+  function refreshData() {
+    if(vm.api.update){
+      vm.api.update();
+    }
+  }
+
   function getEntityIcon(entity) {
     if (entity) {
       var filename = entity.name.split(' ').join('_');
@@ -118,6 +126,8 @@ function entityCtrl(apiService, chartService, $routeParams) {
   function setCollections(collections) {
     vm.administrations = collections[0];
     vm.obligations = collections[1];
+    vm.formatEntity = entityMultiChartService.formatEntity(vm.entity, vm.obligations);
+    refreshData();
     return collections;
   }
 
@@ -125,7 +135,4 @@ function entityCtrl(apiService, chartService, $routeParams) {
     vm.entity = entity;
     return vm.entity;
   }
-
-
-
 }
