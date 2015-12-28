@@ -14,14 +14,26 @@ function entityMultiChartService($filter){
   /* jshint validthis: true */
   var service = this;
 
-  service.formatEntity = formatEntity;
+  service.formatEntityLineBar = formatEntityLineBar;
+  service.formatEntityScatterLine = formatEntityScatterLine;
   service.multiChart = multiChart;
 
-  function formatEntity(entity, obligations) {
+  function formatEntityScatterLine(entity, administrations, obligations) {
     entity.stats[entity.stats.length - 1].year = '2015';
-    var res =  processObligations(obligations, entity.stats);
-    console.log('..................................!');
-    console.log('res', res);
+    var res = processObligationsScatter(administrations, obligations, entity.stats);
+    res.push({
+      type: 'line',
+      yAxis: 1,
+      key: 'Deuda',
+      values: entity.stats.map(getValue('debt'))
+    });
+    return res;
+
+  }
+
+  function formatEntityLineBar(entity, obligations) {
+    entity.stats[entity.stats.length - 1].year = '2015';
+    var res = processObligationsBar(obligations, entity.stats);
     return [{
       type: 'line',
       yAxis: 1,
@@ -37,7 +49,7 @@ function entityMultiChartService($filter){
 
   }
 
-  function processObligations(obligations, years) {
+  function processObligationsBar(obligations, years) {
     var sum = {};
     obligations.forEach(function(obl) {
       var year = new Date(obl.signDate).getFullYear();
@@ -50,8 +62,39 @@ function entityMultiChartService($filter){
     });
 
     return Object.keys(sum).map(function(k, l){
-      return {x: k, y: parseFloat(sum[k])};
+      return {x: parseInt(k), y: parseFloat(sum[k])};
     });
+  }
+
+  function processObligationsScatter(administrations, obligations, years) {
+    var sum = {},
+        adms = processAdministration(administrations);
+
+    obligations.forEach(function(obl) {
+      var year = new Date(obl.signDate).getFullYear(),
+        governor = adms[obl.administration];
+      sum[governor] = sum[governor] || {};
+      sum[governor][year] = sum[governor][year] || 0;
+      sum[governor][year] += parseFloat(obl.ammount);
+    });
+
+    return Object.keys(sum).map(function(k, l) {
+      var obj = {key: k, type: 'scatter', yAxis: 2};
+      obj.values = Object.keys(sum[k]).map(function(s) {
+        return {x: parseInt(s), y: sum[k][s], size: sum[k][s] * 1000, shape: 'circle'};
+      });
+      console.log(obj);
+      return obj;
+    });
+
+  }
+
+  function processAdministration(administrations) {
+    var adm = {};
+    administrations.forEach(function(a) {
+      adm[a.id] = a.governor;
+    });
+    return adm;
   }
 
   function getValue(field) {
@@ -73,6 +116,8 @@ function entityMultiChartService($filter){
         showLegend: true,
         noData: 'No hay datos',
         showControls: false,
+         sizeDomain: [1,10], //any interval
+             sizeRange: [16,256],
         margin: {
           top: 0,
           right: 83,
