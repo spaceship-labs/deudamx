@@ -9,8 +9,11 @@ angular
     };
   }])
   .filter('mdp', ['$filter', function($filter) {
-    return function(input, decimals) {
+    return function(input, decimals, inFloat) {
       var mdp = input > 100000 ? input / 1000000 : false;
+      if(inFloat){
+        return mdp;
+      }
       if(mdp){
         return $filter('currency')(mdp, decimals) + ' MDP';
       }else{

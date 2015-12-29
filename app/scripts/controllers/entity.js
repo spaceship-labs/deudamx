@@ -126,7 +126,7 @@ function entityCtrl(apiService, chartService, entityMultiChartService, $routePar
   function setCollections(collections) {
     vm.administrations = collections[0];
     vm.obligations = collections[1];
-    vm.formatEntity = entityMultiChartService.formatEntityScatterLine(vm.entity, vm.administrations, vm.obligations);
+    vm.formatEntity = entityMultiChartService.formatEntityScatterLineBar(vm.entity, vm.administrations, vm.obligations);
     refreshData();
     return collections;
   }
