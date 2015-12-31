@@ -37,28 +37,31 @@
       </md-list-item>
     </md-list>
   </div>
-  <md-data-table-container ng-show='vm.obligations' flex>
-    <table md-data-table md-progress="deferred">
-      <thead md-order="vm.query.order" md-trigger="onOrderChange">
-        <tr>
-          <th name="Acreditado" order-by="acredited"></th>
-          <th name="Destino" order-by="destination"></th>
-          <th name="Fecha de Firma" order-by="signDate"></th>
-          <th numeric name="Monto" unit="$" order-by="ammount"></th>
-          <th numeric name="Saldo" unit="$" order-by="balance"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
-          <td>{{obligation.acredited}}</td>
-          <td>{{obligation.destination}}</td>
-          <td>{{obligation.signDate | date}}</td>
-          <td>{{obligation.ammount | mdp}}</td>
-          <td>{{obligation.balance | mdp}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </md-data-table-container>
+  <div layout='column' layout-fill>
 
+    <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api' ></nvd3>
+
+    <md-data-table-container ng-show='vm.obligations' flex>
+      <table md-data-table md-progress="deferred">
+        <thead md-order="vm.query.order" md-trigger="onOrderChange">
+          <tr>
+            <th name="Acreditado" order-by="acredited"></th>
+            <th name="Destino" order-by="destination"></th>
+            <th name="Fecha de Firma" order-by="signDate"></th>
+            <th numeric name="Monto" unit="$" order-by="ammount"></th>
+            <th numeric name="Saldo" unit="$" order-by="balance"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
+            <td>{{obligation.acredited}}</td>
+            <td>{{obligation.destination}}</td>
+            <td>{{obligation.signDate | date}}</td>
+            <td>{{obligation.ammount | mdp}}</td>
+            <td>{{obligation.balance | mdp}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-data-table-container>
+  </div>
 </div>
-<nvd3 layout-fill flex options="vm.multiChartServiceOptions" data="vm.formatEntity" api='vm.api' ></nvd3>
