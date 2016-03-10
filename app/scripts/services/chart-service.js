@@ -123,6 +123,7 @@ function chartService($filter) {
         showLegend: false,
         noData: 'No hay datos',
         showControls: false,
+        interpolate : 'linear',
         margin: {
           top: 0,
           right: 20,
