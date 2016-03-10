@@ -19,7 +19,8 @@ angular
     'restangular',
     'nvd3',
     'ngMdIcons',
-    'md.data.table'
+    'md.data.table',
+    'perfect_scrollbar'
   ])
   .config(function($routeProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
