@@ -39,6 +39,52 @@ function mainCtrl(apiService, chartService, $filter) {
 
   vm.load();
 
+  //Dummy data
+  vm.governors = [
+    {
+      name: 'Carlos Lozano de la Torre',
+      date: 'Nov 30, 2010 - ',
+      debt: 624.98,
+      percent: 4.2
+    },
+    {
+      name: 'Luis Armando Reynoso Femat',
+      date: 'Nov 30, 2004 - Nov 29, 2010',
+      debt: 1993.35,
+      percent: 4.2
+    },
+    {
+      name: 'Juan José León Rubio',
+      date: 'Aug 25, 2004 - Nov 29, 2004',
+      debt: 23750136.99,
+      percent: 4.2
+    },
+    {
+      name: 'Felipe González González',
+      date: 'Nov 30, 1998 - Aug 24, 2004',
+      debt: 447.75,
+      percent: 4.2
+    },
+    {
+      name: 'Otto Granados Roldán',
+      date: 'Nov 30, 1992 - Nov 29, 1998',
+      debt: 152227671.23,
+      percent: 4.2
+    },
+    {
+      name: 'Miguel Angel Barberena Vega',
+      date: 'Nov 30, 1986 - Nov 29, 1992',
+      debt: 152227671.23,
+      percent: 4.2
+    }
+
+
+
+
+
+  ]
+  //
+
 
   function setChartState(style) {
     chart.dispatch.changeState({style:style});

@@ -1,41 +1,119 @@
-<div flex='100' layout-padding layout='row'>
-  <div flex='75' layout='column'>
-    <h1>La deuda sub-nacional en México</h1>
-    <h2>{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
-    <div>
-      <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
-        <md-tooltip md-direction="top">
-          {{mode.name}}
-        </md-tooltip>
-        <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
-      </md-button>
-      |
-      <md-button ng-repeat='(key,state) in vm.chartService.states' ng-click='vm.chartService.state = key;vm.setChartState(state.style)' class="md-icon-button" aria-label="{{state.name}}" ng-disabled='key === vm.chartService.state'>
-        <md-tooltip md-direction="top">
-          {{state.name}}
-        </md-tooltip>
-        <ng-md-icon icon="{{state.icon}}"></ng-md-icon>
-      </md-button>
-    </div>
-    <nvd3 layout-fill flex options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
+<section class="banner-main">
+  <div class="banner-main-bg"></div>
+  <img src="images/logo.png" alt="El universal" class="banner-main-logo">
+  <div class="banner-main-text">
+    <h1>la deuda <strong>sub-nacional</strong></h1>
+    <h1><strong>EN MÉXICO</strong></h1>
   </div>
-  <md-content layout='column' flex='25'>
-    <md-list class='small-list' flex>
-      <md-list-item>
-        <div class="md-avatar" style='background-color:#eee' ng-click='vm.toggleAll()' ng-class='vm.stackedSelected ? "selected" : ""' aria-label='Toggle all'></div>
-        <p>
-          <md-button ng-click='vm.toggleSort("key")'>Entidad</md-button>
-        </p>
-        <p class='align-right'>
-          <md-button ng-click='vm.toggleSort(vm.chartService.modes[vm.chartService.mode].sort)'>{{vm.chartService.modes[vm.chartService.mode].label}}</md-button>
-        </p>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort'>
-        <div class="md-avatar" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'></div>
-        <p><a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>{{ entity.key }}</a></p>
-        <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
-      </md-list-item>
-    </md-list>
-  </md-content>
-</div>
+</section>
+
+<section class="content-block">
+  <div class="container container-lg">
+    <h1 class="main-title"><strong class="italic">TITULO 2</strong> | <strong>Lorem Ipsum</strong></h1>
+    <div layout="row" layout-wrap layout-align="space-between">
+      <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio veniam culpa et pariatur omnis maiores sed rem quia doloremque provident velit beatae alias quasi ipsam, officiis magni fugit doloribus voluptatem!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae dolor earum ipsum aliquid, necessitatibus similique ratione nobis impedit fugit molestiae eos eveniet deserunt dolores rem dolorum eaque autem nulla. Dolor.</p>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+      </div>
+      <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-block content-block-alt chart-block">
+  <div class="container container-xlg">
+    <div layout='row' layout-wrap>
+      <div flex='75' flex-md="100" flex-sm="100" class="chart-container">
+        <h2>{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
+        <div>
+          <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+            <md-tooltip md-direction="top">
+              {{mode.name}}
+            </md-tooltip>
+            <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
+          </md-button>
+          |
+          <md-button ng-repeat='(key,state) in vm.chartService.states' ng-click='vm.chartService.state = key;vm.setChartState(state.style)' class="md-icon-button" aria-label="{{state.name}}" ng-disabled='key === vm.chartService.state'>
+            <md-tooltip md-direction="top">
+              {{state.name}}
+            </md-tooltip>
+            <ng-md-icon icon="{{state.icon}}"></ng-md-icon>
+          </md-button>
+        </div>
+        <nvd3 layout-fill flex options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
+      </div>
+
+      <md-content flex='25' flex-md="100" flex-sm="100">
+        <md-list class='entities-list' flex>
+
+          <md-list-item class="entities-list-top-bar">
+            <div class="md-avatar" style='background-color:#eee' ng-click='vm.toggleAll()' ng-class='vm.stackedSelected ? "selected" : ""' aria-label='Toggle all'></div>
+            <p>
+              <md-button ng-click='vm.toggleSort("key")'>Entidad</md-button>
+            </p>
+            <p class='align-right'>
+              <md-button ng-click='vm.toggleSort(vm.chartService.modes[vm.chartService.mode].sort)'>{{vm.chartService.modes[vm.chartService.mode].label}}</md-button>
+            </p>
+          </md-list-item>
+
+          <md-divider></md-divider>
+
+          <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
+
+            <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort'>
+              <div class="md-avatar" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'></div>
+              <p><a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>{{ entity.key }}</a></p>
+              <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
+            </md-list-item>
+
+          </perfect-scrollbar>
+
+        </md-list>
+      </md-content>
+
+    </div>
+</section>
+
+<section class="content-block">
+  <div class="container container-lg">
+    <h1 class="main-title"><strong class="italic">TITULO 3</strong> | <strong>Lorem Ipsum</strong></h1>
+    <div layout="row" layout-wrap layout-align="space-between">
+      <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio veniam culpa et pariatur omnis maiores sed rem quia doloremque provident velit beatae alias quasi ipsam, officiis magni fugit doloribus voluptatem!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae dolor earum ipsum aliquid, necessitatibus similique ratione nobis impedit fugit molestiae eos eveniet deserunt dolores rem dolorum eaque autem nulla. Dolor.</p>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+      </div>
+      <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-block content-block-alt">
+  <div class="container container-lg">
+    <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
+    <ul class="governors-list">
+      <li layout="row" layout-wrap layout-align="start center" ng-repeat="gov in vm.governors" class="governor-item">
+        <div flex="15"></div>
+        <div flex="40" flex-md="60" flex-sm="60">
+          <p><strong>{{gov.name}}</strong></p>
+          <p class="dates">{{gov.date}}</p>
+          <p><span class="italic">Incremento la deuda por {{gov.debt | currency}} MDP</span></p>
+        </div>
+        <div flex="10">
+          <div class="percent-circle percent-circle-lv1"><span>{{gov.percent}}%</span></div>
+        </div>
+        <div flex="35" flex-md="100" flex-sm="100" class="social-links">
+          <a href="#" class="social-circle social-circle-tw">
+            <i class="icon-twitter"></i>
+          </a>
+          <a href="#" class="social-circle social-circle-fb">
+            <i class="icon-facebook2"></i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
