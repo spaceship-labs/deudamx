@@ -77,12 +77,7 @@ function mainCtrl(apiService, chartService, $filter) {
       debt: 152227671.23,
       percent: 4.2
     }
-
-
-
-
-
-  ]
+  ];
   //
 
 
