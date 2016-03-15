@@ -26,22 +26,28 @@
   <div class="container container-xlg">
     <div layout='row' layout-wrap>
       <div flex='75' flex-md="100" flex-sm="100" class="chart-container">
-        <h2>{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
-        <div>
-          <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
-            <md-tooltip md-direction="top">
-              {{mode.name}}
-            </md-tooltip>
-            <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
-          </md-button>
-          |
-          <md-button ng-repeat='(key,state) in vm.chartService.states' ng-click='vm.chartService.state = key;vm.setChartState(state.style)' class="md-icon-button" aria-label="{{state.name}}" ng-disabled='key === vm.chartService.state'>
-            <md-tooltip md-direction="top">
-              {{state.name}}
-            </md-tooltip>
-            <ng-md-icon icon="{{state.icon}}"></ng-md-icon>
-          </md-button>
+
+        <div layout="row" layout-wrap layout-align="space-between center">
+
+          <h2 flex-sm="100" flex-xs="100">{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
+
+          <div flex-sm="100" flex-xs="100">
+            <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+              <md-tooltip md-direction="top">
+                {{mode.name}}
+              </md-tooltip>
+              <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
+            </md-button>
+            |
+            <md-button ng-repeat='(key,state) in vm.chartService.states' ng-click='vm.chartService.state = key;vm.setChartState(state.style)' class="md-icon-button" aria-label="{{state.name}}" ng-disabled='key === vm.chartService.state'>
+              <md-tooltip md-direction="top">
+                {{state.name}}
+              </md-tooltip>
+              <ng-md-icon icon="{{state.icon}}"></ng-md-icon>
+            </md-button>
+          </div>
         </div>
+
         <nvd3 layout-fill flex options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
       </div>
 
@@ -94,6 +100,31 @@
 <section class="content-block content-block-alt">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
+
+    <div layout="row">
+      <div flex="15"></div>
+      <div flex="85">
+        <md-button class="md-icon-button" aria-label="Deuda por monto">
+          <md-tooltip md-direction="top">
+            Deuda por monto
+          </md-tooltip>
+          <ng-md-icon icon="attach_money"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Deuda por monto">
+          <md-tooltip md-direction="top">
+            Deuda per capita
+          </md-tooltip>
+          <ng-md-icon icon="perm_identity"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Deuda por monto">
+          <md-tooltip md-direction="top">
+            Deuda como % del PIB Estatal
+          </md-tooltip>
+          <ng-md-icon icon="business"></ng-md-icon>
+        </md-button>
+      </div>
+    </div>
+
     <ul class="governors-list">
       <li layout="row" layout-wrap layout-align="start center" ng-repeat="gov in vm.governors" class="governor-item">
         <div flex="15"></div>
