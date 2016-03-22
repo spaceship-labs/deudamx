@@ -39,7 +39,7 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-sinon-chai": "^1.1.0",
     "mocha": "^2.3.4",
-    "phantomjs": "^1.9.19",
+    "phantomjs": "^2.1.0",
     "protractor": "^3.0.0",
     "time-grunt": "^1.0.0"
   },

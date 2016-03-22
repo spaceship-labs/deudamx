@@ -16,10 +16,23 @@ function apiService(Restangular, $q) {
 
   service.administration = {};
   service.entities = [];
+  service.getAdministrations = getAdministrations;
   service.getEntities = getEntities;
   service.getEntity = getEntity;
   service.getEntityCollections = getEntityCollections;
   service.debtObligation = {};
+
+  function getAdministrations() {
+    return Restangular.all('administration').getList({
+      sort : 'deltaDebtPerCapita DESC',
+      limit : 200,
+      where : {
+        deltaDebt : {
+          '!' : 0
+        }
+      }
+    });
+  }
 
   function getEntities() {
     var deferred = $q.defer();

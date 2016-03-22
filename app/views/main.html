@@ -6,7 +6,6 @@
     <h1><strong>EN MÉXICO</strong></h1>
   </div>
 </section>
-
 <section class="content-block">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TITULO 2</strong> | <strong>Lorem Ipsum</strong></h1>
@@ -21,16 +20,12 @@
     </div>
   </div>
 </section>
-
 <section class="content-block content-block-alt chart-block">
   <div class="container container-xlg">
     <div layout='row' layout-wrap>
       <div flex='75' flex-md="100" flex-sm="100" class="chart-container">
-
         <div layout="row" layout-wrap layout-align="space-between center">
-
           <h2 flex-sm="100" flex-xs="100">{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
-
           <div flex-sm="100" flex-xs="100">
             <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
               <md-tooltip md-direction="top">
@@ -47,13 +42,10 @@
             </md-button>
           </div>
         </div>
-
         <nvd3 layout-fill flex options="vm.stackedArea" data="vm.selectedEntities" api='vm.api' on-ready="vm.chartCallback"></nvd3>
       </div>
-
       <md-content flex='25' flex-md="100" flex-sm="100">
         <md-list class='entities-list' flex>
-
           <md-list-item class="entities-list-top-bar">
             <div class="md-avatar" style='background-color:#eee' ng-click='vm.toggleAll()' ng-class='vm.stackedSelected ? "selected" : ""' aria-label='Toggle all'></div>
             <p>
@@ -63,25 +55,18 @@
               <md-button ng-click='vm.toggleSort(vm.chartService.modes[vm.chartService.mode].sort)'>{{vm.chartService.modes[vm.chartService.mode].label}}</md-button>
             </p>
           </md-list-item>
-
           <md-divider></md-divider>
-
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
-
             <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort'>
               <div class="md-avatar" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'></div>
               <p><a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>{{ entity.key }}</a></p>
               <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
             </md-list-item>
-
           </perfect-scrollbar>
-
         </md-list>
       </md-content>
-
     </div>
 </section>
-
 <section class="content-block">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TITULO 3</strong> | <strong>Lorem Ipsum</strong></h1>
@@ -96,11 +81,9 @@
     </div>
   </div>
 </section>
-
 <section class="content-block content-block-alt">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
-
     <div layout="row">
       <div flex="15"></div>
       <div flex="85">
@@ -124,29 +107,33 @@
         </md-button>
       </div>
     </div>
-
     <ul class="governors-list">
-      <li layout="row" layout-wrap layout-align="start center" ng-repeat="gov in vm.governors" class="governor-item">
-        <div flex="15"></div>
-        <div flex="40" flex-md="60" flex-sm="60">
-          <p><strong>{{gov.name}}</strong></p>
-          <p class="dates">{{gov.date}}</p>
-          <p><span class="italic">Incremento la deuda por {{gov.debt | currency}} MDP</span></p>
+      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons" class="governor-item">
+        <div flex="15">
+          <div class="percent-circle percent-circle-lv1"><span>{{admon.deltaDebtgdp | number}}%</span></div>
+        </div>
+        <div flex="75" flex-md="60" flex-sm="60">
+          <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).name}})</strong></p>
+          <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
+          <p><span class="italic">
+          <span ng-if='admon.deltaDebt > 0'>Incremento</span>
+            <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda {{admon.deltaDebt | currency }} MDP ó {{admon.deltaDebtPerCapita | currency}} pesos por persona
+            </span>
+          </p>
         </div>
         <div flex="10">
-          <div class="percent-circle percent-circle-lv1"><span>{{gov.percent}}%</span></div>
+          <div class="percent-circle percent-circle-lv1"><span>{{admon.deltaDebtgdp | number}}%</span></div>
         </div>
-        <div flex="35" flex-md="100" flex-sm="100" class="social-links">
+        <!-- <div flex="35" flex-md="100" flex-sm="100" class="social-links">
           <a href="#" class="social-circle social-circle-tw">
             <i class="icon-twitter"></i>
           </a>
           <a href="#" class="social-circle social-circle-fb">
             <i class="icon-facebook2"></i>
           </a>
-        </div>
+        </div> -->
       </li>
     </ul>
   </div>
 </section>
-
 <ng-include src="'views/partials/footer.html'"></ng-include>

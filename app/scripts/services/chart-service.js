@@ -43,11 +43,11 @@ function chartService($filter) {
   }, {
     name: 'Deuda como % del PIB Estatal',
     icon: 'business',
-    y: 'debtpib',
+    y: 'gdpdebt',
     sort: 'balancegdp',
     label: '% del PIBE',
     filter: 'percentage',
-    alias : 'debtgdp'
+    alias : 'gdpdebt'
   }];
   service.states = [{
     name: 'Grafica de area apilada',
