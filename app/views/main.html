@@ -84,35 +84,36 @@
 <section class="content-block content-block-alt">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
+    <h2 >Ordenada por <span>{{vm.admonSort}}</span></h1>
     <div layout="row">
       <div flex="15"></div>
       <div flex="85">
-        <md-button class="md-icon-button" aria-label="Deuda por monto">
+        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"'>
           <md-tooltip md-direction="top">
-            Deuda por monto
+            Ordernar por deuda por monto
           </md-tooltip>
           <ng-md-icon icon="attach_money"></ng-md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda por monto">
+        <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"'>
           <md-tooltip md-direction="top">
-            Deuda per capita
+            Ordernar por deuda per capita
           </md-tooltip>
           <ng-md-icon icon="perm_identity"></ng-md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda por monto">
+        <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"'>
           <md-tooltip md-direction="top">
-            Deuda como % del PIB Estatal
+            Ordernar por deuda como % del PIB estatal
           </md-tooltip>
           <ng-md-icon icon="business"></ng-md-icon>
         </md-button>
       </div>
     </div>
     <ul class="governors-list">
-      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons" class="governor-item">
-        <div flex="15">
-          <div class="percent-circle percent-circle-lv1"><span>{{admon.deltaDebtgdp | number}}%</span></div>
+      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons | orderBy:vm.admonSort" class="governor-item">
+        <div>
+          <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
         </div>
-        <div flex="75" flex-md="60" flex-sm="60">
+        <div flex flex-md="60" flex-sm="60">
           <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).name}})</strong></p>
           <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
           <p><span class="italic">
@@ -122,7 +123,7 @@
           </p>
         </div>
         <div flex="10">
-          <div class="percent-circle percent-circle-lv1"><span>{{admon.deltaDebtgdp | number}}%</span></div>
+          <div class="percent-circle" ng-class='vm.getLevelClass(admon.deltaDebtgdp)'><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
         </div>
         <!-- <div flex="35" flex-md="100" flex-sm="100" class="social-links">
           <a href="#" class="social-circle social-circle-tw">

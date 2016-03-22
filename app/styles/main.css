@@ -238,6 +238,32 @@ body{
   background: #FE0018;
 }
 
+.governor-item .party-circle{
+  margin-right:30px;
+}
+.governor-item .party-PAN{
+  background : #0127F8;
+}
+.governor-item .party-PRI{
+  background : #E92527;
+}
+.governor-item .party-PRD{
+  background : #FFD119;
+}
+.governor-item .party-VERDE{
+  background : #A1D067;
+}
+.governor-item .party-MC{
+  background : #FF6201;
+}
+.governor-item .party-INDEPENDIENTE{
+  background : #000;
+  color:white;
+}
+
+
+
+
 
 .governor-item .percent-circle span{
   left: 0;

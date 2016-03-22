@@ -24,7 +24,7 @@ function apiService(Restangular, $q) {
 
   function getAdministrations() {
     return Restangular.all('administration').getList({
-      sort : 'deltaDebtPerCapita DESC',
+      sort : 'deltaDebtgdp DESC',
       limit : 200,
       where : {
         deltaDebt : {

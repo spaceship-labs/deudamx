@@ -20,6 +20,7 @@
       chart;
 
     vm.api = {};
+    vm.admonSort = '-deltaDebt';
     vm.dataset = [];
     vm.chartCallback = chartCallback;
     vm.chartService = chartService;
@@ -27,6 +28,8 @@
     vm.entities = [];
     vm.findEntity = findEntity;
     vm.goToEntity = goToEntity;
+    vm.getLevelClass = getLevelClass;
+    vm.getPartyClass = getPartyClass;
     vm.load = load;
     vm.refreshData = refreshData;
     vm.setChartState = setChartState;
@@ -46,10 +49,21 @@
 
     vm.load();
 
-
+    function getPartyClass(party){
+      return 'party-'+party;
+    }
     function getLevelClass(value){
       //returns the class according to percent gdp value
-      console.log(value);
+      var classes = [
+        [3.5,'percent-circle-lv4'],
+        [2,'percent-circle-lv3'],
+        [0,'percent-circle-lv2'],
+        [-50,'percent-circle-lv1']
+      ];
+      var result = classes.find(function(cl){
+        return value >= cl[0];
+      });
+      return result[1];
 
     }
 
