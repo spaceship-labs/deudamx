@@ -57,7 +57,7 @@
           </md-list-item>
           <md-divider></md-divider>
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
-            <md-list-item ng-repeat='entity in vm.dataset  | orderBy:vm.tableSortOrder+vm.tableSort'>
+            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort'>
               <div class="md-avatar" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'></div>
               <p><a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>{{ entity.key }}</a></p>
               <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
