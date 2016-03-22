@@ -84,27 +84,31 @@
 <section class="content-block content-block-alt">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
-    <h2 >Ordenada por <span>{{vm.admonSort}}</span></h1>
+    <h2 >Ordenada por
+    <span ng-if='vm.admonSort === "-deltaDebt"'>cuanto cambio la deuda en total</span>
+    <span ng-if='vm.admonSort === "-deltaDebtPerCapita"'>cuanto cambio la deuda per capita</span>
+    <span ng-if='vm.admonSort === "-deltaDebtgdp"'>cuanto cambio la deuda representada como % del producto interno bruto estatal</span>
+    </h1>
     <div layout="row">
-      <div flex="15"></div>
       <div flex="85">
-        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"' disabled="vm.admonSort === '-deltaDebt'">
-          <md-tooltip md-direction="top">
-            Ordernar por deuda por monto
-          </md-tooltip>
-          <ng-md-icon icon="attach_money"></ng-md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"'  disabled="vm.admonSort === '-deltaDebtPerCapita'">
+
+        <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"' ng-disabled='vm.admonSort === "-deltaDebtPerCapita"'>
           <md-tooltip md-direction="top">
             Ordernar por deuda per capita
           </md-tooltip>
           <ng-md-icon icon="perm_identity"></ng-md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"' disabled='vm.admonSort === "-deltaDebtgdp"'>
+        <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"' ng-disabled='vm.admonSort === "-deltaDebtgdp"'>
           <md-tooltip md-direction="top">
             Ordernar por deuda como % del PIB estatal
           </md-tooltip>
           <ng-md-icon icon="business"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"' ng-disabled='vm.admonSort === "-deltaDebt"'>
+          <md-tooltip md-direction="top">
+            Ordernar por deuda por monto
+          </md-tooltip>
+          <ng-md-icon icon="attach_money"></ng-md-icon>
         </md-button>
       </div>
     </div>

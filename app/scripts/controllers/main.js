@@ -20,7 +20,8 @@
       chart;
 
     vm.api = {};
-    vm.admonSort = '-deltaDebt';
+    vm.admonSort = '-deltaDebtPerCapita';
+    vm.admonSortDisabled = admonSortDisabled;
     vm.dataset = [];
     vm.chartCallback = chartCallback;
     vm.chartService = chartService;
@@ -49,19 +50,24 @@
 
     vm.load();
 
-    function getPartyClass(party){
-      return 'party-'+party;
+    function admonSortDisabled(order) {
+      console.log(order);
+      return vm.admonSort === order;
     }
 
-    function getLevelClass(value){
+    function getPartyClass(party) {
+      return 'party-' + party;
+    }
+
+    function getLevelClass(value) {
       //returns the class according to percent gdp value
       var classes = [
-        [3.5,'percent-circle-lv4'],
-        [2,'percent-circle-lv3'],
-        [0,'percent-circle-lv2'],
-        [-50,'percent-circle-lv1']
+        [3.5, 'percent-circle-lv4'],
+        [2, 'percent-circle-lv3'],
+        [0, 'percent-circle-lv2'],
+        [-50, 'percent-circle-lv1']
       ];
-      var result = classes.find(function(cl){
+      var result = classes.find(function(cl) {
         return value >= cl[0];
       });
       return result[1];
@@ -106,8 +112,8 @@
       vm.admons = admons;
     }
 
-    function findEntity(id){
-      return vm.entities.find(function(entity){
+    function findEntity(id) {
+      return vm.entities.find(function(entity) {
         return entity.id === id;
       });
     }
