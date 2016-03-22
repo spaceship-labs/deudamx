@@ -52,6 +52,7 @@
     function getPartyClass(party){
       return 'party-'+party;
     }
+
     function getLevelClass(value){
       //returns the class according to percent gdp value
       var classes = [

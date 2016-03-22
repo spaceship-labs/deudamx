@@ -88,19 +88,19 @@
     <div layout="row">
       <div flex="15"></div>
       <div flex="85">
-        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"'>
+        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"' disabled="vm.admonSort === '-deltaDebt'">
           <md-tooltip md-direction="top">
             Ordernar por deuda por monto
           </md-tooltip>
           <ng-md-icon icon="attach_money"></ng-md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"'>
+        <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"'  disabled="vm.admonSort === '-deltaDebtPerCapita'">
           <md-tooltip md-direction="top">
             Ordernar por deuda per capita
           </md-tooltip>
           <ng-md-icon icon="perm_identity"></ng-md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"'>
+        <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"' disabled='vm.admonSort === "-deltaDebtgdp"'>
           <md-tooltip md-direction="top">
             Ordernar por deuda como % del PIB estatal
           </md-tooltip>
