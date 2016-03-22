@@ -28,6 +28,7 @@
     vm.changeMode = changeMode;
     vm.entities = [];
     vm.findEntity = findEntity;
+    vm.filterAdmon = filterAdmon;
     vm.goToEntity = goToEntity;
     vm.getLevelClass = getLevelClass;
     vm.getPartyClass = getPartyClass;
@@ -50,6 +51,10 @@
 
     vm.load();
 
+    function filterAdmon(admon){
+      var entity = findEntity(admon.entity);
+      return entity.selected;
+    }
     function admonSortDisabled(order) {
       console.log(order);
       return vm.admonSort === order;
@@ -113,7 +118,7 @@
     }
 
     function findEntity(id) {
-      return vm.entities.find(function(entity) {
+      return vm.dataset.find(function(entity) {
         return entity.id === id;
       });
     }

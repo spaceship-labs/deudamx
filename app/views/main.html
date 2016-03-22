@@ -66,7 +66,7 @@
         </md-list>
       </md-content>
     </div>
-</section>
+</section><!--
 <section class="content-block">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TITULO 3</strong> | <strong>Lorem Ipsum</strong></h1>
@@ -80,7 +80,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <section class="content-block content-block-alt">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
@@ -113,12 +113,12 @@
       </div>
     </div>
     <ul class="governors-list">
-      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons | orderBy:vm.admonSort" class="governor-item">
+      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons | filter :  vm.filterAdmon | orderBy:vm.admonSort" class="governor-item">
         <div>
           <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
         </div>
         <div flex flex-md="60" flex-sm="60">
-          <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).name}})</strong></p>
+          <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).key}})</strong></p>
           <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
           <p><span class="italic">
           <span ng-if='admon.deltaDebt > 0'>Incremento</span>
