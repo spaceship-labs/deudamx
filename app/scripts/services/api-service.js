@@ -99,6 +99,7 @@ function apiService(Restangular, $q) {
 
   function resolvePictures(entity) {
     return entity.map(function(ent) {
+      ent.nameLower = (ent.governor || '').toLowerCase().replace(/á/g, 'a');
       if (!ent.picture) {
         return ent;
       }
