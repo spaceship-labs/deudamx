@@ -115,7 +115,11 @@
     <ul class="governors-list">
       <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons | filter :  vm.filterAdmon | orderBy:vm.admonSort" class="governor-item">
         <div>
+          <!--
           <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
+          -->
+          <img class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)' ng-src='{{admon.local_picture || "https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150"}}'>
+          </img>
         </div>
         <div flex flex-md="60" flex-sm="60">
           <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).key}})</strong></p>

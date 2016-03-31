@@ -217,11 +217,10 @@ body{
   background: #6FBF0E;
   color: #000;
   display: inline-block;
-  padding: 4px;
   border-radius: 50%;
   position: relative;
-  height: 40px;
-  width: 40px;
+  height: 51px;
+  width: 51px;
   text-align: center;
 }
 .governor-item .percent-circle-lv1{

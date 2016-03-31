@@ -99,6 +99,7 @@
       apiService.getEntities()
         .then(vm.setEntities)
         .then(apiService.getAdministrations)
+        .then(apiService.resolvePictures)
         .then(vm.setAdministrations);
     }
 

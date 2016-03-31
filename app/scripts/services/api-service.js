@@ -21,6 +21,7 @@ function apiService(Restangular, $q) {
   service.getEntity = getEntity;
   service.getEntityCollections = getEntityCollections;
   service.debtObligation = {};
+  service.resolvePictures = resolvePictures;
 
   function getAdministrations() {
     return Restangular.all('administration').getList({
@@ -89,6 +90,22 @@ function apiService(Restangular, $q) {
       .then(deferred.resolve, deferred.reject);
 
     return deferred.promise;
+  }
+
+  var nameFileReplace = /(:\/\/|\/)/g;
+  function nameFile(name) {
+    return name.replace(nameFileReplace, '_').split('?')[0];
+  }
+
+  function resolvePictures(entity) {
+    return entity.map(function(ent) {
+      if (!ent.picture) {
+        return ent;
+      }
+      var picture = encodeURI(ent.picture || '');
+      ent.local_picture = 'pictures/' + nameFile(picture);
+      return ent;
+    });
   }
 
 }

@@ -380,6 +380,14 @@ module.exports = function(grunt) {
                     src: ['*.*'],
                     dest: '<%= yeoman.dist %>/fonts'
                   },
+                {
+                    //for fontello
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>/pictures',
+                    src: ['*.*'],
+                    dest: '<%= yeoman.dist %>/pictures'
+                  },
                 ]
             },
             styles: {
