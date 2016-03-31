@@ -39,6 +39,7 @@
     vm.setAdministrations = setAdministrations;
     vm.stackedArea = chartService.stackedArea();
     vm.stackedSelected = true;
+    vm.sortByFilter = sortByFilter;
     vm.selectedEntities = [];
     vm.tableFigure = tableFigure;
     vm.tableSort = 'key';
@@ -130,6 +131,16 @@
       vm.refreshData();
       //console.log();
 
+    }
+
+    function sortByFilter() {
+      var current = vm.admonSort;
+      if (current[0] === '-') {
+        current = current.replace('-', '');
+      } else {
+        current = '-' + current;
+      }
+      vm.admonSort = current;
     }
 
     function tableFigure(entity) {
