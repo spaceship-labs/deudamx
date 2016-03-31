@@ -110,15 +110,27 @@
           </md-tooltip>
           <ng-md-icon icon="attach_money"></ng-md-icon>
         </md-button>
+        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "nameLower"' ng-disabled='vm.admonSort === "nameLower"'>
+          <md-tooltip md-direction="top">
+            A-Z
+          </md-tooltip>
+          <ng-md-icon icon="vertical_align_bottom"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-nameLower"' ng-disabled='vm.admonSort === "-nameLower"'>
+          <md-tooltip md-direction="top">
+            Z-A
+          </md-tooltip>
+          <ng-md-icon icon="vertical_align_top"></ng-md-icon>
+        </md-button>
       </div>
     </div>
     <ul class="governors-list">
-      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons | filter :  vm.filterAdmon | orderBy:vm.admonSort" class="governor-item">
+      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.admons | filter :  vm.filterAdmon | orderBy:vm.admonSort | limitTo: vm.admonLimit" class="governor-item">
         <div>
           <!--
           <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
           -->
-          <img class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)' ng-src='{{admon.local_picture || "https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150"}}'>
+          <img class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)' ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
           </img>
         </div>
         <div flex flex-md="60" flex-sm="60">
@@ -143,6 +155,12 @@
         </div> -->
       </li>
     </ul>
+    <div layout="column" ng-show="vm.admonLimit < vm.admons.length" class="entities-list" flex="100" layout-align="center center">
+      <a class="entities-list-top-bar"  ng-click="vm.admonLimit = vm.admonLimit + 10" flex="50" layout-padding>
+        Cargar más
+      </a>
+    </div>
+
   </div>
 </section>
 <ng-include src="'views/partials/footer.html'"></ng-include>

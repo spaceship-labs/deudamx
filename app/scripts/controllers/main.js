@@ -47,7 +47,7 @@
     vm.toggleOne = toggleOne;
     vm.toggleSort = toggleSort;
     vm.viewOne = viewOne;
-
+    vm.admonLimit = 10;
 
     vm.load();
 
