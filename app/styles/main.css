@@ -98,7 +98,7 @@ body{
   overflow: hidden;
 }
 .banner-main-bg{
-  background-image: url(../images/bg.jpg);
+  background-image: url(../images/video-loop.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
