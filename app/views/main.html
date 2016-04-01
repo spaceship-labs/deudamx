@@ -1,12 +1,24 @@
 <section class="banner-main">
-  <div class="banner-main-bg"></div>
-  <img src="images/logo.png" alt="El universal" class="banner-main-logo">
+  <div class="banner-main-bg" ng-style="style('firstScreen')" full-screen-wrapper ></div>
   <div class="banner-main-text">
+    <div class="social-bar">
+      <p>
+        <a href="#"><i class="icon-gplus"></i></a>
+        <a href="#"><i class="icon-fb"></i></a>
+        <a href="#"><i class="icon-tw"></i></a>
+        <a href="#"><i class="icon-insta"></i></a>
+
+      </p>
+    </div>
     <h1>la deuda <strong>sub-nacional</strong></h1>
-    <h1><strong>EN MÉXICO</strong></h1>
+    <h1 class="banner-main-text-big"><strong>En México</strong></h1>
+    <p class="bottom-text">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
   </div>
+  <div class="banner-main-layer"></div>
+  <a ng-click="vm.scrollTo('second-block', $event)" href="#" class="banner-arrow-down"><i class="icon-scroll"></i></a>
 </section>
-<section class="content-block">
+<p class="copy-video-banner"><strong>Video: Lorem Ipsum dolor sit amet.</strong></p>
+<section id="second-block" class="content-block">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TITULO 2</strong> | <strong>Lorem Ipsum</strong></h1>
     <div layout="row" layout-wrap layout-align="space-between">
@@ -66,7 +78,7 @@
         </md-list>
       </md-content>
     </div>
-</section><!--
+</section>
 <section class="content-block">
   <div class="container container-lg">
     <h1 class="main-title"><strong class="italic">TITULO 3</strong> | <strong>Lorem Ipsum</strong></h1>
@@ -80,82 +92,161 @@
       </div>
     </div>
   </div>
-</section> -->
-<section class="content-block content-block-alt">
-  <div class="container container-lg">
-    <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
-    <h2 >Ordenada por
-    <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuanto cambio la deuda en total</span>
-    <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuanto cambio la deuda per capita</span>
-    <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuanto cambio la deuda representada como % del producto interno bruto estatal</span>
-    </h2>
-    <div layout="row">
-      <div flex="85">
+</section>
+<section class="content-block">
+  <div class="content-block content-block-alt">
+    <div class="container container-lg">
+      <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
+      <h2 class="center-content">Ordenada por
+      <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuanto cambio la deuda en total</span>
+      <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuanto cambio la deuda per capita</span>
+      <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuanto cambio la deuda representada como % del producto interno bruto estatal</span>
+      </h2>
+      <div class="filter-bar-icons" layout="row">
+        <div flex="100">
 
-        <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"' ng-disabled='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>
-          <md-tooltip md-direction="top">
-            Ordernar por deuda per capita
-          </md-tooltip>
-          <ng-md-icon icon="perm_identity"></ng-md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"' ng-disabled='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>
-          <md-tooltip md-direction="top">
-            Ordernar por deuda como % del PIB estatal
-          </md-tooltip>
-          <ng-md-icon icon="business"></ng-md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"' ng-disabled='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>
-          <md-tooltip md-direction="top">
-            Ordernar por deuda por monto
-          </md-tooltip>
-          <ng-md-icon icon="attach_money"></ng-md-icon>
-        </md-button>
-        <span>|</span>
-        <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.sortByFilter(vn.admonSort)'>
-          <md-tooltip md-direction="top">
-            ASC-DESC
-          </md-tooltip>
-          <ng-md-icon icon="swap_vert"></ng-md-icon>
-        </md-button>
+          <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"' ng-disabled='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>
+            <md-tooltip md-direction="top">
+              Ordernar por deuda per capita
+            </md-tooltip>
+            <ng-md-icon icon="perm_identity"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Deuda como % del PIBE" ng-click='vm.admonSort = "-deltaDebtgdp"' ng-disabled='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>
+            <md-tooltip md-direction="top">
+              Ordernar por deuda como % del PIB estatal
+            </md-tooltip>
+            <ng-md-icon icon="business"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.admonSort = "-deltaDebt"' ng-disabled='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>
+            <md-tooltip md-direction="top">
+              Ordernar por deuda por monto
+            </md-tooltip>
+            <ng-md-icon icon="attach_money"></ng-md-icon>
+          </md-button>
+          <span>|</span>
+          <md-button class="md-icon-button" aria-label="Deuda por monto" ng-click='vm.sortByFilter(vn.admonSort)'>
+            <md-tooltip md-direction="top">
+              ASC-DESC
+            </md-tooltip>
+            <ng-md-icon icon="swap_vert"></ng-md-icon>
+          </md-button>
 
+        </div>
       </div>
     </div>
-    <ul class="governors-list">
-      <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.filtered = (vm.admons | filter :  vm.filterAdmon) | orderBy:vm.admonSort | limitTo: vm.admonLimit" class="governor-item">
-        <div>
-          <!--
-          <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
-          -->
-          <img class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)' ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
-          </img>
+  </div>
+  <ul class="governors-list">
+    <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.filtered = (vm.admons | filter :  vm.filterAdmon) | orderBy:vm.admonSort | limitTo: vm.admonLimit" class="governor-item">
+      <div class="content-block-alt" flex="100">
+        <div class="container container-lg"  layout="row">
+          <div>
+            <!--
+            <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
+            -->
+            <img ng-click="admon.isActive = !admon.isActive" class="percent-circle party-circle governor-circle-avatar" ng-class='vm.getPartyClass(admon.party)' ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
+            </img>
+          </div>
+          <div ng-click="admon.isActive = !admon.isActive" class="governor-item-data" flex flex-md="60" flex-sm="60">
+            <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).key}})</strong></p>
+            <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
+            <p><span class="italic">
+            <span ng-if='admon.deltaDebt > 0'>Incremento</span>
+              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda {{admon.deltaDebt | currency }} MDP ó {{admon.deltaDebtPerCapita | currency}} pesos por persona
+              </span>
+            </p>
+          </div>
+          <div flex="10">
+            <div class="percent-circle" ng-class='vm.getLevelClass(admon.deltaDebtgdp)'><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
+          </div>
+          <!-- <div flex="35" flex-md="100" flex-sm="100" class="social-links">
+            <a href="#" class="social-circle social-circle-tw">
+              <i class="icon-twitter"></i>
+            </a>
+            <a href="#" class="social-circle social-circle-fb">
+              <i class="icon-facebook2"></i>
+            </a>
+          </div> -->
         </div>
-        <div flex flex-md="60" flex-sm="60">
-          <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).key}})</strong></p>
-          <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
-          <p><span class="italic">
-          <span ng-if='admon.deltaDebt > 0'>Incremento</span>
-            <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda {{admon.deltaDebt | currency }} MDP ó {{admon.deltaDebtPerCapita | currency}} pesos por persona
-            </span>
-          </p>
+      </div>
+
+      <!--INNER TABLE-->
+      <div ng-show="admon.isActive" flex="100" class="content-block detailed-list">
+        <div class="container container-lg">
+          <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Acreditado</td>
+                <td>Gobernador</td>
+                <td>Destino</td>
+                <td>Fecha de firma</td>
+                <td>Monto($)</td>
+                <td>Saldo($)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in vm.detailedListData track by $index">
+                <td>{{row.acreditado}}</td>
+                <td>{{row.gobernador}}</td>
+                <td>{{row.destino}}</td>
+                <td>{{row.fecha}}</td>
+                <td>{{row.monto}}</td>
+                <td>{{row.saldo}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div flex="10">
-          <div class="percent-circle" ng-class='vm.getLevelClass(admon.deltaDebtgdp)'><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
-        </div>
-        <!-- <div flex="35" flex-md="100" flex-sm="100" class="social-links">
-          <a href="#" class="social-circle social-circle-tw">
-            <i class="icon-twitter"></i>
-          </a>
-          <a href="#" class="social-circle social-circle-fb">
-            <i class="icon-facebook2"></i>
-          </a>
-        </div> -->
-      </li>
-    </ul>
-    <div layout="column" ng-show="vm.admonLimit < vm.filtered.length" class="entities-list" flex="100" layout-align="center center">
-      <a class="entities-list-top-bar"  ng-click="vm.admonLimit = vm.admonLimit + 10" flex="50" layout-padding>
-        Cargar más
+      </div>
+      <!--END INNER TABLE-->
+
+    </li>
+  </ul>
+  <div class="content-block content-block-alt">
+    <div class="container container-lg">
+      <div layout="column" ng-show="vm.admonLimit < vm.filtered.length" class="entities-list" flex="100" layout-align="center center">
+        <a class="entities-list-top-bar"  ng-click="vm.admonLimit = vm.admonLimit + 10" flex="50" layout-padding>
+          Cargar más
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="content-block credits-block">
+  <div class="container container-lg center-content">
+    <h1>CRÉDITOS</h1>
+    <br>
+    <div class="credit">
+      <p><strong>Coordinación</strong></p>
+      <p>Lilia Saúl, Editora Periodismo de Datos <strong>EL UNIVERSAL de México</strong></p>
+    </div>
+    <div class="credit">
+      <p><strong>Textos e investigación</strong></p>
+      <p>Lilia Saúl / Salvador Barrón / Eduardo Buendía</p>
+    </div>
+    <div class="credit">
+      <p><strong>Análisis de Datos</strong></p>
+      <p>Salvador Barrón</p>
+    </div>
+    <div class="credit">
+      <p><strong>Visualización de Datos</strong></p>
+      <p>Spaceshiplabs</p>
+    </div>
+    <div class="credit">
+      <p><strong>Desarrollo y Diseño Web</strong></p>
+      <p>Spaceshiplabs</p>
+    </div>
+
+    <p>Escríbenos un correo a: <strong><a href="mailto:periodismodatos@eluniversal.com.mx">periodismodatos@eluniversal.com.mx</a></strong></p>
+
+    <div class="credits-logo">
+      <a target="_blank" href="http://www.eluniversal.com.mx/">
+        <img src="images/Logo2.png" alt="">
       </a>
     </div>
+
+    <p class="credits-bottom-text">Este reportaje fue realizado por <strong>Lilia Saúl, Salvador Barrón y Eduardo Buendía</strong> en el marco de la Iniciativa para el Periodismo de Investigación en las Américas del International Center for Journalists (ICFJ) en alianza con CONNECTAS.</p>
 
   </div>
 </section>

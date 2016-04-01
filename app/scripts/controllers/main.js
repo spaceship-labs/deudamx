@@ -32,6 +32,7 @@
     vm.goToEntity = goToEntity;
     vm.getLevelClass = getLevelClass;
     vm.getPartyClass = getPartyClass;
+    vm.scrollTo = scrollTo;
     vm.load = load;
     vm.refreshData = refreshData;
     vm.setChartState = setChartState;
@@ -50,7 +51,33 @@
     vm.viewOne = viewOne;
     vm.admonLimit = 10;
 
+    vm.dummyDetailedList = {
+      acreditado: 'Aguascalientes',
+      gobernador:'Carlos Lozano de la Torre(PRI)',
+      destino:'Inversion Publica Productiva',
+      fecha: 'Jun 19, 2015',
+      monto: '$30.00 MDP',
+      saldo: '$30.00 MDP'
+    };
+    vm.detailedListData = [];
+    for(var i=0;i<20;i++) {
+      vm.detailedListData.push(vm.dummyDetailedList);
+    }
+
     vm.load();
+
+    function scrollTo(target, $event){
+      $event.preventDefault();
+      var toY  = $('#' + target).offset().top;
+      setTimeout(
+          function(){
+            $('html, body').animate({
+              scrollTop: toY
+            }, 600);
+          },
+          300
+      );
+    }
 
     function filterAdmon(admon){
       var entity = findEntity(admon.entity);

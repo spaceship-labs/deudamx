@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'icomoon';
-    src:    url('../fonts/icomoon.eot?qsjc6h');
-    src:    url('../fonts/icomoon.eot?qsjc6h#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon.ttf?qsjc6h') format('truetype'),
-        url('../fonts/icomoon.woff?qsjc6h') format('woff'),
-        url('../fonts/icomoon.svg?qsjc6h#icomoon') format('svg');
+    src:    url('../fonts/icomoon.eot?o4p2bc');
+    src:    url('../fonts/icomoon.eot?o4p2bc#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?o4p2bc') format('truetype'),
+        url('../fonts/icomoon.woff?o4p2bc') format('woff'),
+        url('../fonts/icomoon.svg?o4p2bc#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -24,6 +24,21 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fb:before {
+    content: "\eaeb";
+}
+.icon-gplus:before {
+    content: "\eaec";
+}
+.icon-insta:before {
+    content: "\eaed";
+}
+.icon-scroll:before {
+    content: "\eaee";
+}
+.icon-tw:before {
+    content: "\eaef";
+}
 .icon-home:before {
     content: "\e900";
 }

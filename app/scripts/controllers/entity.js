@@ -135,6 +135,10 @@
       vm.formatEntity =
         entityMultiChartService.formatEntityScatterLineBar(vm.entity, vm.administrations, vm.obligations);
       refreshData();
+
+      //TODO CHECK IF CORRECT FUNCTION CALL
+      vm.administrations = apiService.resolvePictures(vm.administrations);
+
       return collections;
     }
 
