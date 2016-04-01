@@ -32,7 +32,6 @@
     vm.goToEntity = goToEntity;
     vm.getLevelClass = getLevelClass;
     vm.getPartyClass = getPartyClass;
-    vm.scrollTo = scrollTo;
     vm.load = load;
     vm.refreshData = refreshData;
     vm.setChartState = setChartState;
@@ -66,7 +65,7 @@
 
     vm.load();
 
-    function scrollTo(target, $event){
+    vm.scrollTo = function(target, $event){
       $event.preventDefault();
       var toY  = $('#' + target).offset().top;
       setTimeout(
@@ -77,7 +76,7 @@
           },
           300
       );
-    }
+    };
 
     function filterAdmon(admon){
       var entity = findEntity(admon.entity);
