@@ -12,9 +12,9 @@
   angular.module('deudamxApp')
     .controller('MainCtrl', mainCtrl);
 
-  mainCtrl.$inject = ['$scope', 'apiService', 'chartService', '$filter'];
+  mainCtrl.$inject = ['$scope', 'apiService', 'chartService', '$filter','$location'];
 
-  function mainCtrl($scope, apiService, chartService, $filter) {
+  function mainCtrl($scope, apiService, chartService, $filter, $location) {
     /* jshint validthis: true */
     var vm = this,
       chart;
@@ -50,6 +50,8 @@
     vm.viewOne = viewOne;
     vm.admonLimit = 10;
 
+    vm.currentUrl = $location.absUrl();
+
     vm.dummyDetailedList = {
       acreditado: 'Aguascalientes',
       gobernador:'Carlos Lozano de la Torre(PRI)',
@@ -64,6 +66,19 @@
     }
 
     vm.load();
+
+    vm.shareIn = function(socialNetwork){
+      console.log(vm.currentUrl);
+      if(socialNetwork === 'twitter'){
+        window.open('https://twitter.com/home?status=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+      else if(socialNetwork === 'facebook'){
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+      else if(socialNetwork === 'gplus'){
+        window.open('https://plus.google.com/share?url=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+    };
 
     vm.scrollTo = function(target, $event){
       $event.preventDefault();
