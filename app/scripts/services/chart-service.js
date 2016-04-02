@@ -112,11 +112,11 @@ function chartService($filter) {
     });
   }
 
-  function stackedArea() {
+  function stackedArea(noUseInteractive) {
     return {
       chart: {
         type: 'stackedAreaChart',
-        useInteractiveGuideline: true,
+        useInteractiveGuideline: noUseInteractive === false ? false : true,
         useVoronoi: false,
         height: 540,
         color: colorPalette,

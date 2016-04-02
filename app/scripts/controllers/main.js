@@ -12,9 +12,9 @@
   angular.module('deudamxApp')
     .controller('MainCtrl', mainCtrl);
 
-  mainCtrl.$inject = ['$scope', 'apiService', 'chartService', '$filter','$location'];
+  mainCtrl.$inject = ['$scope', 'apiService', 'chartService', 'device', '$filter','$location'];
 
-  function mainCtrl($scope, apiService, chartService, $filter, $location) {
+  function mainCtrl($scope, apiService, chartService, device, $filter, $location) {
     /* jshint validthis: true */
     var vm = this,
       chart;
@@ -37,7 +37,7 @@
     vm.setChartState = setChartState;
     vm.setEntities = setEntities;
     vm.setAdministrations = setAdministrations;
-    vm.stackedArea = chartService.stackedArea();
+    vm.stackedArea = chartService.stackedArea(!device.isMobileUserAgent());
     vm.stackedSelected = true;
     vm.sortByFilter = sortByFilter;
     vm.selectedEntities = [];
