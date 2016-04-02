@@ -13,10 +13,10 @@
     .controller('EntityCtrl', entityCtrl);
 
   entityCtrl.$inject =
-    ['$scope','apiService','chartService','entityMultiChartService','$routeParams'];
+    ['$scope','apiService','chartService','entityMultiChartService','$routeParams','$location'];
 
 
-  function entityCtrl($scope,apiService, chartService, entityMultiChartService, $routeParams) {
+  function entityCtrl($scope,apiService, chartService, entityMultiChartService, $routeParams, $location) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -31,8 +31,22 @@
     vm.perCapitaRange = perCapitaRange;
     vm.query = {};
     vm.multyChartServiceOptions = entityMultiChartService.multiChart();
+    vm.currentUrl = $location.absUrl();
 
     vm.load();
+
+    vm.shareIn = function(socialNetwork){
+      console.log(vm.currentUrl);
+      if(socialNetwork === 'twitter'){
+        window.open('https://twitter.com/home?status=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+      else if(socialNetwork === 'facebook'){
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+      else if(socialNetwork === 'gplus'){
+        window.open('https://plus.google.com/share?url=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+    };
 
     function changeMode(key){
       chartService.mode = key;
@@ -135,6 +149,10 @@
       vm.formatEntity =
         entityMultiChartService.formatEntityScatterLineBar(vm.entity, vm.administrations, vm.obligations);
       refreshData();
+
+      //TODO CHECK IF CORRECT FUNCTION CALL
+      vm.administrations = apiService.resolvePictures(vm.administrations);
+
       return collections;
     }
 
