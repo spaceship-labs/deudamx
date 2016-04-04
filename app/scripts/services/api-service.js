@@ -74,7 +74,7 @@ function apiService(Restangular, $q) {
       deferred.resolve(service[collection][entity.id]);
     } else {
       Restangular.all(collection).getList({
-        entity: entity.id
+        //entity: entity.id /* uncomment this line when the api is used*/
       }).then(function(results) {
         /* Delete this when the api is used*/
         results = results.filter(function(item){
