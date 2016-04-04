@@ -76,6 +76,11 @@ function apiService(Restangular, $q) {
       Restangular.all(collection).getList({
         entity: entity.id
       }).then(function(results) {
+        /* Delete this when the api is used*/
+        results = results.filter(function(item){
+          return item.entity === entity.id;
+        });
+        /* end of delete */
         service[collection][entity.id] = results;
         deferred.resolve(results);
       });
