@@ -16,11 +16,9 @@ angular.module('deudamxApp')
       },
       link: function postLink(scope, element, attrs) {
         var pattern = /translate\((-?[\d|.]+),(-?[\d|.]+)\)/;
-        var dots = [];
-
-        scope.data = scope.data || [];
-        scope.windowWidth = scope.windowWidth || 0;
-
+        var dots  = [];
+        var data  = [];
+        var width = 0;
 
         //watchers
         $(window).resize(function(){
@@ -35,6 +33,7 @@ angular.module('deudamxApp')
             return scope.windowWidth;
           },
           function(width){
+            calcDots();
             render();
           }
         );
@@ -44,7 +43,8 @@ angular.module('deudamxApp')
           function(){
             return scope.data;
           },
-          function(data){
+          function(){
+            render();
           }
         );
 
@@ -56,8 +56,8 @@ angular.module('deudamxApp')
             return ndot.length > 0;
           },
           function(exists){
-            console.log(exists);
             calcDots();
+            render();
           }
         );
 
@@ -71,11 +71,7 @@ angular.module('deudamxApp')
         }
 
         function render(){
-          if (dots.length == 0 ){
-            return;
-          }
           d3.selectAll(".politic-image").remove();
-          console.log(dots[0]);
           d3.select(".nv-line>g[clip-path]>g.nv-groups")
             .selectAll("circle")
             .data(scope.data)
