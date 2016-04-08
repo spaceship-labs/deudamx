@@ -141,7 +141,7 @@
           id: 'gob' + start,
           image: item.local_picture,
           x: start,
-        }
+        };
       });
     }
 

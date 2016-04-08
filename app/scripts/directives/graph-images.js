@@ -35,7 +35,9 @@ angular.module('deudamxApp')
             return scope.windowWidth;
           },
           function(width){
-            time && clearTimeout(time);
+            if (time) {
+              clearTimeout(time);
+            }
             time = setTimeout(function(){
               calcDots();
               render();
@@ -57,7 +59,7 @@ angular.module('deudamxApp')
         //graphic rendered
         scope.$watch(
           function(){
-            var ndot = d3.selectAll(".lines1Wrap.nvd3-svg .nv-group.nv-series-0 path.nv-point")[0];
+            var ndot = d3.selectAll('.lines1Wrap.nvd3-svg .nv-group.nv-series-0 path.nv-point')[0];
             return ndot.length > 0;
           },
           function(exists){
@@ -68,35 +70,35 @@ angular.module('deudamxApp')
 
 
         function calcDots(){
-          dots = d3.selectAll(".lines1Wrap.nvd3-svg .nv-group.nv-series-0 path.nv-point")[0];
+          dots = d3.selectAll('.lines1Wrap.nvd3-svg .nv-group.nv-series-0 path.nv-point')[0];
           dots = dots.map(function(d){
-            var a = pattern.exec(d.getAttribute("transform"));
+            var a = pattern.exec(d.getAttribute('transform'));
             return [Number(a[1]), Number(a[2])];
           });
         }
 
         function render(){
-          d3.selectAll(".politic-image").remove();
-          d3.select(".nv-line>g[clip-path]>g.nv-groups")
-            .selectAll("circle")
+          d3.selectAll('.politic-image').remove();
+          d3.select('.nv-line>g[clip-path]>g.nv-groups')
+            .selectAll('circle')
             .data(scope.data)
             .enter()
-            .append("circle")
-            .attr("class", "politic-image")
-            .attr("cx", function(d){
+            .append('circle')
+            .attr('class', 'politic-image')
+            .attr('cx', function(d){
               var i = d.x - 1993;
               return dots[i][0];
             })
-            .attr("cy", function(d){
+            .attr('cy', function(d){
               var i = d.x - 1993;
               return dots[i][1];
             })
-            .attr("r", 15)
-            .style("fill", "transparent")
-            .style("stroke", "black")
-            .style("stroke-width", 0.25)
-            .style("fill", function(d){
-              return  "url(#" + d.id + ")";
+            .attr('r', 15)
+            .style('fill', 'transparent')
+            .style('stroke', 'black')
+            .style('stroke-width', 0.25)
+            .style('fill', function(d){
+              return  'url(#' + d.id + ')';
             });
         }
       }
