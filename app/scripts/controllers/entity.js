@@ -32,6 +32,7 @@
     vm.query = {};
     vm.multyChartServiceOptions = entityMultiChartService.multiChart();
     vm.currentUrl = $location.absUrl();
+    vm.graphImages = [];
 
     vm.load();
 
@@ -128,7 +129,20 @@
         .getEntity($routeParams.entityName)
         .then(setEntity)
         .then(apiService.getEntityCollections)
-        .then(setCollections);
+        .then(setCollections)
+        .then(setGraphImages);
+
+    }
+
+    function setGraphImages(collections){
+      vm.graphImages = collections[0].map(function(item){
+        var start = new Date(item.start).getFullYear();
+        return {
+          id: 'gob' + start,
+          image: item.local_picture,
+          x: start,
+        }
+      });
     }
 
     function minimumSalaries() {

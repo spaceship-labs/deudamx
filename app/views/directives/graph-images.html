@@ -1,0 +1,21 @@
+<svg>
+  <defs>
+    <pattern
+      id="{{d.id}}"
+      width="40"
+      height="40"
+      ng-repeat="d in data"
+      patternUnits="userSpaceOnUse"
+    >
+      <image
+        x="0"
+        y="0"
+        height="40"
+        width="40"
+        ng-href="{{d.image}}"
+        xlink:href
+      >
+      </image>
+    </pattern>
+  </defs>
+</svg>
