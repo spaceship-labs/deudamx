@@ -12,9 +12,9 @@
   angular.module('deudamxApp')
     .controller('MainCtrl', mainCtrl);
 
-  mainCtrl.$inject = ['$scope', 'apiService', 'chartService', '$filter'];
+  mainCtrl.$inject = ['$scope', 'apiService', 'chartService', 'device', '$filter','$location'];
 
-  function mainCtrl($scope, apiService, chartService, $filter) {
+  function mainCtrl($scope, apiService, chartService, device, $filter, $location) {
     /* jshint validthis: true */
     var vm = this,
       chart;
@@ -37,8 +37,9 @@
     vm.setChartState = setChartState;
     vm.setEntities = setEntities;
     vm.setAdministrations = setAdministrations;
-    vm.stackedArea = chartService.stackedArea();
+    vm.stackedArea = chartService.stackedArea(!device.isMobileUserAgent());
     vm.stackedSelected = true;
+    vm.sortByFilter = sortByFilter;
     vm.selectedEntities = [];
     vm.tableFigure = tableFigure;
     vm.tableSort = 'key';
@@ -49,7 +50,48 @@
     vm.viewOne = viewOne;
     vm.admonLimit = 10;
 
+    vm.currentUrl = $location.absUrl();
+
+    vm.dummyDetailedList = {
+      acreditado: 'Aguascalientes',
+      gobernador:'Carlos Lozano de la Torre(PRI)',
+      destino:'Inversion Publica Productiva',
+      fecha: 'Jun 19, 2015',
+      monto: '$30.00 MDP',
+      saldo: '$30.00 MDP'
+    };
+    vm.detailedListData = [];
+    for(var i=0;i<20;i++) {
+      vm.detailedListData.push(vm.dummyDetailedList);
+    }
+
     vm.load();
+
+    vm.shareIn = function(socialNetwork){
+      console.log(vm.currentUrl);
+      if(socialNetwork === 'twitter'){
+        window.open('https://twitter.com/home?status=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+      else if(socialNetwork === 'facebook'){
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+      else if(socialNetwork === 'gplus'){
+        window.open('https://plus.google.com/share?url=' + vm.currentUrl, 'name','width=600,height=400');
+      }
+    };
+
+    vm.scrollTo = function(target, $event){
+      $event.preventDefault();
+      var toY  = $('#' + target).offset().top;
+      setTimeout(
+          function(){
+            $('html, body').animate({
+              scrollTop: toY
+            }, 600);
+          },
+          300
+      );
+    };
 
     function filterAdmon(admon){
       var entity = findEntity(admon.entity);
@@ -130,6 +172,16 @@
       vm.refreshData();
       //console.log();
 
+    }
+
+    function sortByFilter() {
+      var current = vm.admonSort;
+      if (current[0] === '-') {
+        current = current.replace('-', '');
+      } else {
+        current = '-' + current;
+      }
+      vm.admonSort = current;
     }
 
     function tableFigure(entity) {

@@ -68,7 +68,9 @@ function apiService(Restangular, $q) {
     }
   }
 
-  function getEntityCollection(entity, collection) {
+
+  //works with the api
+  /*function getEntityCollection(entity, collection) {
     var deferred = $q.defer();
     if (service[collection][entity.id]) {
       deferred.resolve(service[collection][entity.id]);
@@ -80,9 +82,26 @@ function apiService(Restangular, $q) {
         deferred.resolve(results);
       });
     }
+    return deferred.promise;
+  }*/
 
+  //works without the api, with the files in resources
+  function getEntityCollection(entity, collection) {
+    var deferred = $q.defer();
+    if (service[collection][entity.id]) {
+      deferred.resolve(service[collection][entity.id]);
+    } else {
+      Restangular
+        .all(collection + entity.id)
+        .getList()
+        .then(function(results) {
+          service[collection][entity.id] = results;
+          deferred.resolve(results);
+        });
+    }
     return deferred.promise;
   }
+
 
   function getEntityCollections(entity) {
     var deferred = $q.defer();
