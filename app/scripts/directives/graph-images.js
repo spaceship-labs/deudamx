@@ -28,13 +28,18 @@ angular.module('deudamxApp')
         });
 
         //window width
+        //
+        var time;
         scope.$watch(
           function(){
             return scope.windowWidth;
           },
           function(width){
-            calcDots();
-            render();
+            time && clearTimeout(time);
+            time = setTimeout(function(){
+              calcDots();
+              render();
+            }, 250);
           }
         );
 
