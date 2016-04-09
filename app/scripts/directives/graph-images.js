@@ -17,8 +17,8 @@ angular.module('deudamxApp')
       link: function postLink(scope, element, attrs) {
         var pattern = /translate\((-?[\d|.]+),(-?[\d|.]+)\)/;
         var dots  = [];
-        var data  = [];
-        var width = 0;
+
+        scope.circleRad = 15;
 
         //watchers
         $(window).resize(function(){
@@ -101,7 +101,7 @@ angular.module('deudamxApp')
               var i = d.x - 1993;
               return dots[i][1];
             })
-            .attr('r', 15)
+            .attr('r', scope.circleRad)
             .style('fill', 'transparent')
             .style('stroke', 'black')
             .style('stroke-width', 0.25)

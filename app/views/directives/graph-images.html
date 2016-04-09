@@ -1,19 +1,16 @@
 <svg>
   <defs>
     <pattern
-      id="{{d.id}}"
-      width="40"
-      height="40"
       ng-repeat="d in data"
-      patternUnits="userSpaceOnUse"
+      id="{{d.id}}"
+      ng-attr-width="{{circleRad * 2}}"
+      ng-attr-height="{{circleRad * 2}}"
     >
       <image
-        x="0"
-        y="0"
-        height="40"
-        width="40"
         ng-href="{{d.image}}"
         xlink:href
+        ng-attr-width="{{circleRad * 2}}"
+        ng-attr-height="{{circleRad * 2}}"
       >
       </image>
     </pattern>
