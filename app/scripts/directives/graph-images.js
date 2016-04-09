@@ -78,7 +78,7 @@ angular.module('deudamxApp')
         }
 
         function render(){
-          if (dots.length == 0) {
+          if (dots.length === 0) {
             return;
           }
           d3.selectAll('.politic-image').remove();
