@@ -78,6 +78,9 @@ angular.module('deudamxApp')
         }
 
         function render(){
+          if (dots.length == 0) {
+            return;
+          }
           d3.selectAll('.politic-image').remove();
           d3.select('.nv-line>g[clip-path]>g.nv-groups')
             .selectAll('circle')
@@ -86,6 +89,11 @@ angular.module('deudamxApp')
             .append('circle')
             .attr('class', 'politic-image')
             .attr('cx', function(d){
+              if (d.x < 1993) {
+                d.x = 1993;
+              } else if (d.x > 2015){
+                d.x = 2015;
+              }
               var i = d.x - 1993;
               return dots[i][0];
             })
