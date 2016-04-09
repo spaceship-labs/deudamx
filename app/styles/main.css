@@ -106,13 +106,17 @@ body{
   position: relative;
   overflow: hidden;
 }
+
 .banner-main-bg{
-  background-image: url(../images/video-loop.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   min-height: 540px;
   /*filter:grayscale(100%);*/
+}
+.banner-main-bg video{
+  min-width: 100%;
+  min-height: 100%;
 }
 .banner-main-text{
   color: #fff;
