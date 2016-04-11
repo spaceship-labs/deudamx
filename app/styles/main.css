@@ -519,6 +519,9 @@ body{
   padding: 10px 0;
 }
 .hl-text{color: #0072BC;}
+.md-icon-button[disabled]{
+  color:#365AC1;
+}
 
 
 /*---------/
