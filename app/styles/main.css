@@ -285,6 +285,7 @@ body{
   color: #0072BB!important;
   font-family: 'Montserrat', sans-serif;
   padding: 0 20px;
+  height:50px;
 }
 .entities-list md-list-item a{
   color: #0072BB;

@@ -91,6 +91,7 @@
               ng-mouseenter="hover = true"
               ng-mouseleave="hover = false"
               ng-class="{bred: hover}"
+              ng-cloak
             >
               <div
                 class="md-avatar"
@@ -101,28 +102,23 @@
                 ng-dblclick='vm.viewOne(entity)'
               >
               </div>
-              <p ng-if="!hover">
+              <p>
                 <a
                   ng-href='#/entidad/{{entity.key | urlEncode}}'
                   class='plain-link'
                 >
-                  {{ entity.key }}
+                  <span ng-hide="hover">
+                    {{ entity.key }}
+                  </span>
+                  <span ng-show="hover" class="cwhite">
+                    {{ vm.committed[entity.key] }}%
+                    del ingreso comprometido en deuda
+                  </span>
                 </a>
               </p>
-              <p ng-if="hover">
-                <a
-                  ng-href='#/entidad/{{entity.key | urlEncode}}'
-                  class='plain-link'
-                  style="color:white;"
-                >
-                {{ vm.committed[entity.key] }}%
-                del ingreso comprometido en deuda
-                </a>
-              </p>
-
               <p
                 class='align-right'
-                ng-if="!hover"
+                ng-hide="hover"
               >
                 {{ vm.tableFigure(entity) }}
               </p>
