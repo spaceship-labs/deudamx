@@ -145,7 +145,7 @@ function chartService($filter) {
         duration: 500,
         xAxis: {
           axisLabel: 'Año',
-          rotateLabels: -45
+          rotateLabels: -90
         },
 
         showYAxis: true,
