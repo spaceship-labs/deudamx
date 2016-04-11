@@ -20,6 +20,7 @@
       chart;
 
     vm.api = {};
+    vm.committed = {};
     vm.admonSort = '-deltaDebtPerCapita';
     vm.admonSortDisabled = admonSortDisabled;
     vm.dataset = [];
@@ -33,6 +34,7 @@
     vm.getLevelClass = getLevelClass;
     vm.getPartyClass = getPartyClass;
     vm.load = load;
+    vm.loadCommited = loadCommited;
     vm.refreshData = refreshData;
     vm.setChartState = setChartState;
     vm.setEntities = setEntities;
@@ -66,6 +68,7 @@
     }
 
     vm.load();
+    vm.loadCommited();
 
     vm.shareIn = function(socialNetwork){
       console.log(vm.currentUrl);
@@ -143,6 +146,15 @@
         .then(apiService.getAdministrations)
         .then(apiService.resolvePictures)
         .then(vm.setAdministrations);
+    }
+
+    function loadCommited(){
+      apiService.getCommited()
+        .then(setCommitted);
+    }
+
+    function setCommitted(commited){
+      vm.committed = commited;
     }
 
     function goToEntity(entity) {

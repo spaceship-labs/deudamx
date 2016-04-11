@@ -22,6 +22,7 @@ function apiService(Restangular, $q) {
   service.getEntityCollections = getEntityCollections;
   service.debtObligation = {};
   service.resolvePictures = resolvePictures;
+  service.getCommited = getCommited;
 
   function getAdministrations() {
     return Restangular.all('administration').getList({
@@ -126,6 +127,23 @@ function apiService(Restangular, $q) {
       ent.local_picture = 'pictures/' + nameFile(picture);
       return ent;
     });
+  }
+
+  function getCommited(){
+    var deferred = $q.defer();
+    var collection = 'committed';
+    if (service[collection]) {
+      deferred.resolve(service[collection]);
+    } else {
+      Restangular
+        .one(collection)
+        .get()
+        .then(function(results) {
+          service[collection] = results;
+          deferred.resolve(results);
+        });
+    }
+    return deferred.promise;
   }
 
 }

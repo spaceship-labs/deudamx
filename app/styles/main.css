@@ -255,6 +255,12 @@ body{
   -webkit-animation-direction: alternate;
 
 }
+.bred{
+  background-color:red;
+}
+.cwhite{
+  color:white;
+}
 
 /*--------
   #CHART-BLOCK

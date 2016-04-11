@@ -86,10 +86,46 @@
           </md-list-item>
           <md-divider></md-divider>
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
-            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort'>
-              <div class="md-avatar" style='background-color:{{entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'></div>
-              <p><a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>{{ entity.key }}</a></p>
-              <p class='align-right'>{{ vm.tableFigure(entity) }}</p>
+            <md-list-item
+              ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort'
+              ng-mouseenter="hover = true"
+              ng-mouseleave="hover = false"
+              ng-class="{bred: hover}"
+            >
+              <div
+                class="md-avatar"
+                style='background:{{hover ? "white" : entity.color}}'
+                ng-click='vm.toggleOne(entity)'
+                ng-class='entity.selected ? "selected" : ""'
+                aria-label='entity.key'
+                ng-dblclick='vm.viewOne(entity)'
+              >
+              </div>
+              <p ng-if="!hover">
+                <a
+                  ng-href='#/entidad/{{entity.key | urlEncode}}'
+                  class='plain-link'
+                >
+                  {{ entity.key }}
+                </a>
+              </p>
+              <p ng-if="hover">
+                <a
+                  ng-href='#/entidad/{{entity.key | urlEncode}}'
+                  class='plain-link'
+                  style="color:white;"
+                >
+                {{ vm.committed[entity.key] }}%
+                del ingreso comprometido en deuda
+                </a>
+              </p>
+
+              <p
+                class='align-right'
+                ng-if="!hover"
+              >
+                {{ vm.tableFigure(entity) }}
+              </p>
             </md-list-item>
           </perfect-scrollbar>
         </md-list>
