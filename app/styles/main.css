@@ -340,12 +340,10 @@ body{
 .governor-item .governor-circle-avatar{
   height: 80px;
   width: 80px;
-  cursor: pointer;
 }
 .governor-item .governor-circle-avatar:focus{
   outline: none;
 }
-.governor-item .governor-item-data{cursor: pointer;}
 .governor-item .governor-item-data:focus{
   outline: none;
 }
