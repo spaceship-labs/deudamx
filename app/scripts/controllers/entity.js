@@ -132,7 +132,7 @@
         '#F95CFF', '#F300FD', '#EE00FF', '#BB00CF', '#770085'
       ];
       vm.colorPalette =  vm.colorPalette.concat(
-        vm.greens, vm.oranges, vm.blues, vm.browns, vm.reds, vm.purples
+        vm.reds,  vm.blues, vm.greens
       );
 
       apiService
