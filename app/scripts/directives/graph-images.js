@@ -97,18 +97,20 @@ angular.module('deudamxApp')
               }
               var i = d.x - 1993;
               var center = dots[i][0];
-              if ((center - 15) <= 0) {
-                center = 15;
+              if (d.x == 1993){
+                center += 15 ;
+              } else if (d.x == 2015) {
+                center -= 15;
               }
               return center;
             })
             .attr('cy', function(d){
               var i = d.x - 1993;
               var center = dots[i][1];
-              if ((center - 15) <= 0) {
+              if ( (center - 15) <= 0 ) {
                 center = 15;
               }
-              if ((center + scope.circleRad) >= 460) {
+              if ( (center + scope.circleRad) >= 460) {
                 center = 460 - 15;
               }
               return center;
