@@ -97,7 +97,7 @@
         var max = new gauss.Collection(vm.administrations).map(function(adm) {
           return adm.stats.entityStats ? adm.stats.entityStats.delta[mode] : 0;
         }).toVector().max();
-        var debtPct = Math.round(admon.stats.entityStats.delta[mode] / max * 50) + '%';
+        var debtPct = Math.round(admon.stats.entityStats.delta[mode] / max * 80) + '%';
         style.width = debtPct;
       } else {
         style.width = '0';

@@ -21,6 +21,12 @@
 body{
   font-family: 'Aleo', sans-serif;
 }
+
+a{
+  color: #0072BB;
+  font-weight:bold;
+  text-decoration: none;
+}
 .copy-video-banner{
   text-align: right;
   padding: 5px;
@@ -58,8 +64,9 @@ body{
 .graph-list md-list-item .bar{
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 50%;
+  left: 0;
+  margin-left:65px;
+  width: 80%;
   height: 100%;
   background-color: #AA3939;
   content:'';

@@ -151,7 +151,7 @@
 <section class="content-block">
   <div class="content-block content-block-alt">
     <div class="container container-lg">
-      <h1 class="main-title"><strong class="italic">TABLA</strong> | <span>Gobernadores</span></h1>
+      <h1 class="main-title"><strong class="italic">Listado</strong> | <span>Gobernadores</span></h1>
       <h2 class="center-content">Ordenada por
       <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuanto cambio la deuda en total</span>
       <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuanto cambio la deuda per capita</span>
@@ -202,11 +202,11 @@
             </img>
           </div>
           <div ng-click="admon.isActive = !admon.isActive" class="governor-item-data" flex flex-md="60" flex-sm="60">
-            <p><strong>{{admon.governor}} ({{vm.findEntity(admon.entity).key}})</strong></p>
+            <p><strong>{{admon.governor}} (<a ng-href='#/entidad/{{vm.findEntity(admon.entity).key | urlEncode}}' >{{vm.findEntity(admon.entity).key}}</a>)</strong></p>
             <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
             <p><span class="italic">
             <span ng-if='admon.deltaDebt > 0'>Incrementó</span>
-              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda {{admon.deltaDebt | currency }} MDP ó {{admon.deltaDebtPerCapita | currency}} pesos por persona
+              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente {{admon.deltaDebt | currency }} MDP ó {{admon.deltaDebtPerCapita | currency}} pesos por persona
               </span>
             </p>
           </div>

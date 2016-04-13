@@ -14,7 +14,8 @@
       <div  layout-padding flex='30' ng-show='vm.entity'>
         <div class="entity-view-main">
           <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
-          <h3>Deuda Per Capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
+          <h3>Deuda per capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
+          <h3>Porcentaje del PIBE: <strong>%{{vm.entity.balancegdp | number : 2}}</strong></h3>
         </div>
         <!-- <p>
       <ng-md-icon icon='today'></ng-md-icon> = 1 salario minimo</p>
@@ -25,12 +26,12 @@
      -->
         <md-list class='graph-list'>
           <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
-          <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+          <!-- <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
             <md-tooltip md-direction="top">
               {{mode.name}}
             </md-tooltip>
             <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
-          </md-button>
+          </md-button> -->
           <md-divider></md-divider>
           <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
             <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
@@ -46,16 +47,19 @@
         </md-list>
       </div>
       <div layout-fill class="detailed-list">
+        <h1>Historico de Deuda</h1>
+        <p>La siguiente grafica muestra el histórico de la deuda en {{vm.entity.name}} representada por la linea solida y tambien barras que representan la suma de los creditos contratados cada año según el registro de obligaciones y emprésitos. </p>
         <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api' ></nvd3>
         <graph-images data="vm.graphImages"></graph-images>
 
-        <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
+        <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
 
         <md-data-table-container ng-show='vm.obligations' flex>
           <table  md-data-table md-progress="deferred">
             <thead md-order="vm.query.order" md-trigger="onOrderChange">
               <tr>
                 <th name="Acreditado" order-by="acredited"></th>
+                <th name="Acreedor" order-by="creditor"></th>
                 <th name="Destino" order-by="destination"></th>
                 <th name="Fecha de Firma" order-by="signDate"></th>
                 <th numeric name="Monto" unit="$" order-by="ammount"></th>
@@ -65,6 +69,7 @@
             <tbody>
               <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
                 <td>{{obligation.acredited}}</td>
+                <td>{{obligation.creditor}}</td>
                 <td>{{obligation.destination}}</td>
                 <td>{{obligation.signDate | date}}</td>
                 <td>{{obligation.ammount | mdp}}</td>
