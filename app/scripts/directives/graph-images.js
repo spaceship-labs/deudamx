@@ -82,7 +82,6 @@ angular.module('deudamxApp')
             return;
           }
           d3.selectAll('.politic-image').remove();
-          d3.select('.bars2Wrap.nvd3-svg>g[clip-path]>g.nv-groups')
           d3.select('.nvd3.nv-wrap.nv-multibar g.nv-groups')
             .selectAll('circle')
             .data(scope.data)
@@ -97,9 +96,9 @@ angular.module('deudamxApp')
               }
               var i = d.x - 1993;
               var center = dots[i][0];
-              if (d.x == 1993){
+              if (d.x === 1993){
                 center += 15 ;
-              } else if (d.x == 2015) {
+              } else if (d.x === 2015) {
                 center -= 15;
               }
               return center;
