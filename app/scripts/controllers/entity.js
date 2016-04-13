@@ -13,10 +13,10 @@
     .controller('EntityCtrl', entityCtrl);
 
   entityCtrl.$inject =
-    ['$scope','apiService','chartService','entityMultiChartService','$routeParams','$location'];
+    ['$scope','apiService','chartService','entityMultiChartService','$routeParams','$location','device'];
 
 
-  function entityCtrl($scope,apiService, chartService, entityMultiChartService, $routeParams, $location) {
+  function entityCtrl($scope,apiService, chartService, entityMultiChartService, $routeParams, $location, device) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -174,6 +174,7 @@
       vm.entity = entity;
       return vm.entity;
     }
+
   }
 
 })();
