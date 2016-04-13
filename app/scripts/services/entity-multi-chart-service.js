@@ -34,7 +34,7 @@
         values: entity.stats.map(getValue('debt')),
       }, {
         type: 'bar',
-        key: 'Monto',
+        key: 'Deuda Contratada',
         yAxis: 2,
         id: entity.id,
         values: res
