@@ -7,7 +7,7 @@
     </div>
   </div>
   <section class="entity-view-content" layout="row">
-    <div layout="column" flex="40" hide-sm hide-md>
+    <div layout="column" flex="40" >
       <div class="entity-view-main" ng-show='vm.entity'>
         <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
         <h3>
@@ -16,20 +16,8 @@
             Porcentaje del ingreso comprometido: <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong>
           </h3>
       </div>
-      <!-- <p>
-          <ng-md-icon icon='today'></ng-md-icon> = 1 salario minimo</p>
-        <p>Tendría que trabajar cada persona en {{ vm.entity.name }} {{ vm.minimumSalaries() | number : 0 }} dias ganando el salario minimo para pagar la deuda de su estado </p>
-        <div>
-          <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='today'></ng-md-icon>
-        </div>   -->
-      <md-list class='graph-list' ng-show='vm.entity' hide-sm hide-md>
+      <md-list class='graph-list' ng-show='vm.entity'>
         <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
-        <!-- <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
-            <md-tooltip md-direction="top">
-              {{mode.name}}
-            </md-tooltip>
-            <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
-          </md-button> -->
         <md-divider></md-divider>
         <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
           <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
@@ -43,9 +31,7 @@
             <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente:
             <br/>
             <strong>{{admon.deltaDebt | currency }}</strong> MDP.
-            <br/>
             <strong>{{admon.deltaDebtPerCapita | currency}}</strong> pesos por persona.
-            <br/>
             <strong>{{admon.deltaDebtgdp | number : 2}}% </strong> del PIBE.
             </span>
             <!-- <p> <strong>{{ admon.stats.obStats.count }}</strong> creditos por un total de <strong>{{ admon.stats.obStats.sum | mdp }}</strong></p>
@@ -66,16 +52,7 @@
         <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api'></nvd3>
         <graph-images data="vm.graphImages"></graph-images>
         <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
-        <md-list class='graph-list' ng-show='vm.entity' hide-gt-md>
-          <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
-          <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
-            <md-tooltip md-direction="top">
-              {{mode.name}}
-            </md-tooltip>
-            <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
-          </md-button>
-          <md-divider></md-divider>
-        </md-list>
+
         <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
         <md-data-table-container ng-show='vm.obligations' flex>
           <table md-data-table md-progress="deferred">
