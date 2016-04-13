@@ -8,23 +8,21 @@
     </div>
   </div>
 
-  <section class="entity-view-content">
+  <section class="entity-view-content" layout="row">
 
-    <div layout='row'>
-      <div  layout-padding flex='30' ng-show='vm.entity'>
-        <div class="entity-view-main">
+    <div layout="column" flex="40" hide-sm hide-md>
+        <div class="entity-view-main" ng-show='vm.entity'>
           <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
           <h3>Deuda per capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
           <h3>Porcentaje del PIBE: <strong>%{{vm.entity.balancegdp | number : 2}}</strong></h3>
         </div>
         <!-- <p>
-      <ng-md-icon icon='today'></ng-md-icon> = 1 salario minimo</p>
-    <p>Tendría que trabajar cada persona en {{ vm.entity.name }} {{ vm.minimumSalaries() | number : 0 }} dias ganando el salario minimo para pagar la deuda de su estado </p>
-    <div>
-      <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='today'></ng-md-icon>
-    </div>
-     -->
-        <md-list class='graph-list'>
+          <ng-md-icon icon='today'></ng-md-icon> = 1 salario minimo</p>
+        <p>Tendría que trabajar cada persona en {{ vm.entity.name }} {{ vm.minimumSalaries() | number : 0 }} dias ganando el salario minimo para pagar la deuda de su estado </p>
+        <div>
+          <ng-md-icon ng-repeat="a in vm.perCapitaRange() track by $index" icon='today'></ng-md-icon>
+        </div>   -->
+        <md-list class='graph-list' ng-show='vm.entity' hide-sm hide-md>
           <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
           <!-- <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
             <md-tooltip md-direction="top">
@@ -45,40 +43,75 @@
             </div>
           </md-list-item>
         </md-list>
-      </div>
-      <div layout-fill class="detailed-list">
-        <h1>Historico de Deuda</h1>
-        <p>La siguiente grafica muestra el histórico de la deuda en {{vm.entity.name}} representada por la linea solida y tambien barras que representan la suma de los creditos contratados cada año según el registro de obligaciones y emprésitos. </p>
-        <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api' ></nvd3>
-        <graph-images data="vm.graphImages"></graph-images>
 
-        <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
+    </div>
 
-        <md-data-table-container ng-show='vm.obligations' flex>
-          <table  md-data-table md-progress="deferred">
-            <thead md-order="vm.query.order" md-trigger="onOrderChange">
-              <tr>
-                <th name="Acreditado" order-by="acredited"></th>
-                <th name="Acreedor" order-by="creditor"></th>
-                <th name="Destino" order-by="destination"></th>
-                <th name="Fecha de Firma" order-by="signDate"></th>
-                <th numeric name="Monto" unit="$" order-by="ammount"></th>
-                <th numeric name="Saldo" unit="$" order-by="balance"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
-                <td>{{obligation.acredited}}</td>
-                <td>{{obligation.creditor}}</td>
-                <td>{{obligation.destination}}</td>
-                <td>{{obligation.signDate | date}}</td>
-                <td>{{obligation.ammount | mdp}}</td>
-                <td>{{obligation.balance | mdp}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </md-data-table-container>
-      </div>
+    <div layout='column' flex-gt-md="60" flex="100">
+
+        <div class="entity-view-main" ng-show='vm.entity' hide-gt-md>
+          <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
+          <h3>Deuda Per Capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
+        </div>
+
+        <div layout-fill class="detailed-list">
+
+          <h1>Historico de Deuda</h1>
+          <p>La siguiente grafica muestra el histórico de la deuda en {{vm.entity.name}} representada por la linea solida y tambien barras que representan la suma de los creditos contratados cada año según el registro de obligaciones y emprésitos. </p>
+          <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api' ></nvd3>
+          <graph-images data="vm.graphImages"></graph-images>
+
+          <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
+
+          <md-list class='graph-list' ng-show='vm.entity' hide-gt-md>
+            <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
+            <md-button ng-repeat='(key,mode) in vm.chartService.modes' ng-click='vm.changeMode(key)' class="md-icon-button" aria-label="{{mode.name}}" ng-disabled='key === vm.chartService.mode'>
+              <md-tooltip md-direction="top">
+                {{mode.name}}
+              </md-tooltip>
+              <ng-md-icon icon="{{mode.icon}}"></ng-md-icon>
+            </md-button>
+            <md-divider></md-divider>
+            <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
+              <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
+              <img class="md-avatar" ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
+              <div class="md-list-item-text" >
+                <h3><strong>{{ admon.governor }}</strong></h3>
+                <h4>{{ admon.start | date }} - {{ admon.end | date }}</h4>
+                <p class="italic-text"><strong>Incremento la deuda por {{ admon.stats.entityStats.delta.debt * 1000000 | mdp}} </strong></p>
+                <!-- <p> <strong>{{ admon.stats.obStats.count }}</strong> creditos por un total de <strong>{{ admon.stats.obStats.sum | mdp }}</strong></p>
+                <p>aún se debe <strong> {{ admon.stats.obStats.balance | mdp }} </strong></p> -->
+              </div>
+            </md-list-item>
+          </md-list>
+
+          <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
+
+          <md-data-table-container ng-show='vm.obligations' flex>
+            <table  md-data-table md-progress="deferred">
+              <thead md-order="vm.query.order" md-trigger="onOrderChange">
+                <tr>
+                  <th name="Acreditado" order-by="acredited"></th>
+                  <th name="Acreedor" order-by="creditor"></th>
+                  <th name="Destino" order-by="destination"></th>
+                  <th name="Fecha de Firma" order-by="signDate"></th>
+                  <th numeric name="Monto" unit="$" order-by="ammount"></th>
+                  <th numeric name="Saldo" unit="$" order-by="balance"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
+                  <td>{{obligation.acredited}}</td>
+                  <td>{{obligation.creditor}}</td>
+                  <td>{{obligation.destination}}</td>
+                  <td>{{obligation.signDate | date}}</td>
+                  <td>{{obligation.ammount | mdp}}</td>
+                  <td>{{obligation.balance | mdp}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </md-data-table-container>
+        </div>
+
     </div>
   </section>
 </div>

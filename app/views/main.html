@@ -193,13 +193,18 @@
   <ul class="governors-list">
     <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.filtered = (vm.admons | filter :  vm.filterAdmon) | orderBy:vm.admonSort | limitTo: vm.admonLimit" class="governor-item">
       <div class="content-block-alt" flex="100">
-        <div class="container container-lg"  layout="row">
-          <div>
+        <div class="container container-lg" layout="row">
+          <div layout="row" layour-align="center center" class="relative">
+            <div>
+              <div class="governor-index">{{$index+1}}</div>
+              <div class="governor-team">{{admon.party}}</div>
+            </div>
             <!--
             <div class="percent-circle party-circle" ng-class='vm.getPartyClass(admon.party)'><span>{{admon.party}}</span></div>
             -->
             <img ng-click="admon.isActive = !admon.isActive" class="percent-circle party-circle governor-circle-avatar" ng-class='vm.getPartyClass(admon.party)' ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
             </img>
+            <div class="percent-circle floating" ng-class='vm.getLevelClass(admon.deltaDebtgdp)' hide-gt-sm><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
           </div>
           <div ng-click="admon.isActive = !admon.isActive" class="governor-item-data" flex flex-md="60" flex-sm="60">
             <p><strong>{{admon.governor}} (<a ng-href='#/entidad/{{vm.findEntity(admon.entity).key | urlEncode}}' >{{vm.findEntity(admon.entity).key}}</a>)</strong></p>
@@ -210,7 +215,7 @@
               </span>
             </p>
           </div>
-          <div flex="10">
+          <div flex="10" hide-sm>
             <div class="percent-circle" ng-class='vm.getLevelClass(admon.deltaDebtgdp)'><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
           </div>
           <!-- <div flex="35" flex-md="100" flex-sm="100" class="social-links">

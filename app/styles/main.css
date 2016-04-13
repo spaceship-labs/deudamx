@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: "Aleo";
     src: url("../fonts/aleo-regular-webfont.ttf");
@@ -26,6 +27,16 @@ a{
   color: #0072BB;
   font-weight:bold;
   text-decoration: none;
+}
+.relative{
+  position: relative;
+}
+.padding-top{
+  padding-top: 30px;
+}
+.padding-top > img{
+  max-width: 300px;
+  margin: 0 auto;
 }
 .copy-video-banner{
   text-align: right;
@@ -339,7 +350,9 @@ a{
   padding-left: 0;
 }
 .governor-item > .content-block-alt {padding: 15px 0}
-.governor-item > .content-block-alt > .container{padding-left: 40px;}
+.governor-item > .content-block-alt > .container{
+  padding: 0 40px;
+}
 .governor-item p{margin: 2px 0;}
 .governor-item .percent-circle{
   background: #6FBF0E;
@@ -350,6 +363,11 @@ a{
   height: 51px;
   width: 51px;
   text-align: center;
+}
+.governor-item .percent-circle.floating{
+  position: absolute;
+  top: -1em;
+  right: .5em;
 }
 .governor-item .governor-circle-avatar{
   height: 80px;
@@ -376,7 +394,7 @@ a{
 }
 
 .governor-item .party-circle{
-  margin-right:30px;
+  margin: 0 25px 0 10px;
 }
 .governor-item .party-PAN{
   background : #0127F8;
@@ -438,6 +456,18 @@ a{
   transform: translateY(50%);
 }
 
+.governor-index{
+  text-align: center;
+  font-size: 3.5em;
+  font-style: italic;
+  margin-top: -10px
+}
+.governor-team{
+  font-size: 1.6em;
+  margin-top: -.8em;
+  font-weight: lighter;
+}
+
 .filter-bar-icons{padding-left: 20px;}
 
 /*----------/
@@ -445,6 +475,7 @@ a{
 /*---------*/
 .detailed-list{
   font-family: 'Roboto', sans-serif;
+  padding-top: 1em;
 }
 .detailed-list h4{
   color: #056BB3;
@@ -507,6 +538,12 @@ a{
 /*---------/
   #ENTITY-VIEW
 /*--------*/
+.nvd3.nv-legend{
+  display:none;
+}
+.nvd3 g.nv-groups path.nv-line {
+  stroke-width: 4px;
+}
 .entity-header{
   background:#0072BB;
   color: #fff;
@@ -577,3 +614,4 @@ a{
     margin: 10px 0;
   }
 }
+

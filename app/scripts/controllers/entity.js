@@ -13,10 +13,10 @@
     .controller('EntityCtrl', entityCtrl);
 
   entityCtrl.$inject =
-    ['$scope','apiService','chartService','entityMultiChartService','$routeParams','$location'];
+    ['$scope','apiService','chartService','entityMultiChartService','$routeParams','$location','device'];
 
 
-  function entityCtrl($scope,apiService, chartService, entityMultiChartService, $routeParams, $location) {
+  function entityCtrl($scope,apiService, chartService, entityMultiChartService, $routeParams, $location, device) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -132,7 +132,12 @@
         '#F95CFF', '#F300FD', '#EE00FF', '#BB00CF', '#770085'
       ];
       vm.colorPalette =  vm.colorPalette.concat(
-        vm.reds,  vm.blues, vm.greens
+        vm.reds,
+        vm.blues,
+        vm.greens,
+        vm.oranges,
+        vm.browns,
+        vm.purples
       );
 
       apiService
@@ -171,7 +176,7 @@
       vm.administrations = collections[0];
       vm.obligations = collections[1];
       vm.formatEntity =
-        entityMultiChartService.formatEntityScatterLineBar(vm.entity, vm.administrations, vm.obligations);
+        entityMultiChartService.formatEntityLineBar(vm.entity, vm.obligations);
       refreshData();
 
       //TODO CHECK IF CORRECT FUNCTION CALL
@@ -184,6 +189,7 @@
       vm.entity = entity;
       return vm.entity;
     }
+
   }
 
 })();
