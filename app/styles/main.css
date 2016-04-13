@@ -468,6 +468,7 @@ body{
 /*---------*/
 .detailed-list{
   font-family: 'Roboto', sans-serif;
+  padding-top: 1em;
 }
 .detailed-list h4{
   color: #056BB3;
