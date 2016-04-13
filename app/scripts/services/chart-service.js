@@ -14,7 +14,14 @@ function chartService($filter) {
   /* jshint validthis: true */
   var colorPalette = [],
     modes = {},
-    service = this;
+    service = this,
+    greens = [],
+    oranges = [],
+    blues = [],
+    browns = [],
+    reds = [],
+    purples = [];
+
 
   service.getMode = getMode;
   service.getSelectedEntities = getSelectedEntities;
@@ -62,17 +69,28 @@ function chartService($filter) {
     icon: 'view_stream',
     style: 'expand'
   }];
-  colorPalette = [
-    '#AA3939', '#FFAAAA', '#D46A6A', '#801515',
-    '#550000', '#AA6C39', '#FFD1AA', '#D49A6A',
-    '#804515', '#552600', '#226666', '#669999',
-    '#407F7F', '#0D4D4D', '#003333', '#2D882D',
-    '#88CC88', '#55AA55', '#116611', '#004400',
-    '#B4653D', '#FFC5A8', '#D99572', '#91441C',
-    '#652403', '#246C6C', '#6AA1A1', '#448282',
-    '#115757', '#023D3D', '#2C824E', '#7CBD97',
-    '#529C70', '#146936'
+
+  greens = [
+    '#00E086', '#00EC50', '#63FF92', '#00AC39', '#00CE3E'
   ];
+  oranges = [
+    '#FFDEBC', '#FFB977', '#FF9524', '#EA7800', '#BE6500'
+  ];
+  blues = [
+    '#A1E9F0', '#53B9C3', '#3CA7B2', '#347D86', '#00D9EF', '#3556BE'
+  ];
+  browns = [
+    '#FEE8BE', '#FEC96B', '#FEC96B', '#D58D00', '#AD7000', '#E34E00'
+  ];
+  reds = [
+    '#E34E00', '#FF7B6D', '#FD2E20', '#DC1E00', '#B31B0F'
+  ];
+  purples = [
+    '#F95CFF', '#F300FD', '#EE00FF', '#BB00CF', '#770085'
+  ];
+  colorPalette =  colorPalette.concat(
+    reds, browns, oranges, blues, greens
+  );
 
   function getMode() {
     return service.modes[service.mode];
