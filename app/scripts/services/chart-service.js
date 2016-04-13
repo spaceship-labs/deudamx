@@ -89,7 +89,12 @@ function chartService($filter) {
     '#F95CFF', '#F300FD', '#EE00FF', '#BB00CF', '#770085'
   ];
   colorPalette =  colorPalette.concat(
-    reds, browns, oranges, blues, greens
+    reds,
+    blues,
+    greens,
+    oranges,
+    browns,
+    purples
   );
 
   function getMode() {
