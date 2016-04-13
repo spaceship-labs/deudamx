@@ -21,6 +21,7 @@
     var vm = this;
 
     vm.chartService = chartService;
+    vm.committed = {};
     vm.changeMode = changeMode;
     vm.colorPalette = [];
     vm.getEntityIcon = getEntityIcon;
@@ -106,6 +107,10 @@
 
     }
 
+    function setCommitted(commited){
+      vm.commited = commited;
+    }
+
     function load() {
       vm.query = {
         filter: '',
@@ -145,7 +150,9 @@
         .then(setEntity)
         .then(apiService.getEntityCollections)
         .then(setCollections)
-        .then(setGraphImages);
+        .then(setGraphImages)
+        .then(apiService.getCommited)
+        .then(setCommitted);
 
     }
 

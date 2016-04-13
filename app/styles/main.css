@@ -363,6 +363,9 @@ a{
   height: 51px;
   width: 51px;
   text-align: center;
+  font-size:15px;
+  text-align: center;
+  line-height: 26px
 }
 .governor-item .percent-circle.floating{
   position: absolute;

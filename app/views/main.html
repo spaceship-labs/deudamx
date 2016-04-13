@@ -211,7 +211,9 @@
             <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
             <p><span class="italic">
             <span ng-if='admon.deltaDebt > 0'>Incrementó</span>
-              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente {{admon.deltaDebt | currency }} MDP ó {{admon.deltaDebtPerCapita | currency}} pesos por persona
+              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente <strong>{{admon.deltaDebt | currency }}</strong> MDP ó <strong>{{admon.deltaDebtPerCapita | currency}}</strong> pesos por persona.
+              Esto representa el <strong>{{admon.deltaDebtgdp | number : 2}}%</strong> del producto interno bruto de la entidad.
+
               </span>
             </p>
           </div>
