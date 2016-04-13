@@ -82,7 +82,8 @@ angular.module('deudamxApp')
             return;
           }
           d3.selectAll('.politic-image').remove();
-          d3.select('.nv-line>g[clip-path]>g.nv-groups')
+          d3.select('.bars2Wrap.nvd3-svg>g[clip-path]>g.nv-groups')
+          d3.select('.nvd3.nv-wrap.nv-multibar g.nv-groups')
             .selectAll('circle')
             .data(scope.data)
             .enter()
@@ -95,11 +96,22 @@ angular.module('deudamxApp')
                 d.x = 2015;
               }
               var i = d.x - 1993;
-              return dots[i][0];
+              var center = dots[i][0];
+              if ((center - 15) <= 0) {
+                center = 15;
+              }
+              return center;
             })
             .attr('cy', function(d){
               var i = d.x - 1993;
-              return dots[i][1];
+              var center = dots[i][1];
+              if ((center - 15) <= 0) {
+                center = 15;
+              }
+              if ((center + scope.circleRad) >= 460) {
+                center = 460 - 15;
+              }
+              return center;
             })
             .attr('r', scope.circleRad)
             .style('fill', 'transparent')
