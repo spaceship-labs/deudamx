@@ -176,7 +176,7 @@
       vm.administrations = collections[0];
       vm.obligations = collections[1];
       vm.formatEntity =
-        entityMultiChartService.formatEntityScatterLineBar(vm.entity, vm.administrations, vm.obligations);
+        entityMultiChartService.formatEntityLineBar(vm.entity, vm.obligations);
       refreshData();
 
       //TODO CHECK IF CORRECT FUNCTION CALL
