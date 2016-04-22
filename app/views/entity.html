@@ -2,20 +2,22 @@
   <div class="entity-header">
     <div class="container container-xxlg" layout="row" layout-align="space-between center">
       <a href="#/" class="arrow-left"></a>
-      <h1 flex><strong ng-bind="vm.entity.name"></strong></h1>
+      <h1 flex><strong>DEUDA</strong>MX</h1>
       <img src="images/logo.png" alt="">
+    </div>
+  </div>
+  <div class="entity-image" layout="column">
+    <div>
+    <h1>{{vm.entity.name}}</h1>
+    <hr>
+    <h2> {{vm.entity.balance | currency}} MDP en deuda</h2>
+    <h3>Deuda per capita | <strong>{{vm.entity.balancePerCapita | currency }}</strong> <br/></h3>
+    <h3>Porcentaje del PIBE | <strong>{{vm.entity.balancegdp | number : 2}} %</strong> <br/></h3>
+    <h3>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></h3>
     </div>
   </div>
   <section class="entity-view-content" layout="row">
     <div layout="column" flex="40" >
-      <div class="entity-view-main" ng-show='vm.entity'>
-        <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
-        <h3>
-            Deuda per capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong> <br/>
-            Porcentaje del PIBE: <strong>{{vm.entity.balancegdp | number : 2}} %</strong> <br/>
-            Porcentaje del ingreso comprometido: <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong>
-          </h3>
-      </div>
       <md-list class='graph-list' ng-show='vm.entity'>
         <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
         <md-divider></md-divider>

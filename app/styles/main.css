@@ -560,6 +560,16 @@ a{
   color: #fff;
 }
 .entity-header img{max-width: 100px;}
+.entity-image{
+  background-image: url("/images/estados.jpg");
+  height:360px;
+  color:white!important;
+  text-align:center;
+}
+.entity-image hr{
+  width:100px;
+  border:1px solid #E64010;
+}
 .entity-view-content{padding: 0 20px;}
 .entity-view-main{
   font-family: 'Roboto', sans-serif;
