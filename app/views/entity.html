@@ -16,11 +16,10 @@
     <h3>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></h3>
     </div>
   </div>
-  <section class="entity-view-content" layout="row">
-    <div layout="column" flex="40" >
+  <section class="entity-view-content" layout="row" layout-wrap>
+    <div layout="column" flex="40" class="entity-view-left">
       <md-list class='graph-list' ng-show='vm.entity'>
         <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
-        <md-divider></md-divider>
         <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
           <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
           <img class="md-avatar" ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
@@ -42,7 +41,7 @@
         </md-list-item>
       </md-list>
     </div>
-    <div layout='column' flex-gt-md="60" flex="100">
+    <div layout='column' flex-gt-md="60" flex="100" class="entity-view-right">
       <div class="entity-view-main" ng-show='vm.entity' hide-gt-md>
         <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
         <h3>Deuda Per Capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
@@ -53,34 +52,49 @@
         <p>Las barras representan la suma de los creditos contratados cada año según el registro de obligaciones y emprésitos. </p>
         <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api'></nvd3>
         <graph-images data="vm.graphImages"></graph-images>
-        <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
-
-        <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
-        <md-data-table-container ng-show='vm.obligations' flex>
-          <table md-data-table md-progress="deferred">
-            <thead md-order="vm.query.order" md-trigger="onOrderChange">
-              <tr>
-                <th name="Acreditado" order-by="acredited"></th>
-                <th name="Acreedor" order-by="creditor"></th>
-                <th name="Destino" order-by="destination"></th>
-                <th name="Fecha de Firma" order-by="signDate"></th>
-                <th numeric name="Monto" unit="$" order-by="ammount"></th>
-                <th numeric name="Saldo" unit="$" order-by="balance"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
-                <td>{{obligation.acredited}}</td>
-                <td>{{obligation.creditor}}</td>
-                <td>{{obligation.destination}}</td>
-                <td>{{obligation.signDate | date}}</td>
-                <td>{{obligation.ammount | mdp}}</td>
-                <td>{{obligation.balance | mdp}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </md-data-table-container>
       </div>
+    </div>
+    <div flex="100" layout="row" layout-align="center start" layout-wrap>
+      <div class="entity-table-title" flex="100">
+        <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
+        <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
+      </div>
+      <md-data-table-container ng-show='vm.obligations' class="entity-table" flex="80">
+        <table md-data-table md-progress="deferred">
+          <thead md-order="vm.query.order" md-trigger="onOrderChange">
+            <tr>
+              <th name="Acreditado" order-by="acredited">
+                <i class="material-icons">place</i>
+              </th>
+              <th name="Acreedor" order-by="creditor">
+                <i class="material-icons">account_circle</i>
+              </th>
+              <th name="Destino" order-by="destination">
+                <i class="material-icons">arrow_downward</i>
+              </th>
+              <th name="Fecha de Firma" order-by="signDate">
+                <i class="material-icons">border_color</i>
+              </th>
+              <th  name="Monto" unit="$" order-by="ammount">
+                <i class="material-icons">credit_card</i>
+              </th>
+              <th  name="Saldo" unit="$" order-by="balance">
+                <i class="material-icons">monetization_on</i>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="obligation in vm.obligations | orderBy:vm.query.order">
+              <td>{{obligation.acredited}}</td>
+              <td>{{obligation.creditor}}</td>
+              <td>{{obligation.destination}}</td>
+              <td>{{obligation.signDate | date}}</td>
+              <td>{{obligation.ammount | mdp}}</td>
+              <td>{{obligation.balance | mdp}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-data-table-container>
     </div>
   </section>
 </div>
