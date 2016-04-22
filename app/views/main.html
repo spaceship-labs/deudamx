@@ -24,7 +24,7 @@
 <p class="copy-video-banner"><strong>Video: Lorem Ipsum dolor sit amet.</strong></p> -->
 <section id="second-block" class="content-block">
   <div class="container container-lg">
-    <h1 class="main-title">Los archivos de la Deuda <strong class="italic">Investigación Interactiva</strong></h1>
+    <h1 class="main-title">Hipotecan estados recursos federales</h1>
     <div layout="row" layout-wrap layout-align="space-between">
       <div flex="45" flex-md="100" flex-sm="100" class="text-content">
         <p>Después de la crisis financiera del 2008 los gobiernos estatales han incrementado su deuda desenfrenadamente al punto de que 4 entidades tenían casi la totalidad de sus ingresos comprometidos en pagar la deuda al comenzar el año. </p>
@@ -117,7 +117,7 @@
         <p>Quintana Roo y Nuevo León son las dos únicas entidades que tienen más de un gobernador en esta lista. En Quintana Roo la dupla Félix González Canto-Roberto Borge dejó a cada quintanarroense con aproximadamente 13 mil pesos adicionales de deuda, lo cual convirtió al ciudadano de Quintana Roo en el más endeudado a nivel nacional por habitante. </p>
         <p>En Nuevo León, José Natividad González Parás y Rodrigo Medina de la Cruz incrementaron la deuda en sus estados más de 10 mil pesos por persona. Hoy en día la deuda estatal distribuida por cada nuevoleonense asciende a $12,468 pesos, lo cual los convierte en el tercer estado más endeudado per cápita en el país. </p>
         <p>El único gobernador que no es del PRI de esta lista es Juan Sabines Guerrero, quien fue gobernador de Chiapas del 2006 al 2012 postulado por una coalición de partidos encabezada por el PRD. Actualmente el ex-gobernador ocupa el puesto de cónsul diplomático en Orlando (Florida) en la Unión Americana. </p>
-        <p>La deuda del gobernador Sabines es más significativa si ordenamos la lista de administraciones por cuanto incrementaron la deuda como porcentaje del producto interno bruto, donde aparece en segundo lugar. Chiapas es un estado profundamente marcado por la pobreza y la desigualdad y eso se refleja en este rubro: es la cuarta entidad con más deuda como porcentaje del producto interno bruto estatal. </p>
+        <p>La deuda del gobernador Sabines es más significativa si ordenamos la lista de administraciones por cuánto incrementaron la deuda como porcentaje del producto interno bruto, donde aparece en segundo lugar. Chiapas es un estado profundamente marcado por la pobreza y la desigualdad y eso se refleja en este rubro: es la cuarta entidad con más deuda como porcentaje del producto interno bruto estatal. </p>
       </div>
     </div>
 </section>
@@ -126,15 +126,15 @@
     <div class="container container-lg">
       <h1 class="main-title"><strong class="italic">Gobernadores | #Conocetudeuda</strong></h1>
       <h2 class="center-content">Ordenada por
-      <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuanto cambio la deuda en total</span>
-      <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuanto cambio la deuda per capita</span>
-      <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuanto cambio la deuda representada como % del producto interno bruto estatal</span>
+      <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuánto cambio la deuda en total</span>
+      <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuánto cambio la deuda per cápita</span>
+      <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuánto cambio la deuda representada como % del producto interno bruto estatal</span>
       </h2>
       <div class="filter-bar-icons" layout="row">
         <div flex="100">
           <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"' ng-disabled='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>
             <md-tooltip md-direction="top">
-              Ordernar por deuda per capita
+              Ordernar por deuda per cápita
             </md-tooltip>
             <ng-md-icon icon="perm_identity"></ng-md-icon>
           </md-button>
@@ -252,7 +252,7 @@
     </div>
     <div class="credit">
       <p><strong>Textos e investigación</strong></p>
-      <p>Lilia Saúl / Salvador Barrón / Eduardo Buendía</p>
+      <p>Lilia Saúl / Salvador Barrón</p>
     </div>
     <div class="credit">
       <p><strong>Análisis de Datos</strong></p>
@@ -272,7 +272,7 @@
         <img src="images/Logo2.png" alt="">
       </a>
     </div>
-    <p class="credits-bottom-text">Este reportaje fue realizado por <strong>Lilia Saúl, Salvador Barrón y Eduardo Buendía</strong> en el marco de la Iniciativa para el Periodismo de Investigación en las Américas del International Center for Journalists (ICFJ) en alianza con CONNECTAS.</p>
+    <p class="credits-bottom-text">Este reportaje fue realizado por <strong>Lilia Saúl y Salvador Barrón</strong> en el marco de la Iniciativa para el Periodismo de Investigación en las Américas del International Center for Journalists (ICFJ) en alianza con CONNECTAS.</p>
   </div>
 </section>
 <ng-include src="'views/partials/footer.html'"></ng-include>

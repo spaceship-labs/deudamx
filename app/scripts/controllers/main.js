@@ -73,8 +73,12 @@
     vm.shareIn = function(socialNetwork){
       var url = encodeURIComponent(vm.currentUrl);
       var shareUrl = '';
+      var text = 'Conoce el ranking de los gobernadores que más han endeudado a sus estados.';
+      text += 'El @Univ_Data y @Spaceshiplabs presentan #Conocetudeuda';
+      text = encodeURIComponent(text);
       if(socialNetwork === 'twitter'){
         shareUrl = 'https://www.twitter.com/intent/tweet?url=' + url;
+        console.log(shareUrl);
         window.open(shareUrl, 'name','width=600,height=400');
       }
       else if(socialNetwork === 'facebook'){
