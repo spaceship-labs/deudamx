@@ -19,7 +19,7 @@
     </div>
   </div>
   <section class="entity-view-content" layout="row" layout-wrap>
-    <div layout="column" flex="40" class="entity-view-left">
+    <div flex="40" flex-sm="100" class="entity-view-left">
       <md-list class='graph-list' ng-show='vm.entity'>
         <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
         <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
@@ -48,10 +48,12 @@
       </md-list>
     </div>
     <div layout='column' flex-gt-md="60" flex="100" class="entity-view-right">
+      <!--
       <div class="entity-view-main" ng-show='vm.entity' hide-gt-md>
         <h2 class="hl-text">{{vm.entity.balance | currency}} MDP en deuda</h2>
         <h3>Deuda Per Capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
       </div>
+    -->
       <div layout-fill class="detailed-list">
         <div class="center-content">
           <h1 class="hl-text">Historico <span>de Deuda</span></h1>

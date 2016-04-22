@@ -757,3 +757,10 @@ a{
   }
 }
 
+@media screen and (max-width: 600px){
+  .entity-view-left .md-subheader-content{font-size: 28px;}
+  .entity-view-left{padding: 10px;}
+  .entity-view .entity-table-title{display: none;}
+  .entity-view .entity-view-table{display: none;}
+}
+
