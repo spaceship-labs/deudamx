@@ -1,7 +1,7 @@
 <div class="entity-view">
   <div class="entity-header">
     <div class="container container-xlg" layout="row" layout-align="space-between center">
-      <h1 flex><a href="/#/"><strong>DEUDA</strong><span>MX<span></a></h1>
+      <h1 flex><a href="#/"><strong>DEUDA</strong><span>MX<span></a></h1>
       <img src="images/logo.png" alt="">
     </div>
   </div>
@@ -12,7 +12,7 @@
       <h2><strong>{{vm.entity.balance | currency}} MDP</strong></h2>
       <h3><span>EN DEUDA</span></h3>
       <div class="entity-image-data">
-        <p>Deuda per capita | <strong>{{vm.entity.balancePerCapita | currency }}</strong></p>
+        <p>Deuda per cápita | <strong>{{vm.entity.balancePerCapita | currency }}</strong></p>
         <p>Porcentaje del PIBE | <strong>{{vm.entity.balancegdp | number : 2}} %</strong></p>
         <p>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></p>
       </div>
@@ -56,10 +56,10 @@
     -->
       <div layout-fill class="detailed-list">
         <div class="center-content">
-          <h1 class="hl-text">Historico <span>de Deuda</span></h1>
+          <h1 class="hl-text">Histórico <span>de Deuda</span></h1>
           <div class="container-md container description-txt">
-            <p>La siguiente grafica muestra el <strong>histórico de la deuda en {{vm.entity.name}}</strong> representada por la <span class="hl-text2">linea solida azul</span>. </p>
-            <p>Las barras representan <strong>la suma de los creditos contratados cada año</strong> según el registro de obligaciones y emprésitos. </p>
+            <p>La siguiente gráfica muestra el <strong>histórico de la deuda en {{vm.entity.name}}</strong> representada por la <span class="hl-text2">linea sólida azul</span>. </p>
+            <p>Las barras representan <strong>la suma de los créditos contratados cada año</strong> según el registro de obligaciones y empréstitos. </p>
           </div>
         </div>
         <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api'></nvd3>
@@ -71,7 +71,7 @@
         <!--
         <h1>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h1>
         <h1>LISTA DETALLADA | <span>Lorem Ipsum</span></h1>-->
-        <h1>Registro de Obligaciones y Emprésitos Vigente</h1>
+        <h1>Registro de Obligaciones y Empréstitos Vigente</h1>
         <h2>de entidades, municipios y sus organismos</h2>
 
       </div>

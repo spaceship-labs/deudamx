@@ -92,7 +92,7 @@
     function getAdministrationStyle(admon, index) {
       var mode = chartService.getMode().alias;
       var style = {
-        'background-color': vm.colorPalette[index * 2]
+        'background-color': vm.colorPalette[8]
       };
       if (admon.stats.entityStats) {
         var max = new gauss.Collection(vm.administrations).map(function(adm) {

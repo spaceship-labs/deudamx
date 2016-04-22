@@ -57,7 +57,7 @@ function chartService($filter) {
     alias : 'gdpdebt'
   }];
   service.states = [{
-    name: 'Gráfica de area apilada',
+    name: 'Gráfica de área apilada',
     icon: 'signal_cellular_4_bar',
     style: 'stack'
   }, {

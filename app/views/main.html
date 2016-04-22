@@ -27,14 +27,14 @@
     <h1 class="main-title">Los archivos de la Deuda <strong class="italic">Investigación Interactiva</strong></h1>
     <div layout="row" layout-wrap layout-align="space-between">
       <div flex="45" flex-md="100" flex-sm="100" class="text-content">
-        <p>Después de la crisis financiera del 2008 los gobiernos estatales han incrementado su deuda desenfrenadamente al punto de que 4 entidades tienen casi la totalidad de sus ingresos comprometidos en pagar la deuda.</p>
-        <p>Según la información pública disponible en el sitio de transparencia presupuestaria, Quintana Roo, Coahuila, Nuevo León y Chihuahua tienen finanzas poco sólidas al estar casi la totalidad de sus ingresos comprometidos en pagar deuda.</p>
+        <p>Después de la crisis financiera del 2008 los gobiernos estatales han incrementado su deuda desenfrenadamente al punto de que 4 entidades tenían casi la totalidad de sus ingresos comprometidos en pagar la deuda al comenzar el año. </p>
+        <p>Según la información pública disponible en el sitio de transparencia presupuestaria, Quintana Roo, Coahuila, Nuevo León y Chihuahua tienen finanzas poco sólidas al estar casi la totalidad de sus ingresos comprometidos en pagar deuda. </p>
         <p>Estas entidades también encabezan la lista de las entidades con mayor deuda por poblador.</p>
-        <p>En Quintana Roo, el estado con mayor deuda por persona, el 97% de los ingresos estatales están comprometidos hacia el pago de la deuda, en Coahuila se debe el 103%, en Nuevo león 93.8% y en Chihuahua se debe el 82.5% del ingreso.</p>
+        <p>En Quintana Roo, el estado con mayor deuda por persona, el 97% de los ingresos estatales están comprometidos hacia el pago de la deuda, en Coahuila se debe el 103%, en Nuevo León 93.8% y en Chihuahua se debe el 82.5% del ingreso. </p>
       </div>
       <div flex="45" flex-md="100" flex-sm="100" class="text-content">
-        <p>Después de la crisis del ‘94 los gobiernos estatales vieron un crecimiento de sus deudas con respecto al producto interno bruto estatal. Sin embargo en los años posteriores las deudas estatales con respecto al PIBE bajaron hasta finalmente estabilizarse en el 2000. Esto no ha ocurrido después de la deuda del 2008 y al contrario la deuda sub-estatal no ha dejado de incrementar.</p>
-        <p>Haz clic sobre cada estado en la gráfica interactiva para ver más información acerca de la deuda de cada entidad incluyendo el registro de créditos y el resumen de cómo cambió la deuda durante la administración de cada gobernador desde el ‘93. </p>
+        <p>Después de la crisis de 1994, los gobiernos estatales vieron un crecimiento de sus deudas con respecto al Producto Interno Bruto Estatal (PIBE). Sin embargo, en los años posteriores las deudas estatales con respecto al PIBE bajaron hasta finalmente estabilizarse en el 2000. Esto no ocurrió después de la crisis financiera mundial del 2008 y por el contrario, la deuda sub-estatal no ha dejado de crecer.</p>
+        <p>Haz click sobre cada el nombre de cada entidad en la gráfica interactiva para ver más información acerca de su deuda. La información incluye el registro de créditos, y el resumen del comportamiento de la deuda durante la administración de cada gobernador desde 1993. </p>
         <p>También puedes leer en las páginas de <a href='#/entidad/Quintana%20Roo'>Quintana Roo</a> y <a href='#/entidad/Coahuila'> Coahuila</a> nuestros reportajes especiales acerca de la deuda de esas entidades. </p>
       </div>
     </div>
@@ -78,7 +78,7 @@
           </md-list-item>
           <md-divider></md-divider>
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
-            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort' ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{bred: hover}" ng-cloak >
+            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort' ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{bred: hover}" ng-cloak>
               <div class="md-avatar" style='background:{{hover ? "white" : entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'>
               </div>
               <p>
