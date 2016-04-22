@@ -575,7 +575,7 @@ a{
 
 .entity-header img{max-width: 100px;}
 .entity-image{
-  background-image: url("/images/estados.jpg");
+  background-image: url("../images/estados.jpg");
   min-height:320px;
   color:white!important;
   text-align:center;
