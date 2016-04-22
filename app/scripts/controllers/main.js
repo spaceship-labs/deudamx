@@ -77,12 +77,12 @@
       text += 'El @Univ_Data y @Spaceshiplabs presentan #Conocetudeuda';
       text = encodeURIComponent(text);
       if(socialNetwork === 'twitter'){
-        shareUrl = 'https://www.twitter.com/intent/tweet?url=' + url;
+        shareUrl = 'https://www.twitter.com/intent/tweet?url=' + url + '&text=' + text;
         console.log(shareUrl);
         window.open(shareUrl, 'name','width=600,height=400');
       }
       else if(socialNetwork === 'facebook'){
-        shareUrl = 'https://www.facebook.com/sharer.php?u=' + url;
+        shareUrl = 'https://www.facebook.com/sharer.php?u=' + url + '&p[summary]=' + text;
         window.open(shareUrl, 'name','width=600,height=400');
       }
 
