@@ -40,11 +40,11 @@ function chartService($filter) {
     filter: 'currency',
     alias: 'debt',
   }, {
-    name: 'Deuda per capita',
+    name: 'Deuda per cápita',
     icon: 'perm_identity',
     y: 'perCapita',
     sort: 'balancePerCapita',
-    label: 'Deuda per capita',
+    label: 'Deuda per cápita',
     filter: 'currency',
     alias : 'debtPerCapita'
   }, {
@@ -57,7 +57,7 @@ function chartService($filter) {
     alias : 'gdpdebt'
   }];
   service.states = [{
-    name: 'Grafica de area apilada',
+    name: 'Gráfica de area apilada',
     icon: 'signal_cellular_4_bar',
     style: 'stack'
   }, {
