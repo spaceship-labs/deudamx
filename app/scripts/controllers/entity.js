@@ -38,16 +38,17 @@
     vm.load();
 
     vm.shareIn = function(socialNetwork){
-      console.log(vm.currentUrl);
+      var url = encodeURIComponent(vm.currentUrl);
+      var shareUrl = '';
       if(socialNetwork === 'twitter'){
-        window.open('https://twitter.com/home?status=' + vm.currentUrl, 'name','width=600,height=400');
+        shareUrl = 'https://www.twitter.com/intent/tweet?url=' + url;
+        window.open(shareUrl, 'name','width=600,height=400');
       }
       else if(socialNetwork === 'facebook'){
-        window.open('https://www.facebook.com/sharer/sharer.php?u=' + vm.currentUrl, 'name','width=600,height=400');
+        shareUrl = 'https://www.facebook.com/sharer.php?u=' + url;
+        window.open(shareUrl, 'name','width=600,height=400');
       }
-      else if(socialNetwork === 'gplus'){
-        window.open('https://plus.google.com/share?url=' + vm.currentUrl, 'name','width=600,height=400');
-      }
+
     };
 
     function changeMode(key){
