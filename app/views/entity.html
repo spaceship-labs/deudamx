@@ -1,19 +1,21 @@
 <div class="entity-view">
   <div class="entity-header">
-    <div class="container container-xxlg" layout="row" layout-align="space-between center">
-      <a href="#/" class="arrow-left"></a>
-      <h1 flex><strong>DEUDA</strong>MX</h1>
+    <div class="container container-xlg" layout="row" layout-align="space-between center">
+      <h1 flex><a href="/#/"><strong>DEUDA</strong><span>MX<span></a></h1>
       <img src="images/logo.png" alt="">
     </div>
   </div>
-  <div class="entity-image" layout="column">
+  <div class="entity-image">
     <div>
-    <h1>{{vm.entity.name}}</h1>
-    <hr>
-    <h2> {{vm.entity.balance | currency}} MDP en deuda</h2>
-    <h3>Deuda per capita | <strong>{{vm.entity.balancePerCapita | currency }}</strong> <br/></h3>
-    <h3>Porcentaje del PIBE | <strong>{{vm.entity.balancegdp | number : 2}} %</strong> <br/></h3>
-    <h3>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></h3>
+      <h1>{{vm.entity.name}}</h1>
+      <hr>
+      <h2><strong>{{vm.entity.balance | currency}} MDP</strong></h2>
+      <h3><span>EN DEUDA</span></h3>
+      <div class="entity-image-data">
+        <p>Deuda per capita | <strong>{{vm.entity.balancePerCapita | currency }}</strong></p>
+        <p>Porcentaje del PIBE | <strong>{{vm.entity.balancegdp | number : 2}} %</strong></p>
+        <p>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></p>
+      </div>
     </div>
   </div>
   <section class="entity-view-content" layout="row" layout-wrap>
@@ -21,20 +23,24 @@
       <md-list class='graph-list' ng-show='vm.entity'>
         <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
         <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
-          <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
+
           <img class="md-avatar" ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
           <div class="md-list-item-text">
             <h3><strong>{{ admon.governor }}</strong></h3>
             <h4>{{ admon.start | date }} - {{ admon.end | date }}</h4>
             <!--
             <p class="italic-text"><strong>Incremento la deuda por {{ admon.stats.entityStats.delta.debt * 1000000 | mdp}} </strong></p> -->
-            <span ng-if='admon.deltaDebt > 0'>Incrementó</span>
-            <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente:
-            <br/>
-            <strong>{{admon.deltaDebt | currency }}</strong> MDP.
-            <strong>{{admon.deltaDebtPerCapita | currency}}</strong> pesos por persona.
-            <strong>{{admon.deltaDebtgdp | number : 2}}% </strong> del PIBE.
-            </span>
+
+            <p>
+              <span ng-if='admon.deltaDebt > 0'>Incrementó</span>
+              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente:
+            </p>
+            <div class="bar-wrapper">
+              <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
+              <p><strong>{{admon.deltaDebt | currency }}</strong> MDP.</p>
+            </div>
+            <p><strong>{{admon.deltaDebtPerCapita | currency}}</strong> pesos por persona.
+            <p><strong>{{admon.deltaDebtgdp | number : 2}}% </strong> del PIBE.
             <!-- <p> <strong>{{ admon.stats.obStats.count }}</strong> creditos por un total de <strong>{{ admon.stats.obStats.sum | mdp }}</strong></p>
               <p>aún se debe <strong> {{ admon.stats.obStats.balance | mdp }} </strong></p> -->
           </div>
@@ -47,39 +53,47 @@
         <h3>Deuda Per Capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
       </div>
       <div layout-fill class="detailed-list">
-        <h1>Historico de Deuda</h1>
-        <p>La siguiente grafica muestra el histórico de la deuda en {{vm.entity.name}} representada por la linea solida azul. </p>
-        <p>Las barras representan la suma de los creditos contratados cada año según el registro de obligaciones y emprésitos. </p>
+        <div class="center-content">
+          <h1 class="hl-text">Historico <span>de Deuda</span></h1>
+          <div class="container-md container description-txt">
+            <p>La siguiente grafica muestra el <strong>histórico de la deuda en {{vm.entity.name}}</strong> representada por la <span class="hl-text2">linea solida azul</span>. </p>
+            <p>Las barras representan <strong>la suma de los creditos contratados cada año</strong> según el registro de obligaciones y emprésitos. </p>
+          </div>
+        </div>
         <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api'></nvd3>
         <graph-images data="vm.graphImages"></graph-images>
       </div>
     </div>
     <div flex="100" layout="row" layout-align="center start" layout-wrap>
       <div class="entity-table-title" flex="100">
-        <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
-        <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
+        <!--
+        <h1>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h1>
+        <h1>LISTA DETALLADA | <span>Lorem Ipsum</span></h1>-->
+        <h1>Registro de Obligaciones y Emprésitos Vigente</h1>
+        <h2>de entidades, municipios y sus organismos</h2>
+
       </div>
       <md-data-table-container ng-show='vm.obligations' class="entity-table" flex="80">
-        <table md-data-table md-progress="deferred">
+        <table class="entity-view-table" md-data-table md-progress="deferred">
           <thead md-order="vm.query.order" md-trigger="onOrderChange">
             <tr>
               <th name="Acreditado" order-by="acredited">
-                <i class="material-icons">place</i>
+                <!--<i class="material-icons">place</i>-->
               </th>
               <th name="Acreedor" order-by="creditor">
-                <i class="material-icons">account_circle</i>
+                <!--<i class="material-icons">account_circle</i>-->
               </th>
               <th name="Destino" order-by="destination">
-                <i class="material-icons">arrow_downward</i>
+                <!--<i class="material-icons">arrow_downward</i>-->
               </th>
               <th name="Fecha de Firma" order-by="signDate">
-                <i class="material-icons">border_color</i>
+                <!--<i class="material-icons">border_color</i>-->
               </th>
               <th  name="Monto" unit="$" order-by="ammount">
-                <i class="material-icons">credit_card</i>
+                <!--<i class="material-icons">credit_card</i>-->
               </th>
               <th  name="Saldo" unit="$" order-by="balance">
-                <i class="material-icons">monetization_on</i>
+                <!--<i class="material-icons">monetization_on</i>-->
               </th>
             </tr>
           </thead>
@@ -95,6 +109,27 @@
           </tbody>
         </table>
       </md-data-table-container>
+    </div>
+  </section>
+  <section id="second-block" class="content-block">
+    <div class="container container-lg">
+      <h1 class="main-title"><strong class="italic">Conoce las administraciones estatales que más han endeudado a sus estados</strong></h1>
+      <div layout="row" layout-wrap layout-align="space-between">
+        <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+          <p>De acuerdo a datos de la deuda estatal de la Secretaría de Hacienda y Crédito Público, analizados y presentados en un micrositio interactivo, por EL UNIVERSAL, 9 de las 10 administraciones que más han endeudado a sus estados en los últimos 23 años provienen del PRI.</p>
+          <p>Para poder comparar los gobiernos de cada estado, calculamos la deuda per cápita y porcentaje del producto interno bruto usando datos de hacienda e INEGI desde 1993 hasta el final del 2015. </p>
+          <p>En nuestro micrositio interactivo se puede visualizar un comparativo de estos gobiernos por tres categorías: deuda per cápita, deuda del % del producto interno bruto y deuda en millones de pesos. </p>
+          <p>La lista de los que más incrementaron la deuda per cápita está plagada de gobernadores controversiales. En primer lugar, tenemos a Jorge Torres López (Coahuila) quien incrementó la deuda aproximadamente en $9,112.80 para cada coahuilense. Actualmente el ex-gobernador (interino delegado por Humberto Moreira) tiene una orden de extradición de los Estados Unidos y se considera uno de los más buscados de la DEA, acusado de lavado de dinero relacionado con la deuda de Coahuila. </p>
+          <p>En la lista de los que más han endeudado también aparecen tres gobiernos que serán renovados este 5 de junio 2016. Son los casos de: Chihuahua, Quintana Roo y Zacatecas, cuyos gobernadores aparecen en la segunda, cuarta y quinta posición respectivamente. En estos tres estados se esperan elecciones reñidas que podrían traer alternancias al poder entre reclamos por los procesos de endeudamiento. </p>
+          <p>En el tercer lugar de la lista aparece Rodrigo Medina de la Cruz, ex-gobernante del PRI en Nuevo León, quien cedió el poder el año pasado al candidato independiente Jaime Rodríguez Calderón, “El Bronco”. El fiscal anticorrupción de “El Bronco” ha confirmado que hay averiguaciones previas penales abiertas en torno a posibles actos de corrupción en la administración de Rodrigo Mena que podrían involucrar al propio ex-gobernador. </p>
+        </div>
+        <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+          <p>Quintana Roo y Nuevo León son las dos únicas entidades que tienen más de un gobernador en esta lista. En Quintana Roo la dupla Félix González Canto-Roberto Borge dejó a cada quintanarroense con aproximadamente 13 mil pesos adicionales de deuda, lo cual convirtió al ciudadano de Quintana Roo en el más endeudado a nivel nacional por habitante. </p>
+          <p>En Nuevo León, José Natividad González Parás y Rodrigo Medina de la Cruz incrementaron la deuda en sus estados más de 10 mil pesos por persona. Hoy en día la deuda estatal distribuida por cada nuevoleonense asciende a $12,468 pesos, lo cual los convierte en el tercer estado más endeudado per cápita en el país. </p>
+          <p>El único gobernador que no es del PRI de esta lista es Juan Sabines Guerrero, quien fue gobernador de Chiapas del 2006 al 2012 postulado por una coalición de partidos encabezada por el PRD. Actualmente el ex-gobernador ocupa el puesto de cónsul diplomático en Orlando (Florida) en la Unión Americana. </p>
+          <p>La deuda del gobernador Sabines es más significativa si ordenamos la lista de administraciones por cuanto incrementaron la deuda como porcentaje del producto interno bruto, donde aparece en segundo lugar. Chiapas es un estado profundamente marcado por la pobreza y la desigualdad y eso se refleja en este rubro: es la cuarta entidad con más deuda como porcentaje del producto interno bruto estatal. </p>
+        </div>
+      </div>
     </div>
   </section>
 </div>
