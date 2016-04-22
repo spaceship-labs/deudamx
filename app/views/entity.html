@@ -1,19 +1,21 @@
 <div class="entity-view">
   <div class="entity-header">
-    <div class="container container-xxlg" layout="row" layout-align="space-between center">
-      <a href="#/" class="arrow-left"></a>
-      <h1 flex><strong>DEUDA</strong>MX</h1>
+    <div class="container container-xlg" layout="row" layout-align="space-between center">
+      <h1 flex><a href="/#/"><strong>DEUDA</strong><span>MX<span></a></h1>
       <img src="images/logo.png" alt="">
     </div>
   </div>
-  <div class="entity-image" layout="column">
+  <div class="entity-image">
     <div>
-    <h1>{{vm.entity.name}}</h1>
-    <hr>
-    <h2> {{vm.entity.balance | currency}} MDP en deuda</h2>
-    <h3>Deuda per capita | <strong>{{vm.entity.balancePerCapita | currency }}</strong> <br/></h3>
-    <h3>Porcentaje del PIBE | <strong>{{vm.entity.balancegdp | number : 2}} %</strong> <br/></h3>
-    <h3>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></h3>
+      <h1>{{vm.entity.name}}</h1>
+      <hr>
+      <h2><strong>{{vm.entity.balance | currency}} MDP</strong></h2>
+      <h3><span>EN DEUDA</span></h3>
+      <div class="entity-image-data">
+        <p>Deuda per capita | <strong>{{vm.entity.balancePerCapita | currency }}</strong></p>
+        <p>Porcentaje del PIBE | <strong>{{vm.entity.balancegdp | number : 2}} %</strong></p>
+        <p>Porcentaje del ingreso comprometido | <strong>{{vm.commited[vm.entity.name] | number : 2}} %</strong></p>
+      </div>
     </div>
   </div>
   <section class="entity-view-content" layout="row" layout-wrap>
@@ -21,20 +23,24 @@
       <md-list class='graph-list' ng-show='vm.entity'>
         <md-subheader class="md-no-sticky hl-text">Administraciones</md-subheader>
         <md-list-item class="md-3-line" ng-repeat="(key,admon) in vm.administrations | orderBy:'-start'">
-          <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
+
           <img class="md-avatar" ng-src='{{admon.local_picture || "pictures/placeholder.png"}}'>
           <div class="md-list-item-text">
             <h3><strong>{{ admon.governor }}</strong></h3>
             <h4>{{ admon.start | date }} - {{ admon.end | date }}</h4>
             <!--
             <p class="italic-text"><strong>Incremento la deuda por {{ admon.stats.entityStats.delta.debt * 1000000 | mdp}} </strong></p> -->
-            <span ng-if='admon.deltaDebt > 0'>Incrementó</span>
-            <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente:
-            <br/>
-            <strong>{{admon.deltaDebt | currency }}</strong> MDP.
-            <strong>{{admon.deltaDebtPerCapita | currency}}</strong> pesos por persona.
-            <strong>{{admon.deltaDebtgdp | number : 2}}% </strong> del PIBE.
-            </span>
+
+            <p>
+              <span ng-if='admon.deltaDebt > 0'>Incrementó</span>
+              <span ng-if='admon.deltaDebt < 0'>Disminuyó</span> la deuda aproximadamente:
+            </p>
+            <div class="bar-wrapper">
+              <div class='bar' ng-style='vm.getAdministrationStyle(admon,key)'></div>
+              <p><strong>{{admon.deltaDebt | currency }}</strong> MDP.</p>
+            </div>
+            <p><strong>{{admon.deltaDebtPerCapita | currency}}</strong> pesos por persona.
+            <p><strong>{{admon.deltaDebtgdp | number : 2}}% </strong> del PIBE.
             <!-- <p> <strong>{{ admon.stats.obStats.count }}</strong> creditos por un total de <strong>{{ admon.stats.obStats.sum | mdp }}</strong></p>
               <p>aún se debe <strong> {{ admon.stats.obStats.balance | mdp }} </strong></p> -->
           </div>
@@ -47,39 +53,47 @@
         <h3>Deuda Per Capita: <strong>{{vm.entity.balancePerCapita | currency }}</strong></h3>
       </div>
       <div layout-fill class="detailed-list">
-        <h1>Historico de Deuda</h1>
-        <p>La siguiente grafica muestra el histórico de la deuda en {{vm.entity.name}} representada por la linea solida azul. </p>
-        <p>Las barras representan la suma de los creditos contratados cada año según el registro de obligaciones y emprésitos. </p>
+        <div class="center-content">
+          <h1 class="hl-text">Historico <span>de Deuda</span></h1>
+          <div class="container-md container description-txt">
+            <p>La siguiente grafica muestra el <strong>histórico de la deuda en {{vm.entity.name}}</strong> representada por la <span class="hl-text2">linea solida azul</span>. </p>
+            <p>Las barras representan <strong>la suma de los creditos contratados cada año</strong> según el registro de obligaciones y emprésitos. </p>
+          </div>
+        </div>
         <nvd3 flex options="vm.multyChartServiceOptions" data="vm.formatEntity" api='vm.api'></nvd3>
         <graph-images data="vm.graphImages"></graph-images>
       </div>
     </div>
     <div flex="100" layout="row" layout-align="center start" layout-wrap>
       <div class="entity-table-title" flex="100">
-        <h4>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h4>
-        <h4>LISTA DETALLADA | <span>Lorem Ipsum</span></h4>
+        <!--
+        <h1>Registro de Obligaciones y Emprésitos Vigente de Entidades, Municipios y sus Organismos <span></span></h1>
+        <h1>LISTA DETALLADA | <span>Lorem Ipsum</span></h1>-->
+        <h1>Registro de Obligaciones y Emprésitos Vigente</h1>
+        <h2>de entidades, municipios y sus organismos</h2>
+
       </div>
       <md-data-table-container ng-show='vm.obligations' class="entity-table" flex="80">
-        <table md-data-table md-progress="deferred">
+        <table class="entity-view-table" md-data-table md-progress="deferred">
           <thead md-order="vm.query.order" md-trigger="onOrderChange">
             <tr>
               <th name="Acreditado" order-by="acredited">
-                <i class="material-icons">place</i>
+                <!--<i class="material-icons">place</i>-->
               </th>
               <th name="Acreedor" order-by="creditor">
-                <i class="material-icons">account_circle</i>
+                <!--<i class="material-icons">account_circle</i>-->
               </th>
               <th name="Destino" order-by="destination">
-                <i class="material-icons">arrow_downward</i>
+                <!--<i class="material-icons">arrow_downward</i>-->
               </th>
               <th name="Fecha de Firma" order-by="signDate">
-                <i class="material-icons">border_color</i>
+                <!--<i class="material-icons">border_color</i>-->
               </th>
               <th  name="Monto" unit="$" order-by="ammount">
-                <i class="material-icons">credit_card</i>
+                <!--<i class="material-icons">credit_card</i>-->
               </th>
               <th  name="Saldo" unit="$" order-by="balance">
-                <i class="material-icons">monetization_on</i>
+                <!--<i class="material-icons">monetization_on</i>-->
               </th>
             </tr>
           </thead>
@@ -97,5 +111,46 @@
       </md-data-table-container>
     </div>
   </section>
+
+
+  <!--COAHUILA-->
+  <section ng-if="vm.entity.name == 'Coahuila' "  id="second-block" class="content-block">
+    <div class="container container-lg">
+      <h1 class="main-title"><strong class="italic">Deuda de Coahuila</strong></h1>
+      <div layout="row" layout-wrap layout-align="space-between">
+        <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+          <p>La deuda de Coahuila al cierre del último cuatrimestre de 2015 era de 40 mil 859 millones 54 mil 760 pesos, según el Avance de Gestión Financiera del Estado. Del total de deuda, solo 3 mil 345 millones 225 mil 319 pesos era deuda a corto plazo, el resto a largo plazo. </p>
+          <p>En un inicio, la deuda del estado fue contratada en 13 instituciones bancarias pero luego de una reestructuración quedó en siete: 11 mil 822 millones 501 mil 331 pesos se le debe al banco Multiva, la mayor cantidad. Le sigue Banco Interacciones, a quien se le debe 8 mil 333 millones 891 mil 388 pesos; después a Banorte, 6 mil 402 millones 291 mil 688 pesos, el pasivo a Banobras es de 3 mil 893 millones 760 mil 666 pesos, a BBVA Bancomer se le adeuda 3 mil 620 millones 507 mil 701 pesos, a Santander 2 mil 57 millones 77 mil 866 pesos y por último a HSBC, mil 293 millones 799 mil 799 pesos. </p>
+          <p>En junio de 2011, la Secretaría de Hacienda destapó que la deuda de Coahuila acumulaba más de 30 mil millones de pesos, pese que la Auditoría Superior de Coahuila situaba la deuda en poco más de 18 mil millones de pesos en 2010. </p>
+          <p>Después se denunció la contratación de 3 mil millones de pesos de deuda en base a documentos falsos del Congreso estatal. En total, de los 24 mil 512 millones de pesos contratados a largo plazo, 16 mil millones se adquirieron con documentos apócrifos. No obstante, en septiembre de 2011, con la mayoría priísta en el Congreso, se aprobó la refinanciación de la deuda estatal por 33 mil 700 millones de pesos, lo que daba paso a legalizar lo ilegal. </p>
+        </div>
+        <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+          <p>Los motivos de la contratación de deuda eran que estaba destinada a obra pública e infraestructura. “Esto no es Nueva York ni Chicago, se parece a Houston, pero esto es Coahuiyork”, declaró Humberto Moreira al justificar el endeudamiento millonario. “Solamente un ciego no ve la obra pública que se ha hecho en Coahuila”, argumentó el entonces presidente de la Junta de Gobierno del Congreso, el priísta Fernando de las Fuentes. “La deuda pública sirvió para transformar Coahuila y costear infraestructura urbana, vialidades, escuelas y hospitales y los programas de asistencia social que ayudaron a 106 mil coahuilenses a salir de la pobreza”, arguyó el entonces gobernador interino, Jorge Torres López, hoy prófugo de la justicia en Estados Unidos.</p>
+          <p>Sin embargo, la oposición en Coahuila ha exhibido que en base a las obras e infraestructura que se presumieron en los informes de gobierno, el monto del gasto no ascendería a los 7 mil millones de pesos. Además, en 2014, en la administración de Rubén Moreira, el Congreso del Estado aprobó por mayoría, con la oposición de Acción Nacional, contratar deuda bancaria por otros dos mil 500 millones de pesos, con el objetivo de liquidar adeudos a proveedores y obra pública contraída en la administración anterior.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--QUINTANA ROO-->
+  <section ng-if="vm.entity.name == 'Quintana Roo' " id="second-block" class="content-block">
+    <div class="container container-lg">
+      <h1 class="main-title"><strong class="italic">Deuda de Quintana Roo</strong></h1>
+      <div layout="row" layout-wrap layout-align="space-between">
+        <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+          <p>La deuda de Quintana Roo, por habitante, es la más alta de México. La entidad, gobernada por Roberto Borge Angulo, adeuda 22 mil millones 442.5 pesos, de acuerdo con la información que se conoce a través de la Secretaría de Hacienda y Crédito Público (SHyCP), lo que implica que cada quintanarroense debe 14 mil 946.10 pesos.</p>
+          <p>La deuda en 2010 ascendía a 10 mil 037.2 millones de pesos, con el saliente gobernador, Félix González Canto. En un año, que transcurrió para que su sucesor, Roberto Borge, rindiera protesta, el monto subió a 13 mil 025.7 millones de pesos. Hoy alcanza los 22 mil 442.5 millones de pesos.</p>
+          <p>La población actual del estado asciende a 1 millón 591 mil 768 habitantes, promedio, de acuerdo con información del Instituto Nacional de Estadística y Geografía (INEGI), a través de la Encuesta Nacional de Ocupación y Empleo.</p>
+        </div>
+        <div flex="45" flex-md="100" flex-sm="100" class="text-content">
+          <p>Esto significa que cada quintanarroense debe prácticamente 15 mil pesos y coloca a Quintana Roo como  el estado con mayor deuda per cápita en México.</p>
+          <p>Supera a entidades como la Ciudad de México, con casi nueve millones de habitantes y una deuda de 71 mil millones de pesos; a Nuevo León, con adeudos por 63 mil 832 millones de pesos y cinco millones de 120 habitantes; o  a Veracruz, con 8 millones 112 mil personas y una deuda de casi 45 mil 800 millones de pesos.</p>
+          <p>La deuda estatal –conocida- corresponde sólo a la garantizada por las participaciones federales y es la que el gobierno de Quintana Roo reporta a la Secretaría de Hacienda federal.</p>
+          <p>Abarca los empréstitos solicitados por el estado –que suman 19 mil 148.3 millones de pesos- además de la deuda de los organismos estatales y aquella contraída por municipios, en donde el estado funge como aval, lo que da un total de 22 mil millones 442.5 pesos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 <ng-include src="'views/partials/footer.html'"></ng-include>

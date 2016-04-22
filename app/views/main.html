@@ -5,16 +5,12 @@
   <div class="banner-main-text">
     <div class="social-bar">
       <p>
-        <a ng-click="vm.shareIn('gplus')" href="">
-          <i class="icon-gplus"></i>
-        </a>
         <a ng-click="vm.shareIn('facebook')" href="">
           <i class="icon-fb"></i>
         </a>
         <a ng-click="vm.shareIn('twitter')" href="">
           <i class="icon-tw"></i>
         </a>
-        <a href="#"><i class="icon-insta"></i></a>
       </p>
     </div>
     <h1>La deuda <strong>sub-nacional</strong></h1>
@@ -82,7 +78,7 @@
           </md-list-item>
           <md-divider></md-divider>
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
-            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort' ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{bred: hover}" ng-cloak>
+            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort' ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{bred: hover}" ng-cloak >
               <div class="md-avatar" style='background:{{hover ? "white" : entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'>
               </div>
               <p>
@@ -128,7 +124,7 @@
 <section class="content-block">
   <div class="content-block content-block-alt">
     <div class="container container-lg">
-      <h1 class="main-title"><strong class="italic">Gobernadores | #Conocetudeuda</span></h1>
+      <h1 class="main-title"><strong class="italic">Gobernadores | #Conocetudeuda</strong></h1>
       <h2 class="center-content">Ordenada por
       <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuanto cambio la deuda en total</span>
       <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuanto cambio la deuda per capita</span>
@@ -168,8 +164,8 @@
   <ul class="governors-list">
     <li layout="row" layout-wrap layout-align="start center" ng-repeat="admon in vm.filtered = (vm.admons | filter :  vm.filterAdmon) | orderBy:vm.admonSort | limitTo: vm.admonLimit" class="governor-item">
       <div class="content-block-alt" flex="100">
-        <div class="container container-lg" layout="row">
-          <div layout="row" layour-align="center center" class="relative">
+        <div class="container container-lg" layout="row" layout-wrap>
+          <div flex-sm="100" layout="row" layout-wrap layour-align="center center" class="relative">
             <div>
               <div class="governor-index">{{$index+1}}</div>
               <div class="governor-team">{{admon.party}}</div>
@@ -181,7 +177,7 @@
             </img>
             <div class="percent-circle floating" ng-class='vm.getLevelClass(admon.deltaDebtgdp)' hide-gt-sm><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
           </div>
-          <div ng-click="admon.isActive = !admon.isActive" class="governor-item-data" flex flex-md="60" flex-sm="60">
+          <div ng-click="admon.isActive = !admon.isActive" class="governor-item-data" flex flex-md="60" flex-sm="100">
             <p><strong>{{admon.governor}} (<a ng-href='#/entidad/{{vm.findEntity(admon.entity).key | urlEncode}}' >{{vm.findEntity(admon.entity).key}}</a>)</strong></p>
             <p class="dates">{{admon.start | date}} - {{admon.end | date}} </p>
             <p><span class="italic">
