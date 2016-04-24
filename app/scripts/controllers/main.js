@@ -82,10 +82,12 @@
         shareUrl = 'https://www.twitter.com/intent/tweet?url=' + url + '&text=' + text;
         console.log(shareUrl);
         window.open(shareUrl, 'name','width=600,height=400');
+        ga('send', 'event', 'Social', 'share', 'Twitter');
       }
       else if(socialNetwork === 'facebook'){
         shareUrl = 'https://www.facebook.com/sharer.php?u=' + url + '&p[summary]=' + text;
         window.open(shareUrl, 'name','width=600,height=400');
+        ga('send', 'event', 'Social', 'share', 'Facebook');
       }
 
     };
@@ -101,6 +103,7 @@
           },
           300
       );
+      ga('send', 'event', 'UX', 'scrollTo', 'top');
     };
 
     function checkIfSafari(){
@@ -120,10 +123,12 @@
       return isSafari;
     }
 
+    //This filters gobernadores to only those selected in the graph
     function filterAdmon(admon){
       var entity = findEntity(admon.entity);
       return entity.selected;
     }
+
     function admonSortDisabled(order) {
       console.log(order);
       return vm.admonSort === order;
@@ -227,6 +232,7 @@
     }
 
     function toggleAll() {
+      ga('send', 'event', 'chart', 'toggle all', !vm.stackedSelected);
       vm.stackedSelected = !vm.stackedSelected;
       vm.dataset.map(function(entity) {
         entity.selected = vm.stackedSelected;
@@ -236,11 +242,13 @@
     }
 
     function toggleOne(entity) {
+      ga('send', 'event', 'chart', 'toggle one', entity.name);
       entity.selected = !entity.selected;
       vm.refreshData();
     }
 
     function toggleSort(key) {
+      ga('send', 'event', 'chart', 'toggle sort', key);
       vm.tableSort = key;
       vm.tableSortOrder = vm.tableSortOrder === '' ? '-' : '';
     }
@@ -251,6 +259,7 @@
         return e;
       });
       vm.refreshData();
+      ga('send', 'event', 'chart', 'view one', entity.name);
     }
   }
 
