@@ -1,6 +1,6 @@
 <section class="banner-main">
-  <div class="banner-main-bg" ng-style="style('firstScreen')" full-screen-wrapper>
-    <video src="images/video-loop.webm" autoplay loop></video>
+  <div class="banner-main-bg" ng-style="style('firstScreen')" ng-class="{'banner-main-bg-img' : vm.isSafari}" full-screen-wrapper>
+    <video ng-if="!vm.isSafari" src="images/video-loop.webm" autoplay loop></video>
   </div>
   <div class="banner-main-text">
     <div class="social-bar">
@@ -136,8 +136,8 @@
       <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuánto cambio la deuda per cápita</span>
       <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuánto cambio la deuda representada como % del producto interno bruto estatal</span>
       </h2>
-      <div class="filter-bar-icons" layout="row">
-        <div flex="100">
+      <div class="filter-bar-icons" layout="row" layout-align="space-between start">
+        <div flex>
           <md-button class="md-icon-button" aria-label="Deuda per capita" ng-click='vm.admonSort = "-deltaDebtPerCapita"' ng-disabled='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>
             <md-tooltip md-direction="top">
               Ordernar por deuda per cápita
@@ -163,6 +163,9 @@
             </md-tooltip>
             <ng-md-icon icon="swap_vert"></ng-md-icon>
           </md-button>
+        </div>
+        <div flex>
+          <p class="message-icons">Los porcentajes representan cuánto cambio la deuda respecto al Producto Interno Bruto Estatal.</p>
         </div>
       </div>
     </div>

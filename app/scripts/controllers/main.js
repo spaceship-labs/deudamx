@@ -51,8 +51,10 @@
     vm.toggleSort = toggleSort;
     vm.viewOne = viewOne;
     vm.admonLimit = 10;
+    vm.checkIfSafari = checkIfSafari;
 
     vm.currentUrl = $location.absUrl();
+    vm.isSafari = vm.checkIfSafari();
 
     vm.dummyDetailedList = {
       acreditado: 'Aguascalientes',
@@ -100,6 +102,23 @@
           300
       );
     };
+
+    function checkIfSafari(){
+      var isSafari = false;
+      var userAgent = navigator.userAgent.toLowerCase();
+      if (userAgent .indexOf('safari')!==-1){
+         if(userAgent .indexOf('chrome')  > -1){
+           //browser is chrome
+           console.log('chrome');
+         }else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
+           //browser is opera
+           console.log('opera');
+         }else{
+          isSafari = true;
+         }
+      }
+      return isSafari;
+    }
 
     function filterAdmon(admon){
       var entity = findEntity(admon.entity);

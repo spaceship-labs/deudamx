@@ -502,7 +502,14 @@ a{
   font-weight: lighter;
 }
 
-.filter-bar-icons{padding-left: 20px;}
+.filter-bar-icons{
+  padding: 0 40px;
+}
+.filter-bar-icons .message-icons{
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: right;
+}
 
 /*----------/
   #DETAILED-LIST
@@ -786,9 +793,20 @@ a{
 }
 
 @media screen and (max-width: 600px){
+  .entity-header h1{font-size: 34px}
   .entity-view-left .md-subheader-content{font-size: 28px;}
   .entity-view-left{padding: 10px;}
   .entity-view .entity-table-title{display: none;}
   .entity-view .entity-view-table{display: none;}
+
+  .banner-main-bg{
+    background: url(../images/homebg.jpg) center center no-repeat;
+    background-size: cover;
+  }
+  .banner-main-bg video{display: none;}
 }
 
+.banner-main-bg-img{
+  background: url(../images/homebg.jpg) center center no-repeat;
+  background-size: cover;
+}
