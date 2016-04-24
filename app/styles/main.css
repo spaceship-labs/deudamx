@@ -61,7 +61,14 @@ a{
   color:black;
   font-weight:400;
 }
-
+.absolute-link{
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
 
 .graph-list md-list-item{
   position: relative;
@@ -283,6 +290,16 @@ a{
   color:white;
 }
 
+.load-more-btn-wrap{
+  text-align: center;
+}
+.load-more-btn{
+  background: #0072BB;
+  color: #fff;
+  cursor: pointer;
+  font-family: Aleo,sans-serif;
+}
+
 /*--------
   #CHART-BLOCK
 /*----------*/
@@ -291,6 +308,14 @@ a{
 }
 .chart-block > .container{max-width: none;}
 .chart-block .chart-container{padding: 20px;}
+.chart-block .chart-container .alert-chart{
+  text-align: right;
+  font-style: italic;
+}
+.chart-block .chart-container .alert-chart ng-md-icon{
+  color: #0072BB;
+  font-size: 16px;
+}
 
 /*----------
   #ENTITIES LIST
@@ -307,6 +332,7 @@ a{
   font-family: 'Montserrat', sans-serif;
   padding: 0 20px;
   height:50px;
+  position: relative;
 }
 .entities-list md-list-item a{
   color: #0072BB;
@@ -323,6 +349,7 @@ a{
   padding: 0px;
   min-width: 25px;
   min-height: 25px;
+  max-width: 25px;
 }
 
 .entities-list .md-avatar::after {
@@ -338,6 +365,7 @@ a{
 .entities-list .md-avatar.selected::after {
   display: none;
 }
+.entities-list-item-data{position: relative;}
 
 .entities-list p {
   font-size: 12px;

@@ -45,6 +45,9 @@
   <div class="container container-xlg">
     <div layout='row' layout-wrap>
       <div flex='75' flex-md="100" flex-sm="100" class="chart-container">
+        <p class="alert-chart">
+          <strong>Elige un estado para visualizar más información</strong> <ng-md-icon icon="arrow_forward"></ng-md-icon>
+        </p>
         <div layout="row" layout-wrap layout-align="space-between center">
           <h2 flex-sm="100" flex-xs="100">{{vm.chartService.modes[vm.chartService.mode].name}} - {{vm.chartService.states[vm.chartService.state].name}}</h2>
           <div flex-sm="100" flex-xs="100">
@@ -77,24 +80,27 @@
             </p>
           </md-list-item>
           <md-divider></md-divider>
-          <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="50">
-            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort' ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{bred: hover}" ng-cloak>
-              <div class="md-avatar" style='background:{{hover ? "white" : entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'>
+          <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="8" min-scrollbar-length="50">
+            <md-list-item ng-repeat='entity in vm.dataset |orderBy:vm.tableSortOrder+vm.tableSort' ng-class="{bred: hover}" layout="row" ng-cloak>
+              <div flex class="md-avatar" style='background:{{hover ? "white" : entity.color}}' ng-click='vm.toggleOne(entity)' ng-class='entity.selected ? "selected" : ""' aria-label='entity.key' ng-dblclick='vm.viewOne(entity)'>
               </div>
-              <p>
-                <a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>
-                  <span ng-hide="hover">
-                    {{ entity.key }}
-                  </span>
-                  <span ng-show="hover" class="cwhite">
-                    {{ vm.committed[entity.key] }}%
-                    del ingreso comprometido en deuda
-                  </span>
-                </a>
-              </p>
-              <p class='align-right' ng-hide="hover">
-                {{ vm.tableFigure(entity) }}
-              </p>
+              <div flex class="entities-list-item-data" layout="row" layout-align="space-between center">
+                <a ng-href='#/entidad/{{entity.key | urlEncode}}' class="absolute-link"></a>
+                <p>
+                  <a ng-href='#/entidad/{{entity.key | urlEncode}}' class='plain-link'>
+                    <span >
+                      {{ entity.key }}
+                    </span>
+                    <!--<span ng-show="hover" class="cwhite">
+                      {{ vm.committed[entity.key] }}%
+                      del ingreso comprometido en deuda
+                    </span>-->
+                  </a>
+                </p>
+                <p class='align-right' ng-hide="hover">
+                  {{ vm.tableFigure(entity) }}
+                </p>
+              </div>
             </md-list-item>
           </perfect-scrollbar>
         </md-list>
@@ -234,8 +240,8 @@
   </ul>
   <div class="content-block content-block-alt">
     <div class="container container-lg">
-      <div layout="column" ng-show="vm.admonLimit < vm.filtered.length" class="entities-list" flex="100" layout-align="center center">
-        <a class="entities-list-top-bar" ng-click="vm.admonLimit = vm.admonLimit + 10" flex="50" layout-padding>
+      <div ng-show="vm.admonLimit < vm.filtered.length" class="load-more-btn-wrap">
+        <a class="load-more-btn" ng-click="vm.admonLimit = vm.admonLimit + 10" flex="50" layout-padding>
           Cargar más
         </a>
       </div>
