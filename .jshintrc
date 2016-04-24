@@ -58,6 +58,7 @@
     "angular": false,
     "$": false,
     "d3" : false,
-    "gauss" : true
+    "gauss" : true,
+    "ga" : true
   }
 }

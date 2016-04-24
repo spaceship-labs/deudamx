@@ -89,7 +89,6 @@
       });
       var style = admon.length ? getAdministrationStyle(admon[0], index - 1) : {};
       delete style.width;
-      //console.log(key);
       return style;
 
     }

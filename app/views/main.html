@@ -132,7 +132,7 @@
     <div class="container container-lg">
       <h1 class="main-title"><strong class="italic">Gobernadores | #Conocetudeuda</strong></h1>
       <h2 class="center-content">Ordenada por
-      <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuánto cambio la deuda en total</span>
+      <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuánto cambió la deuda en total</span>
       <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuánto cambio la deuda per cápita</span>
       <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuánto cambio la deuda representada como % del producto interno bruto estatal</span>
       </h2>
@@ -195,9 +195,9 @@
               </span>
             </p>
           </div>
-          <div flex="10" hide-sm>
+          <!-- <div flex="10" hide-sm>
             <div class="percent-circle" ng-class='vm.getLevelClass(admon.deltaDebtgdp)'><span>{{admon.deltaDebtgdp | number : 2}}%</span></div>
-          </div>
+          </div> -->
           <!-- <div flex="35" flex-md="100" flex-sm="100" class="social-links">
             <a href="#" class="social-circle social-circle-tw">
               <i class="icon-twitter"></i>
@@ -274,6 +274,10 @@
     <div class="credit">
       <p><strong>Desarrollo y Diseño Web</strong></p>
       <p>Spaceshiplabs</p>
+    </div>
+     <div class="credit">
+      <p><strong>Textos Quintana Roo y Coahuila</strong></p>
+      <p>Adriana Varillas / Francisco Rodríguez</p>
     </div>
     <p>Escríbenos un correo a: <strong><a href="mailto:periodismodatos@eluniversal.com.mx">periodismodatos@eluniversal.com.mx</a></strong></p>
     <div class="credits-logo">

@@ -54,7 +54,8 @@ function chartService($filter) {
     sort: 'balancegdp',
     label: '% del PIBE',
     filter: 'percentage',
-    alias : 'gdpdebt'
+    alias : 'gdpdebt',
+    ylabel : '%'
   }];
   service.states = [{
     name: 'Gráfica de área apilada',
