@@ -18,7 +18,6 @@
     /* jshint validthis: true */
     var service = this;
 
-
     service.formatEntityLineBar = formatEntityLineBar;
     service.formatEntityScatterLine = formatEntityScatterLine;
     service.formatEntityScatterLineBar = formatEntityScatterLineBar;

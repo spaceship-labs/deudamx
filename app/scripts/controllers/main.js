@@ -154,6 +154,7 @@
     }
 
     function setChartState(style) {
+      ga('send', 'event', 'chart', 'set state', style);
       chart.dispatch.changeState({ style: style });
     }
 
@@ -162,6 +163,7 @@
     }
 
     function changeMode(key) {
+      ga('send', 'event', 'chart', 'change mode', key);
       chartService.mode = key;
       if (vm.tableSort !== 'key') {
         vm.tableSort = chartService.getMode().sort;

@@ -39,6 +39,7 @@ function chartService($filter) {
     label: 'Deuda MDP',
     filter: 'currency',
     alias: 'debt',
+    ylabel : 'Millones de Pesos'
   }, {
     name: 'Deuda per cápita',
     icon: 'perm_identity',
@@ -46,7 +47,8 @@ function chartService($filter) {
     sort: 'balancePerCapita',
     label: 'Deuda per cápita',
     filter: 'currency',
-    alias : 'debtPerCapita'
+    alias : 'debtPerCapita',
+    ylabel : 'Millones de Pesos'
   }, {
     name: 'Deuda como % del PIB Estatal',
     icon: 'business',
@@ -175,7 +177,7 @@ function chartService($filter) {
         showYAxis: true,
         yAxis: {
           showMaxMin: false,
-          axisLabel: 'Millones de pesos',
+          axisLabel: service.modes[service.mode].ylabel,
           axisLabelDistance: 10,
           tickFormat: function(d) {
             return $filter('number')(d, 2);
