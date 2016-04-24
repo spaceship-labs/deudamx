@@ -804,6 +804,8 @@ a{
     background-size: cover;
   }
   .banner-main-bg video{display: none;}
+
+  .filter-bar-icons{padding: 0;}
 }
 
 .banner-main-bg-img{
