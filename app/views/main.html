@@ -133,8 +133,8 @@
       <h1 class="main-title"><strong class="italic">Gobernadores | #Conocetudeuda</strong></h1>
       <h2 class="center-content">Ordenada por
       <span ng-if='vm.admonSort === "-deltaDebt" || vm.admonSort === "deltaDebt"'>cuánto cambió la deuda en total</span>
-      <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuánto cambio la deuda per cápita</span>
-      <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuánto cambio la deuda representada como % del producto interno bruto estatal</span>
+      <span ng-if='vm.admonSort === "-deltaDebtPerCapita" || vm.admonSort === "deltaDebtPerCapita"'>cuánto cambió la deuda per cápita</span>
+      <span ng-if='vm.admonSort === "-deltaDebtgdp" || vm.admonSort === "deltaDebtgdp"'>cuánto cambió la deuda representada como % del Producto Interno Bruto Estatal (PIBE)</span>
       </h2>
       <div class="filter-bar-icons" layout="row" layout-align="space-between start" layout-wrap>
         <div flex flex-sm="100">
@@ -163,10 +163,10 @@
             </md-tooltip>
             <ng-md-icon icon="swap_vert"></ng-md-icon>
           </md-button>
-        </div>
+        </div><!--
         <div flex flex-sm="100">
           <p class="message-icons">Los porcentajes representan cuánto cambio la deuda respecto al Producto Interno Bruto Estatal.</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
